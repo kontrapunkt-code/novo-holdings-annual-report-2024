@@ -22,6 +22,14 @@ export default defineType({
 			},
 		}),
 		defineField({
+			name: "homePage",
+			type: "reference",
+			title: "Home Page",
+			description: "Select which page should be used as the home page",
+			to: [{ type: "page" }],
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
 			name: "loadingScreenTitle",
 			type: "string",
 			title: "Loading screen title",

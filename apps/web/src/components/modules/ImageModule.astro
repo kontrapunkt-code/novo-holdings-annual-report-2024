@@ -1,0 +1,31 @@
+---
+import type { ImageModule } from "../../scripts/types";
+import SanityImage from "../SanityImage.astro";
+
+type Props = ImageModule;
+
+const { image, caption } = Astro.props;
+
+if (!image) return null;
+---
+
+<section class="py-12 px-4">
+	<div class="max-w-4xl mx-auto">
+		<figure>
+			<SanityImage
+				image={image}
+				alt={caption || ""}
+				width={1200}
+				class="w-full h-auto"
+				sizes="(min-width: 1280px) 1200px, 100vw"
+			/>
+			{
+				caption && (
+					<figcaption class="mt-2 text-center text-gray-600">
+						{caption}
+					</figcaption>
+				)
+			}
+		</figure>
+	</div>
+</section>

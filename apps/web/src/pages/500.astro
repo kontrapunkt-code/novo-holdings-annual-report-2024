@@ -1,0 +1,29 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Server Error">
+	<div class="min-h-[50vh] flex items-center justify-center">
+		<div class="max-w-2xl mx-auto text-center px-4">
+			<h1 class="text-4xl md:text-6xl font-bold mb-4">500</h1>
+			<p class="text-xl md:text-2xl text-gray-600 mb-8">
+				Something went wrong on our end. Please try again later.
+			</p>
+			<div class="space-x-4">
+				<button
+					onclick="window.location.reload()"
+					class="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+				>
+					Try Again
+				</button>
+				<a
+					href="/"
+					class="inline-block bg-gray-100 text-gray-800 px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+				>
+					Go to Homepage
+				</a>
+			</div>
+		</div>
+	</div>
+</PageLayout>
+

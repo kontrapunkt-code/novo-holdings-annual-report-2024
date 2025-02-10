@@ -1,0 +1,27 @@
+---
+import type { HeroModule } from "../../scripts/types";
+import SanityImage from "../SanityImage.astro";
+
+type Props = HeroModule;
+
+const { title, description, image } = Astro.props;
+
+if (!image) return null;
+---
+
+<section class="relative min-h-[60vh] flex items-center justify-center p-8">
+	<div class="absolute inset-0 z-0">
+		<SanityImage
+			image={image}
+			alt={title ?? ""}
+			width={1920}
+			height={1080}
+			class="w-full h-full object-cover"
+			sizes="100vw"
+		/>
+	</div>
+	<div class="relative z-10 max-w-4xl mx-auto text-center text-white">
+		<h1 class="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
+		<p class="text-xl md:text-2xl">{description}</p>
+	</div>
+</section>
