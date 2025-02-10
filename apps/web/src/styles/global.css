@@ -51,4 +51,13 @@
 		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
 		"Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 		"Segoe UI Symbol", "Noto Color Emoji";
+
+/* COLORS COLORS COLORS COLORS COLORS COLORS */
+	--color-novo-blue: #001965;
+	--color-white: #FFFFFF;		
+	--color-black: #78dcca;
+	--color-blue-grey: #43485C;
+	--color-warm-sand: #D3B276;
+	--color-sky-blue: #B5D5E6;
+	--color-seafoam-green: #6DC28D;
 }
