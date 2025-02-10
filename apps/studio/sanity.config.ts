@@ -9,7 +9,7 @@ export default defineConfig({
 	name: "default",
 	title: "DFDS Route Map",
 
-	projectId: "kava3hk0",
+	projectId: "0ky4dmgz",
 	dataset: "production",
 
 	plugins: [structureTool({ structure }), visionTool()],

@@ -1,7 +1,7 @@
 import netlify from "@astrojs/netlify";
 import solidJs from "@astrojs/solid-js";
 import sanity from "@sanity/astro";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import browserslistToEsbuild from "browserslist-to-esbuild";
 import { browserslistToTargets } from "lightningcss";
 import { browserslist } from "./package.json";
@@ -12,10 +12,10 @@ const lightningcssTargets = browserslistToTargets(browserslist);
 // https://astro.build/config
 export default defineConfig({
 	server: {
-		port: 2233,
+		port: 8731,
 	},
 	output: "static",
-	site: "https://dfds-route-map.netlify.app/",
+	site: "https://novo-holdings-annual-report-2024.netlify.app/",
 	devToolbar: {
 		enabled: false,
 	},
@@ -24,15 +24,6 @@ export default defineConfig({
 	}),
 	image: {
 		domains: ["cdn.sanity.io"],
-	},
-	env: {
-		schema: {
-			SANITY_STUDIO_TOKEN: envField.string({
-				context: "server",
-				access: "secret",
-				optional: false,
-			}),
-		},
 	},
 	vite: {
 		css: {
@@ -50,11 +41,10 @@ export default defineConfig({
 	integrations: [
 		solidJs(),
 		sanity({
-			projectId: "kava3hk0",
+			projectId: "0ky4dmgz",
 			dataset: "production",
 			apiVersion: "2025-01-01",
 			useCdn: false, // for static builds
-			token: import.meta.env.SANITY_STUDIO_TOKEN,
 		}),
 	],
 });
