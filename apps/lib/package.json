@@ -1,0 +1,16 @@
+{
+	"devDependencies": {
+		"svgo": "^4.0.0-rc.1"
+	},
+	"exports": {
+		".": "./index.ts"
+	},
+	"name": "@novo-holdings-annual-report-2024/lib",
+	"private": true,
+	"scripts": {
+		"svg": "svgo svgs",
+		"typegen": "bun run svg && bun generate-svg-types.ts svgs -o index.ts && prettier --write index.ts"
+	},
+	"type": "module",
+	"version": "1.0.0"
+}

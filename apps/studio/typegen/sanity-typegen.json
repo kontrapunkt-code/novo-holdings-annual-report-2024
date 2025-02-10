@@ -1,0 +1,6 @@
+{
+	"path": ["./schemas/**/*.{ts,tsx,js,jsx}", "./lib/queries.ts"],
+	"schema": "./typegen/schema.json",
+	"generates": "./typegen/sanity.types.ts",
+	"overloadClientMethods": true
+}

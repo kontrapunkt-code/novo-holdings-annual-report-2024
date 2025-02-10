@@ -1,0 +1,11 @@
+[build]
+	base = "/"
+	publish = "apps/web/dist"
+	command = "bun run build --filter=@dfds-route-map/web"
+
+[build.environment]
+	NODE_VERSION = "22"
+	TURBO_TELEMETRY_DISABLED = "1"
+
+[build.processing.html]
+	pretty_urls = true

@@ -1,0 +1,38 @@
+{
+	"dependencies": {
+		"@carbon/icons-react": "^11.54.0",
+		"@sanity/cli": "3.74.1",
+		"@sanity/orderable-document-list": "^1.2.2",
+		"@sanity/vision": "3.74.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"sanity": "3.74.1",
+		"styled-components": "^6.1.15"
+	},
+	"devDependencies": {
+		"@sanity/eslint-config-studio": "^5.0.1",
+		"@types/react": "^18.3.12",
+		"eslint": "^9.20.0",
+		"prettier": "^3.5.0",
+		"typescript": "^5.7.3"
+	},
+	"exports": {
+		"./queries": "./lib/queries.ts",
+		"./types": "./typegen/sanity.types.ts"
+	},
+	"name": "@novo-holdings-annual-report-2024/studio",
+	"private": true,
+	"scripts": {
+		"build": "sanity build",
+		"check": "sanity schema validate && eslint .",
+		"deploy": "sanity deploy",
+		"deploy-graphql": "sanity graphql deploy",
+		"dev": "sanity dev",
+		"extract": "sanity schema extract --path typegen/schema.json",
+		"generate": "sanity typegen generate --config-path typegen/sanity-typegen.json",
+		"start": "sanity start",
+		"typegen": "bun run extract && bun run generate",
+		"update-deps": "ncu -u --format group -i"
+	},
+	"version": "1.0.0"
+}

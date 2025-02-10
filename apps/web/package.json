@@ -1,0 +1,43 @@
+{
+	"browserslist": [
+		"defaults and not dead",
+		"> 0.5% in alt-EU, last 2 versions"
+	],
+	"dependencies": {
+		"@astrojs/solid-js": "^5.0.4",
+		"@sanity/astro": "^3.1.11",
+		"@sanity/client": "6.27.2",
+		"@turf/turf": "^7.2.0",
+		"maplibre-gl": "^5.1.0",
+		"motion": "^12.4.1",
+		"sanity": "3.74.1",
+		"solid-js": "^1.9.4"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.4",
+		"@astrojs/netlify": "6.1.0",
+		"@types/geojson": "^7946.0.16",
+		"@types/svg-sprite": "^0.0.39",
+		"astro": "5.2.5",
+		"browserslist": "^4.24.4",
+		"browserslist-to-esbuild": "^2.1.1",
+		"csstype": "^3.1.3",
+		"groq": "3.74.1",
+		"lightningcss": "^1.29.1",
+		"mapshaper": "^0.6.102",
+		"svg-sprite": "^2.0.4",
+		"typescript": "^5.7.3"
+	},
+	"name": "@novo-holdings-annual-report-2024/web",
+	"private": true,
+	"scripts": {
+		"astro": "astro",
+		"build": "bun run check && astro build",
+		"check": "astro check",
+		"dev": "astro dev",
+		"preview": "bun run build && astro preview",
+		"update-deps": "ncu -u --format group -i"
+	},
+	"type": "module",
+	"version": "1.0.0"
+}

@@ -1,0 +1,11 @@
+---
+import HTML from "@/components/astro/HTML.astro";
+import { EditLocation } from "@/components/solid/edit-location";
+import "@/styles/edit.css";
+
+export const prerender = false;
+---
+
+<HTML title="Edit Location">
+	<EditLocation client:only="solid-js" />
+</HTML>

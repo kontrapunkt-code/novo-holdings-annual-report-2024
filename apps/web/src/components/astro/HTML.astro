@@ -1,0 +1,80 @@
+---
+import { COUNTRIES_DETAIL_LEVELS } from "@/scripts/const";
+import "@/styles/base.css";
+import "@/styles/fonts.css";
+import "@/styles/loader.css";
+import { actions } from "astro:actions";
+import { COLORS } from "@dfds-route-map/lib";
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+
+const globalSettings = await Astro.callAction(actions.globalSettings, null);
+const filterGroups = await Astro.callAction(actions.filterGroups, null);
+const routes = await Astro.callAction(actions.routes, null);
+const locations = await Astro.callAction(actions.locations, null);
+const countryLabels = await Astro.callAction(actions.countryLabels, null);
+const center = await Astro.callAction(actions.center, null);
+const maxBounds = await Astro.callAction(actions.maxBounds, null);
+const countries = await Astro.callAction(
+	actions.countries,
+	COUNTRIES_DETAIL_LEVELS[0],
+);
+
+let total = 100_000;
+total += globalSettings.data?.length ?? 0;
+total += filterGroups.data?.length ?? 0;
+total += routes.data?.length ?? 0;
+total += locations.data?.length ?? 0;
+total += countryLabels.data?.length ?? 0;
+total += center.data?.length ?? 0;
+total += maxBounds.data?.length ?? 0;
+total += countries.data?.length ?? 0;
+
+const {
+	globalTitle,
+	loadingScreenTitle,
+	loadingScreenDescription,
+	loadingScreenButtonText,
+} = globalSettings.data?.json[0] ?? {};
+
+const pageTitle = `${title ? `${title} | ` : ""}${globalTitle ?? "DFDS Route Map"}`;
+const colorVariables = Object.entries(COLORS)
+	.map(([key, value]) => `--${key.toLowerCase().replace(/_/g, "-")}:${value}`)
+	.join(";");
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content={COLORS.BG} />
+		<meta name="description" content="DFDS Route Map" />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<main id="dfds-route-map" style={colorVariables}>
+			<div id="loader">
+				<h1>{loadingScreenTitle}</h1>
+				<p>{loadingScreenDescription}</p>
+				<button data-total={total}>
+					<span class="progress"></span>
+					{loadingScreenButtonText}
+				</button>
+			</div>
+			<div id="app"></div>
+			<slot />
+		</main>
+	</body>
+</html>
+
+<script>
+	import { initApp } from "@/scripts/loader";
+
+	initApp();
+</script>

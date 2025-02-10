@@ -1,0 +1,29 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalEnv": ["SANITY_STUDIO_TOKEN"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"]
+		},
+		"check": {
+			"cache": false
+		},
+		"dev": {
+			"cache": false,
+			"env": ["!SANITY_STUDIO_*"],
+			"persistent": true
+		},
+		"typegen": {
+			"cache": false
+		},
+		"update-deps": {
+			"cache": false
+		},
+		"deploy": {
+			"cache": false
+		},
+		"preview": {
+			"cache": false
+		}
+	}
+}

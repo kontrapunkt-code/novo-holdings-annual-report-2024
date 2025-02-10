@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"checkJs": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noUncheckedIndexedAccess": true,
+		"outDir": "./dist",
+		"removeComments": true,
+		"target": "ES2021",
+		"useDefineForClassFields": false,
+		"verbatimModuleSyntax": true
+	},
+	"exclude": ["dist", "node_modules"],
+	"include": ["**/*"]
+}

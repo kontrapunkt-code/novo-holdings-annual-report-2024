@@ -1,0 +1,585 @@
+#ui {
+	user-select: none;
+}
+
+.layers {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
+
+svg[data-icon] {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.button {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+	background-color: var(--sea-blue);
+	backdrop-filter: blur(0.25rem);
+	padding: 0.75rem;
+	cursor: pointer;
+	border-radius: 999rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--white);
+	transition:
+		scale 200ms ease-out,
+		background-color 200ms ease-out,
+		opacity 200ms ease-out,
+		color 200ms ease-out;
+	-webkit-tap-highlight-color: transparent;
+	opacity: 1;
+	pointer-events: auto;
+
+	&.disabled {
+		opacity: 0.3;
+		pointer-events: none;
+	}
+
+	&.invalid {
+		background-color: var(--red);
+		color: var(--white);
+	}
+
+	&:active {
+		background-color: var(--black);
+		scale: 0.95;
+		transition:
+			scale 100ms ease-out,
+			background-color 100ms ease-out,
+			color 100ms ease-out;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--seep-blue);
+			color: var(--white);
+			scale: 1.03;
+		}
+
+		&:active {
+			scale: 0.98;
+		}
+	}
+
+	svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	span {
+		padding: 0 0.5rem;
+
+		&:last-child:not(:first-child) {
+			padding-left: 0;
+		}
+
+		&:first-child:not(:last-child) {
+			padding-right: 0;
+		}
+	}
+}
+
+.filter-groups-container {
+	width: fit-content;
+	height: fit-content;
+	position: absolute;
+	inset: 3rem 3rem auto 3rem;
+	margin: auto;
+	z-index: 800;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+
+	label {
+		color: var(--deep-blue);
+		background-color: var(--light-sky-blue-2);
+		background-color: color-mix(
+			in srgb,
+			var(--light-sky-blue-2) 60%,
+			transparent
+		);
+
+		&:has(input:checked) {
+			background-color: var(--deep-blue);
+			color: var(--white);
+		}
+
+		svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		p {
+			padding: 0 0.5rem;
+		}
+
+		input {
+			position: absolute;
+			opacity: 0;
+		}
+	}
+
+	label.menu-button {
+		display: none;
+
+		@media (max-width: 42rem) {
+			display: flex;
+			align-items: center;
+			gap: 0;
+
+			svg[data-icon="close"] {
+				display: none;
+			}
+
+			&:not(:has(input:checked)) ~ form.filter-groups .filter-group {
+				display: none;
+			}
+
+			&:has(input:checked) {
+				svg[data-icon="close"] {
+					display: block;
+				}
+
+				svg[data-icon="menu"] {
+					display: none;
+				}
+
+				& ~ form.filter-groups .filter-group:has(input:checked) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	form.filter-groups {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+
+		@media (max-width: 42rem) {
+			flex-direction: column;
+		}
+
+		.filter-group {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.description-mask {
+				position: absolute;
+				pointer-events: none;
+				z-index: 2;
+				transform-origin: top center;
+				color: var(--deep-blue);
+				background-color: var(--white);
+				background-color: color-mix(in srgb, var(--white) 60%, transparent);
+				backdrop-filter: blur(0.25rem);
+				border-radius: 0.75rem;
+				box-shadow: 0 0.25rem 2.5rem 0.25rem rgba(0, 0, 0, 0.1);
+				box-shadow: 0 0.25rem 2.5rem 0.25rem
+					color-mix(in srgb, var(--deep-blue) 10%, transparent);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				top: calc(50% + 2rem);
+				overflow: hidden;
+
+				/* animated properties initial state */
+				width: 2rem;
+				height: 2rem;
+				opacity: 0;
+
+				p.description {
+					padding: 1.5rem 2rem;
+					width: 24rem;
+					max-width: calc(50vw - 12rem);
+					font-size: 1rem;
+					line-height: 1.4;
+
+					/* animated properties initial state */
+					transform: scale(0.8);
+				}
+			}
+		}
+	}
+}
+
+#maplibregl {
+	font-family: inherit;
+	position: absolute;
+	inset: 0;
+
+	.country-label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: var(--light-sky-blue);
+		font-size: 0.75rem;
+	}
+
+	.maplibregl-control-container {
+		.maplibregl-ctrl-bottom-left {
+			.maplibregl-ctrl-attrib {
+				padding: 0 0.25rem;
+				border-top-right-radius: 0.25rem;
+				background-color: var(--light-sky-blue-2);
+				background-color: color-mix(
+					in srgb,
+					var(--light-sky-blue-2) 60%,
+					transparent
+				);
+				backdrop-filter: blur(0.25rem);
+
+				a {
+					color: var(--deep-blue);
+				}
+			}
+
+			.legend-control {
+				all: unset;
+				pointer-events: none;
+				display: flex;
+				flex-direction: column;
+				align-items: start;
+				justify-content: center;
+				gap: 1rem;
+				margin: 3rem;
+
+				@media (max-width: 42rem) or (hover: none) {
+					display: none;
+				}
+
+				.legend-item {
+					display: flex;
+					align-items: center;
+					gap: 1.5rem;
+
+					svg {
+						width: 1rem;
+						height: 1rem;
+						color: var(--sea-blue);
+					}
+
+					p {
+						font-size: 1rem;
+						color: var(--deep-blue);
+					}
+				}
+			}
+		}
+
+		.maplibregl-ctrl-bottom-right {
+			.zoom-control {
+				all: unset;
+				pointer-events: auto;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.25rem;
+				margin: 3rem;
+
+				@media (max-width: 42rem) or (hover: none) {
+					display: none;
+				}
+
+				button {
+					all: unset;
+					display: flex;
+					pointer-events: auto;
+					cursor: pointer;
+					background-color: var(--light-sky-blue-2);
+					background-color: color-mix(
+						in srgb,
+						var(--light-sky-blue-2) 60%,
+						transparent
+					);
+					backdrop-filter: blur(0.25rem);
+					border-radius: 99rem;
+					padding: 0.5rem;
+					color: var(--deep-blue);
+
+					@media (hover: hover) {
+						&:hover {
+							opacity: 0.8;
+						}
+					}
+
+					&:active {
+						opacity: 0.6;
+					}
+
+					svg {
+						width: 1.5rem;
+						height: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+.location-cluster {
+	background-color: var(--sea-blue);
+	color: var(--white);
+	border-radius: 999rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+
+	/* animated properties */
+	pointer-events: none;
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: var(--sea-blue);
+
+	p {
+		width: max-content;
+		white-space: nowrap;
+		padding: 0 0.25rem;
+		font-size: 0.75rem;
+		line-height: 0;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.overlay {
+	position: absolute;
+	inset: -100vh -100vw;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.location-title {
+	/* animated properties */
+	pointer-events: none;
+
+	.point {
+		color: var(--white);
+		border-radius: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		cursor: pointer;
+
+		/* animated properties */
+		width: 1rem;
+		height: 1rem;
+		background-color: var(--sea-blue);
+
+		p {
+			width: max-content;
+			white-space: nowrap;
+			padding: 0 0.25rem;
+			font-size: 0.75rem;
+			line-height: 0;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			/* animated properties */
+			opacity: 0;
+			transform: scale(0.5);
+		}
+	}
+}
+
+.location-card {
+	color: var(--black);
+	border-radius: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* animated properties initial state */
+	pointer-events: none;
+
+	.point {
+		position: relative;
+		background-color: var(--sea-blue);
+		border-radius: 999rem;
+		color: var(--white);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+
+		/* animated properties initial state */
+		width: 1rem;
+		height: 1rem;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -1rem;
+		}
+
+		.location-featured-story & {
+			width: 2rem;
+			height: 2rem;
+		}
+
+		svg {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+	.card-mask {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		background-color: var(--white);
+		background-color: color-mix(in srgb, var(--white) 60%, transparent);
+		backdrop-filter: blur(0.25rem);
+		border-radius: 0.75rem;
+		box-shadow: 0 0.25rem 2.5rem 0.25rem rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0.25rem 2.5rem 0.25rem
+			color-mix(in srgb, var(--deep-blue) 10%, transparent);
+
+		/* animated properties initial state */
+		width: 4rem;
+		height: 4rem;
+		opacity: 0;
+
+		.card {
+			position: absolute;
+			width: max-content;
+			max-width: 24rem;
+			padding: 1.25rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+
+			/* animated properties initial state */
+
+			@media (max-width: 54rem) {
+				max-width: 16rem;
+			}
+
+			.header {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+
+				.image {
+					width: 2.25rem;
+					height: 2.25rem;
+					border-radius: 999rem;
+					overflow: hidden;
+					background-color: var(--sea-blue);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: var(--white);
+
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+
+					svg {
+						width: 1.125rem;
+						height: 1.125rem;
+					}
+				}
+
+				h2 {
+					font-size: 1rem;
+					font-weight: 500;
+				}
+			}
+
+			p {
+				font-size: 1rem;
+				line-height: 1.3;
+			}
+
+			a {
+				all: unset;
+				cursor: pointer;
+				color: var(--sea-blue);
+				transition: color 0.2s ease-out;
+				margin-top: 0.75rem;
+				width: fit-content;
+				font-weight: 500;
+
+				&:active {
+					color: var(--deep-blue);
+					transition: color 0.1s ease-out;
+				}
+
+				@media (hover: hover) {
+					&:hover {
+						color: var(--seep-blue);
+					}
+
+					&:active {
+						color: var(--deep-blue);
+					}
+				}
+			}
+		}
+	}
+}
+
+.route-tooltip-parent {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.route-tooltip {
+		position: absolute;
+		bottom: 0;
+		pointer-events: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--sea-blue);
+		color: var(--white);
+		border-radius: 999rem;
+		margin-bottom: 0.5rem;
+
+		/* animated properties initial state */
+		width: 0;
+		height: 0;
+
+		p {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.75rem;
+			width: max-content;
+			height: 0;
+
+			/* animated properties initial state */
+			opacity: 0;
+			transform: scale(0.5);
+		}
+	}
+}
