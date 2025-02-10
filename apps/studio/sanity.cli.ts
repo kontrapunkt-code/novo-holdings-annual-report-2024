@@ -10,5 +10,5 @@ export default defineCliConfig({
 	 * Learn more at https://www.sanity.io/docs/cli#auto-updates
 	 */
 	autoUpdates: true,
-	studioHost: "dfds-route-map",
+	// studioHost: "novo-holdings-annual-report-2024",
 });

@@ -7,7 +7,7 @@ import { schemas } from "./schemas";
 
 export default defineConfig({
 	name: "default",
-	title: "DFDS Route Map",
+	title: "Novo Holdings Annual Report 2024",
 
 	projectId: "0ky4dmgz",
 	dataset: "production",

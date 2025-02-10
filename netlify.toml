@@ -1,7 +1,7 @@
 [build]
 	base = "/"
 	publish = "apps/web/dist"
-	command = "bun run build --filter=@dfds-route-map/web"
+	command = "bun run build --filter=@novo-holdings-annual-report-2024/web"
 
 [build.environment]
 	NODE_VERSION = "22"

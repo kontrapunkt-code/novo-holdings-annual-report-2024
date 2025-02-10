@@ -1,7 +1,5 @@
-# DFDS Route Map
+# Novo Holdings Annual Report 2024
 
-TypeScript monorepo for the DFDS Route Map.
+TypeScript monorepo for the Novo Holdings Annual Report 2024.
 
-Made with Astro, Sanity, MapLibre GL JS and Solid.
-
-For detailed documentation, see the [docs](./docs) folder.
+Made with Astro, Sanity, Tailwind CSS and Solid.
