@@ -1,18 +1,9 @@
-import { Loader } from "@/components/solid/loader";
-import { Suspense, type VoidComponent, lazy } from "solid-js";
-
-const RouteMap = lazy(async () => {
-	const { RouteMap } = await import("@/components/solid/route-map");
-	return { default: RouteMap };
-});
+import type { VoidComponent } from "solid-js";
 
 export const App: VoidComponent = () => {
 	return (
-		<>
-			<Suspense>
-				<RouteMap />
-			</Suspense>
-			<Loader />
-		</>
+		<div>
+			<h1 class="text-4xl font-bold">Hello World</h1>
+		</div>
 	);
 };

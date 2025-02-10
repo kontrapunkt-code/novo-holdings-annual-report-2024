@@ -1,5 +1,6 @@
 ---
-import "@/styles/base.css";
+import Header from "@/components/astro/Header.astro";
+import "@/styles/global.css";
 
 interface Props {
 	title?: string;
@@ -22,6 +23,7 @@ const pageTitle = `${title ? `${title} | ` : ""}${globalTitle ?? "Novo Holdings 
 		<title>{pageTitle}</title>
 	</head>
 	<body>
+		<Header />
 		<main>
 			<slot />
 		</main>

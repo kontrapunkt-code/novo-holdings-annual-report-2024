@@ -1,6 +1,7 @@
 import netlify from "@astrojs/netlify";
 import solidJs from "@astrojs/solid-js";
 import sanity from "@sanity/astro";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import browserslistToEsbuild from "browserslist-to-esbuild";
 import { browserslistToTargets } from "lightningcss";
@@ -37,6 +38,7 @@ export default defineConfig({
 			cssMinify: "lightningcss",
 			targets: esbuildTargets,
 		},
+		plugins: [tailwindcss()],
 	},
 	integrations: [
 		solidJs(),
