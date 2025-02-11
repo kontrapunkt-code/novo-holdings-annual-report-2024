@@ -3,20 +3,15 @@ import { GLOBAL_SETTINGS_QUERY } from "@novo-holdings-annual-report-2024/studio/
 import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import { sanityClient } from "sanity:client";
 
-const settings = await sanityClient.fetch<GLOBAL_SETTINGS_QUERYResult>(
+const global = await sanityClient.fetch<GLOBAL_SETTINGS_QUERYResult>(
 	GLOBAL_SETTINGS_QUERY,
 );
 
-// Redirect to 404 if settings or homepage is missing
-if (!settings?.homePage) {
-	return Astro.redirect("/404");
-}
-
 // Ensure homepage has a valid slug
-if (!settings.homePage.slug?.current) {
+if (!global?.homePage?.slug?.current) {
 	return Astro.redirect("/404");
 }
 
 // Redirect to the homepage with proper slug
-return Astro.redirect(`/${settings.homePage.slug.current}`);
+return Astro.rewrite(`/${global.homePage.slug.current}`);
 ---

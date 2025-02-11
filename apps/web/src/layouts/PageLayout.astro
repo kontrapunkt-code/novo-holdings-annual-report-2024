@@ -29,16 +29,10 @@ const pageTitle =
 		<title>{pageTitle}</title>
 	</head>
 	<body class="min-h-screen bg-white">
-		<slot name="header">
-			<Header settings={settings} />
-		</slot>
-
+		<Header settings={settings} />
 		<main class="w-full">
 			<slot />
 		</main>
-
-		<slot name="footer">
-			<Footer settings={settings} />
-		</slot>
+		<Footer settings={settings} />
 	</body>
 </html>

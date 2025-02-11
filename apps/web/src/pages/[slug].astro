@@ -3,9 +3,9 @@ import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import type { GetStaticPathsResult } from "astro";
 import { sanityClient } from "sanity:client";
-import HeroModuleComponent from "../components/modules/HeroModule.astro";
-import ImageModuleComponent from "../components/modules/ImageModule.astro";
-import TextModuleComponent from "../components/modules/TextModule.astro";
+import HeroModule from "../components/modules/HeroModule.astro";
+import ImageModule from "../components/modules/ImageModule.astro";
+import TextModule from "../components/modules/TextModule.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 
 export const getStaticPaths = async () => {
@@ -27,11 +27,11 @@ const { page } = Astro.props;
 		page.modules?.map((module) => {
 			switch (module._type) {
 				case "heroModule":
-					return <HeroModuleComponent {...module} />;
+					return <HeroModule {...module} />;
 				case "textModule":
-					return <TextModuleComponent {...module} />;
+					return <TextModule {...module} />;
 				case "imageModule":
-					return <ImageModuleComponent {...module} />;
+					return <ImageModule {...module} />;
 				default:
 					return null;
 			}
