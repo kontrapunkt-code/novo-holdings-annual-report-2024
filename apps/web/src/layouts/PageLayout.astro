@@ -1,0 +1,38 @@
+---
+import "@/styles/global.css";
+import { GLOBAL_SETTINGS_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
+import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import { sanityClient } from "sanity:client";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+const settings = await sanityClient.fetch<GLOBAL_SETTINGS_QUERYResult>(
+	GLOBAL_SETTINGS_QUERY,
+);
+const pageTitle =
+	title ? `${title} | ${settings?.globalTitle}` : settings?.globalTitle;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Novo Holdings Annual Report 2024" />
+		<title>{pageTitle}</title>
+	</head>
+	<body class="min-h-screen bg-white">
+		<Header settings={settings} />
+		<main class="w-full">
+			<slot />
+		</main>
+		<Footer settings={settings} />
+	</body>
+</html>
