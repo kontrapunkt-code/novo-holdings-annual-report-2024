@@ -1,0 +1,31 @@
+---
+import PrimaryButton from "@/components/astro/PrimaryButton.astro";
+---
+
+<footer
+	class="bg-novo-blue text-white w-full grid gap-[12.5rem] py-[1rem] px-[1.5rem] md:px-[3rem]"
+>
+	<div class="flex justify-between items-start">
+		<div class="text-[2rem] md:text-[4rem] leading-[90%]">
+			<p>novo<br /><span class="font-bold">nordisk</span></p>
+		</div>
+		<PrimaryButton buttonText="Back to Main Site" link="/" textColor="white" />
+		<!-- <button class="font-medium text-[1.125rem] leading-[140%]"
+			><img src="" alt="" />Back to Main Site</button
+		> -->
+	</div>
+
+	<nav>
+		<ul
+			class="grid md:flex gap-[1rem] md:gap-[2rem] font-medium text-[0.875rem] leading-[120%]"
+		>
+			<li>Privacy notice</li>
+			<li>Code of Conduct</li>
+			<li>Whistleblower</li>
+			<li>Articles of association</li>
+			<li>Policy on data ethics</li>
+			<li>Electronic invoicing</li>
+			<li>Diversity policy</li>
+		</ul>
+	</nav>
+</footer>
