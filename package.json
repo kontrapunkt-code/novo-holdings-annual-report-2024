@@ -31,9 +31,9 @@
 		"check": "turbo run check",
 		"deploy": "turbo run deploy --filter=@novo-holdings-annual-report-2024/studio",
 		"dev": "turbo run dev",
-		"reinstall": "rm -rf node_modules && rm -rf apps/web/node_modules && rm -rf apps/studio/node_modules && rm bun.lock && bun i",
+		"reinstall": "rm -rf node_modules && rm -rf apps/web/node_modules && rm -rf apps/studio/node_modules && rm -rf apps/lib/node_modules && rm bun.lock && bun i",
 		"typegen": "turbo run typegen",
-		"update-deps": "ncu -u --format group -i && cd apps/web && bun run update-deps && cd ../studio && bun run update-deps && cd ../.."
+		"update-deps": "ncu -u --format group -i && cd apps/web && bun run update-deps && cd ../studio && bun run update-deps && cd ../lib && bun run update-deps && cd ../.."
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",

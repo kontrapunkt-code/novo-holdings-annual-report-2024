@@ -9,7 +9,8 @@
 	"private": true,
 	"scripts": {
 		"svg": "svgo svgs",
-		"typegen": "bun run svg && bun generate-svg-types.ts svgs -o index.ts && prettier --write index.ts"
+		"typegen": "bun run svg && bun generate-svg-types.ts svgs -o index.ts && prettier --write index.ts",
+		"update-deps": "ncu -u --format group -i"
 	},
 	"type": "module",
 	"version": "1.0.0"
