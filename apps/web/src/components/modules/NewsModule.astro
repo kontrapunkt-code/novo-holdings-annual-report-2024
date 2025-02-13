@@ -1,0 +1,82 @@
+---
+import type { NewsModule } from "../../scripts/types";
+import SanityImage from "../SanityImage.astro";
+import MainLayout from "../astro/MainLayout.astro";
+
+type Props = NewsModule;
+
+const { title, description, newsItems } = Astro.props;
+
+if (!newsItems?.length) return null;
+
+const formatDate = (dateString: string) => {
+	return new Date(dateString).toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+};
+
+const imgSrc = "/temp-images/ceo.png";
+const imgAlt = "a";
+const link = "a";
+---
+
+<figure>
+	<MainLayout>
+		{
+			newsItems.map((newsItem) => (
+				<>
+					<div class="col-span-4 md:col-span-6">
+						<figcaption class="headline-extralight">{title}</figcaption>
+						<h3 class="headline-semibold pb-[2rem]">{newsItem.title}</h3>
+						<p class="paragraph-main">
+							{newsItem.excerpt}
+							{newsItem.link && (
+								<a href={newsItem.link} class="text-novo-blue">
+									Read more
+								</a>
+							)}
+						</p>
+					</div>
+
+					{newsItem.image && (
+						<div class="relative rounded-[0.5rem] col-span-4 md:col-span-6">
+							<SanityImage
+								image={newsItem.image}
+								alt={newsItem.title ?? ""}
+								width={1200}
+								class="w-full h-auto rounded-[0.5rem]"
+								sizes="(min-width: 1280px) 1200px, 100vw"
+							/>
+							{newsItem.link && (
+								<button
+									type="button"
+									class="text-white backdrop-blur-xl rounded-[0.5rem] py-[0.875rem] pl-[1rem] pr-[1.5rem] font-medium text-[1.125rem] leading-[140%] tracking-[1%] absolute left-[1.25rem] bottom-[1.25rem]"
+								>
+									<a
+										class="flex items-center gap-[0.5rem]"
+										href={newsItem.link}
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="32"
+											height="32"
+											viewBox="0 0 24 24"
+										>
+											<path
+												fill="currentColor"
+												d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"
+											/>
+										</svg>
+										Watch Video (2:00)
+									</a>
+								</button>
+							)}
+						</div>
+					)}
+				</>
+			))
+		}
+	</MainLayout>
+</figure>

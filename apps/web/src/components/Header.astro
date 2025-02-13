@@ -1,5 +1,6 @@
 ---
 import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import PrimaryButton from "@/components/astro/PrimaryButton.astro";
 
 interface Props {
 	settings: GLOBAL_SETTINGS_QUERYResult;
@@ -8,10 +9,15 @@ interface Props {
 const { settings } = Astro.props;
 ---
 
-<header class="w-full py-4 px-6 bg-white shadow-sm">
-	<div class="max-w-7xl mx-auto flex items-center justify-between">
-		<a href="/" class="flex items-center space-x-2">
-			<span class="text-xl font-semibold">{settings?.globalTitle}</span>
-		</a>
-	</div>
+<header class="w-full py-[1rem] px-[1.5rem] md:px-[3rem] mx-auto pb-[6rem]">
+	<nav class="max-w-[100rem] flex justify-between items-start">
+		<p class="text-[1.125rem] leading-[90%] text-novo-blue">
+			novo<br /><span class="font-bold">nordisk</span>
+		</p>
+		<PrimaryButton
+			buttonText="Download Report"
+			link="/"
+			textColor="novo-blue"
+		/>
+	</nav>
 </header>

@@ -1,0 +1,17 @@
+---
+import type { ArticleTextModule } from "../../scripts/types";
+import { PortableText } from "astro-portabletext";
+
+type Props = ArticleTextModule;
+
+const { content } = Astro.props;
+
+if (!content?.length) return null;
+---
+
+<section class="py-12 px-4">
+	<p></p>
+	<div class="max-w-3xl mx-auto prose prose-lg">
+		<PortableText value={content} />
+	</div>
+</section>

@@ -1,0 +1,23 @@
+---
+import type { ArticleFigureModule } from "../../scripts/types";
+import MainLayout from "../astro/MainLayout.astro";
+import SanityImage from "../SanityImage.astro";
+type Props = ArticleFigureModule;
+
+const { image, width } = Astro.props;
+if (!image) return null;
+---
+
+<MainLayout>
+	<section class="col-span-4 md:col-span-6 md:col-start-4">
+		<div class="overflow-hidden">
+			<SanityImage
+				image={image}
+				alt=""
+				width={1200}
+				class="rounded-[0.5rem] object-cover w-full h-full"
+				sizes="(min-width: 1280px) 1200px, 100vw"
+			/>
+		</div>
+	</section>
+</MainLayout>

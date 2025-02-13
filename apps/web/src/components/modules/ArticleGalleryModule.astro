@@ -1,0 +1,38 @@
+---
+import type { ArticleGalleryModule } from "../../scripts/types";
+import SanityImage from "../SanityImage.astro";
+
+type Props = ArticleGalleryModule;
+
+const { title, images } = Astro.props;
+
+if (!images?.length) return null;
+---
+
+<section class="py-16 px-4">
+	<div class="max-w-7xl mx-auto">
+		{title && <h2 class="text-3xl font-bold mb-8 text-center">{title}</h2>}
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{
+				images.map((image) => (
+					<figure class="relative">
+						<SanityImage
+							image={image}
+							alt={image.alt ?? image.caption ?? ""}
+							width={800}
+							height={600}
+							class="w-full h-64 object-cover rounded-lg"
+							sizes="(min-width: 1280px) 400px, (min-width: 768px) 350px, 100vw"
+						/>
+						{image.caption && (
+							<figcaption class="mt-2 text-sm text-gray-600">
+								{image.caption}
+							</figcaption>
+						)}
+					</figure>
+				))
+			}
+		</div>
+	</div>
+</section>
+
