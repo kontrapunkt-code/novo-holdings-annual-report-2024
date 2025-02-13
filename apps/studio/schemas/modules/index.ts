@@ -1,24 +1,18 @@
-import hero from "./hero";
-import image from "./image";
-import text from "./text";
-import atAGlance from "./atAGlance";
-import articleHero from "./articleHero";
-import articleText from "./articleText";
-import articleQuote from "./articleQuote";
-import articleStats from "./articleStats";
-import articleGallery from "./articleGallery";
 import articleFigure from "./articleFigure";
+import articleGallery from "./articleGallery";
+import articleHero from "./articleHero";
+import articleQuote from "./articleQuote";
 import articleRelatedCases from "./articleRelatedCases";
-import sideBySide from "./sideBySide";
+import articleStats from "./articleStats";
+import articleText from "./articleText";
+import atAGlance from "./atAGlance";
+import caseHighlights from "./caseHighlights";
 import highlights from "./highlights";
 import news from "./news";
-import caseHighlights from "./caseHighlights";
+import sideBySide from "./sideBySide";
 
 // Export array of all modules for schema registration
 export const modules = [
-	hero,
-	image,
-	text,
 	atAGlance,
 	articleHero,
 	articleText,

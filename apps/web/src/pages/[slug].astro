@@ -1,24 +1,18 @@
 ---
+import { sanityClient } from "sanity:client";
 import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import type { GetStaticPathsResult } from "astro";
-import { sanityClient } from "sanity:client";
-import HeroModule from "../components/modules/HeroModule.astro";
-import ImageModule from "../components/modules/ImageModule.astro";
-import TextModule from "../components/modules/TextModule.astro";
-import PageLayout from "../layouts/PageLayout.astro";
-import AtAGlanceModule from "../components/modules/AtAGlanceModule.astro";
-import ArticleHeroModule from "../components/modules/ArticleHeroModule.astro";
-import ArticleTextModule from "../components/modules/ArticleTextModule.astro";
-import ArticleQuoteModule from "../components/modules/ArticleQuoteModule.astro";
-import ArticleStatsModule from "../components/modules/ArticleStatsModule.astro";
-import ArticleGalleryModule from "../components/modules/ArticleGalleryModule.astro";
 import ArticleFigureModule from "../components/modules/ArticleFigureModule.astro";
-import ArticleRelatedCasesModule from "../components/modules/ArticleRelatedCasesModule.astro";
-import SideBySideModule from "../components/modules/SideBySideModule.astro";
+import ArticleHeroModule from "../components/modules/ArticleHeroModule.astro";
+import ArticleQuoteModule from "../components/modules/ArticleQuoteModule.astro";
+import ArticleTextModule from "../components/modules/ArticleTextModule.astro";
+import AtAGlanceModule from "../components/modules/AtAGlanceModule.astro";
+import CaseHighlightsModule from "../components/modules/CaseHighlightsModule.astro";
 import HighlightsModule from "../components/modules/HighlightsModule.astro";
 import NewsModule from "../components/modules/NewsModule.astro";
-import CaseHighlightsModule from "../components/modules/CaseHighlightsModule.astro";
+import SideBySideModule from "../components/modules/SideBySideModule.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 
 export const getStaticPaths = async () => {
 	const pages = await sanityClient.fetch<PAGES_QUERYResult>(PAGES_QUERY);
@@ -38,12 +32,6 @@ const { page } = Astro.props;
 	{
 		page.modules?.map((module) => {
 			switch (module._type) {
-				case "heroModule":
-					return <HeroModule {...module} />;
-				case "textModule":
-					return <TextModule {...module} />;
-				case "imageModule":
-					return <ImageModule {...module} />;
 				case "atAGlanceModule":
 					return <AtAGlanceModule {...module} />;
 				case "articleHeroModule":

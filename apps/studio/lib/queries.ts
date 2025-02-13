@@ -5,33 +5,11 @@ export const PAGES_QUERY = defineQuery(`
 		title,
 		"slug": slug.current,
 		"modules": modules[] {
-			_type == "heroModule" => {
-				_type,
-				_key,
-				title,
-				description,
-				image,
-			},
-			_type == "textModule" => {
-				_type,
-				_key,
-				content
-			},
-			_type == "imageModule" => {
-				_type,
-				_key,
-				caption,
-				image,
-			},
 			_type == "atAGlanceModule" => {
 				_type,
 				_key,
 				title,
-				items[] {
-					label,
-					value,
-					_key
-				}
+				items
 			},
 			_type == "articleHeroModule" => {
 				_type,
