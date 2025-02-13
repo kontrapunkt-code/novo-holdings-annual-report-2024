@@ -10,5 +10,5 @@ export default defineCliConfig({
 	 * Learn more at https://www.sanity.io/docs/cli#auto-updates
 	 */
 	autoUpdates: true,
-	// studioHost: "novo-holdings-annual-report-2024",
+	studioHost: "novo-holdings-annual-report-2024",
 });

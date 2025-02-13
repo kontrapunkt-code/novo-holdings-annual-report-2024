@@ -1,0 +1,11 @@
+---
+description: Motion
+globs: apps/web/**/*.{ts,tsx}
+---
+
+# Motion
+
+- Use motion.dev's `animate()` function for animation.
+- Follow the docs of motion from motion.dev.
+- Use spring easings whereever possible.
+- Always use the latest version.
