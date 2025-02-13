@@ -1,15 +1,19 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-	name: "textModule",
-	title: "Text Module",
+	name: "articleTextModule",
+	title: "Article Text Module",
 	type: "object",
 	fields: [
 		defineField({
 			name: "content",
 			type: "array",
 			title: "Content",
-			of: [{ type: "block" }],
+			of: [
+				{
+					type: "block",
+				},
+			],
 		}),
 	],
 });

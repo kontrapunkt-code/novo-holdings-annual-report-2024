@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-	name: "heroModule",
-	title: "Hero Module",
+	name: "articleHeroModule",
+	title: "Article Hero Module",
 	type: "object",
 	fields: [
 		defineField({
@@ -11,17 +11,22 @@ export default defineType({
 			title: "Title",
 		}),
 		defineField({
-			name: "description",
-			type: "text",
-			title: "Description",
+			name: "subtitle",
+			type: "string",
+			title: "Subtitle",
 		}),
 		defineField({
 			name: "image",
 			type: "image",
-			title: "Image",
+			title: "Hero Image",
 			options: {
 				hotspot: true,
 			},
+		}),
+		defineField({
+			name: "date",
+			type: "date",
+			title: "Date",
 		}),
 	],
 });

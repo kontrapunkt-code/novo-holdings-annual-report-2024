@@ -1,0 +1,36 @@
+---
+import type { SanityImageType } from "@/scripts/types";
+import SanityImage from "../SanityImage.astro";
+
+interface Props {
+	collaborator: string;
+	date: string;
+	title: string;
+	image: SanityImageType;
+}
+
+const { collaborator, date, title, image } = Astro.props;
+
+if (!image?.asset) return null;
+---
+
+<figure class="col-span-4 pb-[1rem]">
+	<div class="pb-[1.25rem] rounded-[0.5rem]">
+		<SanityImage
+			image={image}
+			alt={title}
+			width={800}
+			class="rounded-[0.5rem] w-full h-auto"
+			sizes="(min-width: 1280px) 800px, 100vw"
+		/>
+	</div>
+	<div
+		class="flex gap-[1rem] items-center pb-[0.5rem] text-novo-blue text-[1rem] leading-[120%]"
+	>
+		<p>{collaborator}</p>
+		<p>{date}</p>
+	</div>
+	<figcaption class="headline-card">
+		{title}
+	</figcaption>
+</figure>

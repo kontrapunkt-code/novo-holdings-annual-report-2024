@@ -1,0 +1,32 @@
+---
+import type { ModuleProps } from "@/scripts/types";
+import HighlightsCardLarge from "../astro/HighlightsCardLarge.astro";
+import MainLayout from "../astro/MainLayout.astro";
+
+type Props = ModuleProps<"highlightsModule">;
+
+const { title, highlights } = Astro.props;
+
+if (!highlights?.length) return null;
+
+const validHighlights = highlights.filter(
+	(highlight): highlight is NonNullable<typeof highlight> =>
+		highlight?.title != null && highlight?.image != null,
+);
+---
+
+<section>
+	<MainLayout>
+		<h3 class="headline-extralight pb-[2.5rem] col-span-full">
+			{title}
+		</h3>
+		{
+			validHighlights.map((highlight) => (
+				<HighlightsCardLarge
+					title={highlight.title ?? ""}
+					image={highlight.image}
+				/>
+			))
+		}
+	</MainLayout>
+</section>

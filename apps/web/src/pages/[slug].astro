@@ -1,11 +1,18 @@
 ---
+import ArticleRelatedCasesModule from "@/components/modules/ArticleRelatedCasesModule.astro";
 import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import type { GetStaticPathsResult } from "astro";
 import { sanityClient } from "sanity:client";
-import HeroModule from "../components/modules/HeroModule.astro";
-import ImageModule from "../components/modules/ImageModule.astro";
-import TextModule from "../components/modules/TextModule.astro";
+import ArticleFigureModule from "../components/modules/ArticleFigureModule.astro";
+import ArticleHeroModule from "../components/modules/ArticleHeroModule.astro";
+import ArticleQuoteModule from "../components/modules/ArticleQuoteModule.astro";
+import ArticleTextModule from "../components/modules/ArticleTextModule.astro";
+import AtAGlanceModule from "../components/modules/AtAGlanceModule.astro";
+import CaseHighlightsModule from "../components/modules/CaseHighlightsModule.astro";
+import HighlightsModule from "../components/modules/HighlightsModule.astro";
+import NewsModule from "../components/modules/NewsModule.astro";
+import SideBySideModule from "../components/modules/SideBySideModule.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 
 export const getStaticPaths = async () => {
@@ -26,12 +33,30 @@ const { page } = Astro.props;
 	{
 		page.modules?.map((module) => {
 			switch (module._type) {
-				case "heroModule":
-					return <HeroModule {...module} />;
-				case "textModule":
-					return <TextModule {...module} />;
-				case "imageModule":
-					return <ImageModule {...module} />;
+				case "atAGlanceModule":
+					return <AtAGlanceModule {...module} />;
+				case "articleHeroModule":
+					return <ArticleHeroModule {...module} />;
+				case "articleTextModule":
+					return <ArticleTextModule {...module} />;
+				case "articleQuoteModule":
+					return <ArticleQuoteModule {...module} />;
+				// case "articleStatsModule":
+				// 	return <ArticleStatsModule {...module} />;
+				// case "articleGalleryModule":
+				// 	return <ArticleGalleryModule {...module} />;
+				case "articleFigureModule":
+					return <ArticleFigureModule {...module} />;
+				case "articleRelatedCasesModule":
+					return <ArticleRelatedCasesModule {...module} />;
+				case "sideBySideModule":
+					return <SideBySideModule {...module} />;
+				case "highlightsModule":
+					return <HighlightsModule {...module} />;
+				case "newsModule":
+					return <NewsModule {...module} />;
+				case "caseHighlightsModule":
+					return <CaseHighlightsModule {...module} />;
 				default:
 					return null;
 			}

@@ -1,0 +1,32 @@
+---
+import type { ModuleProps } from "@/scripts/types";
+import MainLayout from "../astro/MainLayout.astro";
+
+type Props = ModuleProps<"articleStatsModule">;
+
+const { title, stats } = Astro.props;
+
+if (!stats?.length) return null;
+---
+
+<MainLayout>
+	<section
+		class="p-[1.25rem] md:pl-[1.75rem] bg-sky-blue opacity-25 rounded-[0.5rem] col-span-4 md:col-span-6 md:col-start-4"
+	>
+		<h4
+			class="text-[1.5rem] md:text-[1.75rem] leading-[115%] pb-[4rem] md:pb-[3rem]"
+		>
+			<span class="font-bold">:</span>{title}
+		</h4>
+		<p class="paragraph-secondary flex">
+			<div class="h-3 w-3 rounded-full bg-black">
+				Founded in Denmark in 1949 as “Elektroniklaboratoriet”
+			</div>
+		</p>
+		<p class="paragraph-secondary flex">
+			<div class="h-3 w-3 rounded-full bg-black">
+				Global leader in measurement equipment and analysis software
+			</div>
+		</p>
+	</section>
+</MainLayout>

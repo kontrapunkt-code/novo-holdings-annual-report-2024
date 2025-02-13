@@ -1,4 +1,5 @@
 ---
+import type { SanityImageType } from "@/scripts/types";
 import imageUrlBuilder from "@sanity/image-url";
 import type {
 	ImageUrlBuilderOptions,
@@ -8,13 +9,17 @@ import { Image } from "astro:assets";
 import { sanityClient } from "sanity:client";
 
 interface Props {
-	image: SanityImageSource;
+	image: SanityImageType;
 	alt: string;
 	width?: number;
 	height?: number;
 	class?: string;
 	sizes?: string;
 }
+
+const { image, alt, width, height, class: className, sizes } = Astro.props;
+
+if (!image) return null;
 
 export function buildSanityImage(
 	image: SanityImageSource,
@@ -43,8 +48,6 @@ export function buildSanityImage(
 
 	return urlBuilder.format(format).quality(quality).url();
 }
-
-const { image, alt, width, height, class: className, sizes } = Astro.props;
 
 const url = buildSanityImage(image, { width, height });
 ---

@@ -46,8 +46,154 @@ export type Geopoint = {
 	alt?: number;
 };
 
-export type ImageModule = {
-	_type: "imageModule";
+export type CaseHighlightsModule = {
+	_type: "caseHighlightsModule";
+	title?: string;
+	description?: string;
+	cases?: Array<{
+		title?: string;
+		description?: string;
+		period?: string;
+		image?: {
+			asset?: {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+			};
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+		link?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "page";
+		};
+		featured?: boolean;
+		_key: string;
+	}>;
+};
+
+export type NewsModule = {
+	_type: "newsModule";
+	title?: string;
+	description?: string;
+	newsItems?: Array<{
+		title?: string;
+		date?: string;
+		excerpt?: string;
+		image?: {
+			asset?: {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+			};
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+		link?: string;
+		_key: string;
+	}>;
+};
+
+export type HighlightsModule = {
+	_type: "highlightsModule";
+	title?: string;
+	highlights?: Array<{
+		title?: string;
+		description?: string;
+		image?: {
+			asset?: {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+			};
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+		link?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "page";
+		};
+		_key: string;
+	}>;
+};
+
+export type SideBySideModule = {
+	_type: "sideBySideModule";
+	title?: string;
+	leftContent?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: "span";
+			_key: string;
+		}>;
+		style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+		listItem?: "bullet" | "number";
+		markDefs?: Array<{
+			href?: string;
+			_type: "link";
+			_key: string;
+		}>;
+		level?: number;
+		_type: "block";
+		_key: string;
+	}>;
+	rightContent?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: "span";
+			_key: string;
+		}>;
+		style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+		listItem?: "bullet" | "number";
+		markDefs?: Array<{
+			href?: string;
+			_type: "link";
+			_key: string;
+		}>;
+		level?: number;
+		_type: "block";
+		_key: string;
+	}>;
+	image?: {
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: "image";
+	};
+	imagePosition?: "left" | "right";
+};
+
+export type ArticleRelatedCasesModule = {
+	_type: "articleRelatedCasesModule";
+	title?: string;
+	cases?: Array<{
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		_key: string;
+		[internalGroqTypeReferenceTo]?: "page";
+	}>;
+};
+
+export type ArticleFigureModule = {
+	_type: "articleFigureModule";
 	image?: {
 		asset?: {
 			_ref: string;
@@ -60,10 +206,49 @@ export type ImageModule = {
 		_type: "image";
 	};
 	caption?: string;
+	alt?: string;
+	width?: "full" | "medium" | "small";
 };
 
-export type TextModule = {
-	_type: "textModule";
+export type ArticleGalleryModule = {
+	_type: "articleGalleryModule";
+	title?: string;
+	images?: Array<{
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		caption?: string;
+		alt?: string;
+		_type: "image";
+		_key: string;
+	}>;
+};
+
+export type ArticleStatsModule = {
+	_type: "articleStatsModule";
+	title?: string;
+	stats?: Array<{
+		value?: string;
+		label?: string;
+		description?: string;
+		_key: string;
+	}>;
+};
+
+export type ArticleQuoteModule = {
+	_type: "articleQuoteModule";
+	quote?: string;
+	author?: string;
+	role?: string;
+};
+
+export type ArticleTextModule = {
+	_type: "articleTextModule";
 	content?: Array<{
 		children?: Array<{
 			marks?: Array<string>;
@@ -84,10 +269,10 @@ export type TextModule = {
 	}>;
 };
 
-export type HeroModule = {
-	_type: "heroModule";
+export type ArticleHeroModule = {
+	_type: "articleHeroModule";
 	title?: string;
-	description?: string;
+	subtitle?: string;
 	image?: {
 		asset?: {
 			_ref: string;
@@ -99,6 +284,17 @@ export type HeroModule = {
 		crop?: SanityImageCrop;
 		_type: "image";
 	};
+	date?: string;
+};
+
+export type AtAGlanceModule = {
+	_type: "atAGlanceModule";
+	title?: string;
+	items?: Array<{
+		label?: string;
+		value?: string;
+		_key: string;
+	}>;
 };
 
 export type GlobalSettings = {
@@ -139,13 +335,40 @@ export type Page = {
 	modules?: Array<
 		| ({
 				_key: string;
-		  } & HeroModule)
+		  } & AtAGlanceModule)
 		| ({
 				_key: string;
-		  } & TextModule)
+		  } & ArticleHeroModule)
 		| ({
 				_key: string;
-		  } & ImageModule)
+		  } & ArticleTextModule)
+		| ({
+				_key: string;
+		  } & ArticleQuoteModule)
+		| ({
+				_key: string;
+		  } & ArticleStatsModule)
+		| ({
+				_key: string;
+		  } & ArticleGalleryModule)
+		| ({
+				_key: string;
+		  } & ArticleFigureModule)
+		| ({
+				_key: string;
+		  } & ArticleRelatedCasesModule)
+		| ({
+				_key: string;
+		  } & SideBySideModule)
+		| ({
+				_key: string;
+		  } & HighlightsModule)
+		| ({
+				_key: string;
+		  } & NewsModule)
+		| ({
+				_key: string;
+		  } & CaseHighlightsModule)
 	>;
 };
 
@@ -239,9 +462,18 @@ export type AllSanitySchemaTypes =
 	| SanityImagePalette
 	| SanityImageDimensions
 	| Geopoint
-	| ImageModule
-	| TextModule
-	| HeroModule
+	| CaseHighlightsModule
+	| NewsModule
+	| HighlightsModule
+	| SideBySideModule
+	| ArticleRelatedCasesModule
+	| ArticleFigureModule
+	| ArticleGalleryModule
+	| ArticleStatsModule
+	| ArticleQuoteModule
+	| ArticleTextModule
+	| ArticleHeroModule
+	| AtAGlanceModule
 	| GlobalSettings
 	| Page
 	| SanityImageCrop
@@ -254,17 +486,34 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./lib/queries.ts
 // Variable: PAGES_QUERY
-// Query: *[_type == "page"] {		title,		"slug": slug.current,		"modules": modules[] {			_type == "heroModule" => {				_type,				_key,				title,				description,				image,			},			_type == "textModule" => {				_type,				_key,				content			},			_type == "imageModule" => {				_type,				_key,				caption,				image,			}		}	}
+// Query: *[_type == "page"] {		title,		"slug": slug.current,		"modules": modules[] {			_type == "atAGlanceModule" => {				_type,				_key,				title,				items			},			_type == "articleHeroModule" => {				_type,				_key,				title,				subtitle,				image,				date			},			_type == "articleTextModule" => {				_type,				_key,				content			},			_type == "articleQuoteModule" => {				_type,				_key,				quote,				author,				role			},			_type == "articleStatsModule" => {				_type,				_key,				title,				stats[] {					value,					label,					description,					_key				}			},			_type == "articleGalleryModule" => {				_type,				_key,				title,				images[] {					...,					_key				}			},			_type == "articleFigureModule" => {				_type,				_key,				image,				caption,				alt,				width			},			_type == "articleRelatedCasesModule" => {				_type,				_key,				title,				"cases": cases[]-> {					_ref,					title,					"slug": slug.current				}			},			_type == "sideBySideModule" => {				_type,				_key,				title,				leftContent,				rightContent,				image,				imagePosition			},			_type == "highlightsModule" => {				_type,				_key,				title,				highlights[] {					title,					description,					image,					"link": link-> {						_ref,						"slug": slug.current					},					_key				}			},			_type == "newsModule" => {				_type,				_key,				title,				description,				newsItems[] {					title,					date,					excerpt,					image,					link,					_key				}			},			_type == "caseHighlightsModule" => {				_type,				_key,				title,				description,				cases[] {					title,					description,					period,					image,					"link": link-> {						_ref,						"slug": slug.current					},					featured,					_key				}			}		}	}
 export type PAGES_QUERYResult = Array<{
 	title: string | null;
 	slug: string | null;
 	modules: Array<
 		| {
-				_type: "heroModule";
+				_type: "articleFigureModule";
+				_key: string;
+				image: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: "image";
+				} | null;
+				caption: string | null;
+				alt: string | null;
+				width: "full" | "medium" | "small" | null;
+		  }
+		| {
+				_type: "articleGalleryModule";
 				_key: string;
 				title: string | null;
-				description: string | null;
-				image: {
+				images: Array<{
 					asset?: {
 						_ref: string;
 						_type: "reference";
@@ -273,13 +522,17 @@ export type PAGES_QUERYResult = Array<{
 					};
 					hotspot?: SanityImageHotspot;
 					crop?: SanityImageCrop;
+					caption?: string;
+					alt?: string;
 					_type: "image";
-				} | null;
+					_key: string;
+				}> | null;
 		  }
 		| {
-				_type: "imageModule";
+				_type: "articleHeroModule";
 				_key: string;
-				caption: string | null;
+				title: string | null;
+				subtitle: string | null;
 				image: {
 					asset?: {
 						_ref: string;
@@ -291,9 +544,38 @@ export type PAGES_QUERYResult = Array<{
 					crop?: SanityImageCrop;
 					_type: "image";
 				} | null;
+				date: string | null;
 		  }
 		| {
-				_type: "textModule";
+				_type: "articleQuoteModule";
+				_key: string;
+				quote: string | null;
+				author: string | null;
+				role: string | null;
+		  }
+		| {
+				_type: "articleRelatedCasesModule";
+				_key: string;
+				title: string | null;
+				cases: Array<{
+					_ref: null;
+					title: string | null;
+					slug: string | null;
+				}> | null;
+		  }
+		| {
+				_type: "articleStatsModule";
+				_key: string;
+				title: string | null;
+				stats: Array<{
+					value: string | null;
+					label: string | null;
+					description: string | null;
+					_key: string;
+				}> | null;
+		  }
+		| {
+				_type: "articleTextModule";
 				_key: string;
 				content: Array<{
 					children?: Array<{
@@ -322,10 +604,166 @@ export type PAGES_QUERYResult = Array<{
 					_key: string;
 				}> | null;
 		  }
+		| {
+				_type: "atAGlanceModule";
+				_key: string;
+				title: string | null;
+				items: Array<{
+					label?: string;
+					value?: string;
+					_key: string;
+				}> | null;
+		  }
+		| {
+				_type: "caseHighlightsModule";
+				_key: string;
+				title: string | null;
+				description: string | null;
+				cases: Array<{
+					title: string | null;
+					description: string | null;
+					period: string | null;
+					image: {
+						asset?: {
+							_ref: string;
+							_type: "reference";
+							_weak?: boolean;
+							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+						};
+						hotspot?: SanityImageHotspot;
+						crop?: SanityImageCrop;
+						_type: "image";
+					} | null;
+					link: {
+						_ref: null;
+						slug: string | null;
+					} | null;
+					featured: boolean | null;
+					_key: string;
+				}> | null;
+		  }
+		| {
+				_type: "highlightsModule";
+				_key: string;
+				title: string | null;
+				highlights: Array<{
+					title: string | null;
+					description: string | null;
+					image: {
+						asset?: {
+							_ref: string;
+							_type: "reference";
+							_weak?: boolean;
+							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+						};
+						hotspot?: SanityImageHotspot;
+						crop?: SanityImageCrop;
+						_type: "image";
+					} | null;
+					link: {
+						_ref: null;
+						slug: string | null;
+					} | null;
+					_key: string;
+				}> | null;
+		  }
+		| {
+				_type: "newsModule";
+				_key: string;
+				title: string | null;
+				description: string | null;
+				newsItems: Array<{
+					title: string | null;
+					date: string | null;
+					excerpt: string | null;
+					image: {
+						asset?: {
+							_ref: string;
+							_type: "reference";
+							_weak?: boolean;
+							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+						};
+						hotspot?: SanityImageHotspot;
+						crop?: SanityImageCrop;
+						_type: "image";
+					} | null;
+					link: string | null;
+					_key: string;
+				}> | null;
+		  }
+		| {
+				_type: "sideBySideModule";
+				_key: string;
+				title: string | null;
+				leftContent: Array<{
+					children?: Array<{
+						marks?: Array<string>;
+						text?: string;
+						_type: "span";
+						_key: string;
+					}>;
+					style?:
+						| "blockquote"
+						| "h1"
+						| "h2"
+						| "h3"
+						| "h4"
+						| "h5"
+						| "h6"
+						| "normal";
+					listItem?: "bullet" | "number";
+					markDefs?: Array<{
+						href?: string;
+						_type: "link";
+						_key: string;
+					}>;
+					level?: number;
+					_type: "block";
+					_key: string;
+				}> | null;
+				rightContent: Array<{
+					children?: Array<{
+						marks?: Array<string>;
+						text?: string;
+						_type: "span";
+						_key: string;
+					}>;
+					style?:
+						| "blockquote"
+						| "h1"
+						| "h2"
+						| "h3"
+						| "h4"
+						| "h5"
+						| "h6"
+						| "normal";
+					listItem?: "bullet" | "number";
+					markDefs?: Array<{
+						href?: string;
+						_type: "link";
+						_key: string;
+					}>;
+					level?: number;
+					_type: "block";
+					_key: string;
+				}> | null;
+				image: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: "image";
+				} | null;
+				imagePosition: "left" | "right" | null;
+		  }
 	> | null;
 }>;
 // Variable: GLOBAL_SETTINGS_QUERY
-// Query: *[_type == "globalSettings"][0] {		globalTitle,		logo,		homePage->,		loadingScreenTitle,		loadingScreenDescription,		loadingScreenButtonText	}
+// Query: *[_type == "globalSettings"][0] {		globalTitle,		logo,		homePage->,	}
 export type GLOBAL_SETTINGS_QUERYResult = {
 	globalTitle: string | null;
 	logo: {
@@ -348,25 +786,49 @@ export type GLOBAL_SETTINGS_QUERYResult = {
 		modules?: Array<
 			| ({
 					_key: string;
-			  } & HeroModule)
+			  } & ArticleFigureModule)
 			| ({
 					_key: string;
-			  } & ImageModule)
+			  } & ArticleGalleryModule)
 			| ({
 					_key: string;
-			  } & TextModule)
+			  } & ArticleHeroModule)
+			| ({
+					_key: string;
+			  } & ArticleQuoteModule)
+			| ({
+					_key: string;
+			  } & ArticleRelatedCasesModule)
+			| ({
+					_key: string;
+			  } & ArticleStatsModule)
+			| ({
+					_key: string;
+			  } & ArticleTextModule)
+			| ({
+					_key: string;
+			  } & AtAGlanceModule)
+			| ({
+					_key: string;
+			  } & CaseHighlightsModule)
+			| ({
+					_key: string;
+			  } & HighlightsModule)
+			| ({
+					_key: string;
+			  } & NewsModule)
+			| ({
+					_key: string;
+			  } & SideBySideModule)
 		>;
 	} | null;
-	loadingScreenTitle: string | null;
-	loadingScreenDescription: string | null;
-	loadingScreenButtonText: string | null;
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
 	interface SanityQueries {
-		'\n\t*[_type == "page"] {\n\t\ttitle,\n\t\t"slug": slug.current,\n\t\t"modules": modules[] {\n\t\t\t_type == "heroModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\timage,\n\t\t\t},\n\t\t\t_type == "textModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\tcontent\n\t\t\t},\n\t\t\t_type == "imageModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\tcaption,\n\t\t\t\timage,\n\t\t\t}\n\t\t}\n\t}\n': PAGES_QUERYResult;
-		'\n\t*[_type == "globalSettings"][0] {\n\t\tglobalTitle,\n\t\tlogo,\n\t\thomePage->,\n\t\tloadingScreenTitle,\n\t\tloadingScreenDescription,\n\t\tloadingScreenButtonText\n\t}\n': GLOBAL_SETTINGS_QUERYResult;
+		'\n\t*[_type == "page"] {\n\t\ttitle,\n\t\t"slug": slug.current,\n\t\t"modules": modules[] {\n\t\t\t_type == "atAGlanceModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\titems\n\t\t\t},\n\t\t\t_type == "articleHeroModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tsubtitle,\n\t\t\t\timage,\n\t\t\t\tdate\n\t\t\t},\n\t\t\t_type == "articleTextModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\tcontent\n\t\t\t},\n\t\t\t_type == "articleQuoteModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\tquote,\n\t\t\t\tauthor,\n\t\t\t\trole\n\t\t\t},\n\t\t\t_type == "articleStatsModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tstats[] {\n\t\t\t\t\tvalue,\n\t\t\t\t\tlabel,\n\t\t\t\t\tdescription,\n\t\t\t\t\t_key\n\t\t\t\t}\n\t\t\t},\n\t\t\t_type == "articleGalleryModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\timages[] {\n\t\t\t\t\t...,\n\t\t\t\t\t_key\n\t\t\t\t}\n\t\t\t},\n\t\t\t_type == "articleFigureModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\timage,\n\t\t\t\tcaption,\n\t\t\t\talt,\n\t\t\t\twidth\n\t\t\t},\n\t\t\t_type == "articleRelatedCasesModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\t"cases": cases[]-> {\n\t\t\t\t\t_ref,\n\t\t\t\t\ttitle,\n\t\t\t\t\t"slug": slug.current\n\t\t\t\t}\n\t\t\t},\n\t\t\t_type == "sideBySideModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tleftContent,\n\t\t\t\trightContent,\n\t\t\t\timage,\n\t\t\t\timagePosition\n\t\t\t},\n\t\t\t_type == "highlightsModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\thighlights[] {\n\t\t\t\t\ttitle,\n\t\t\t\t\tdescription,\n\t\t\t\t\timage,\n\t\t\t\t\t"link": link-> {\n\t\t\t\t\t\t_ref,\n\t\t\t\t\t\t"slug": slug.current\n\t\t\t\t\t},\n\t\t\t\t\t_key\n\t\t\t\t}\n\t\t\t},\n\t\t\t_type == "newsModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tnewsItems[] {\n\t\t\t\t\ttitle,\n\t\t\t\t\tdate,\n\t\t\t\t\texcerpt,\n\t\t\t\t\timage,\n\t\t\t\t\tlink,\n\t\t\t\t\t_key\n\t\t\t\t}\n\t\t\t},\n\t\t\t_type == "caseHighlightsModule" => {\n\t\t\t\t_type,\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcases[] {\n\t\t\t\t\ttitle,\n\t\t\t\t\tdescription,\n\t\t\t\t\tperiod,\n\t\t\t\t\timage,\n\t\t\t\t\t"link": link-> {\n\t\t\t\t\t\t_ref,\n\t\t\t\t\t\t"slug": slug.current\n\t\t\t\t\t},\n\t\t\t\t\tfeatured,\n\t\t\t\t\t_key\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n': PAGES_QUERYResult;
+		'\n\t*[_type == "globalSettings"][0] {\n\t\tglobalTitle,\n\t\tlogo,\n\t\thomePage->,\n\t}\n': GLOBAL_SETTINGS_QUERYResult;
 	}
 }

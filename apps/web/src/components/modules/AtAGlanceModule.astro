@@ -1,0 +1,24 @@
+---
+import type { ModuleProps } from "@/scripts/types";
+import MainLayout from "../astro/MainLayout.astro";
+
+type Props = ModuleProps<"atAGlanceModule">;
+
+const title = "At a glance";
+---
+
+<section>
+	<MainLayout>
+		<div class="col-span-4 md:col-span-6">
+			<h2 class="headline-01">Novo Holdings at a Glance</h2>
+		</div>
+		<section class="col-span-4 md:col-span-6 grid md:grid-cols-2 gap-[1rem]">
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		</section>
+	</MainLayout>
+</section>
