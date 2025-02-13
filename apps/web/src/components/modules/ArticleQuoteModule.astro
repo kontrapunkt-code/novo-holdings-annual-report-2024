@@ -1,7 +1,8 @@
 ---
-import type { ArticleQuoteModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import MainLayout from "../astro/MainLayout.astro";
-type Props = ArticleQuoteModule;
+
+type Props = ModuleProps<"articleQuoteModule">;
 
 const { quote, author, role } = Astro.props;
 

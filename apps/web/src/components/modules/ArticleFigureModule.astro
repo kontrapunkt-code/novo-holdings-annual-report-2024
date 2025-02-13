@@ -1,8 +1,9 @@
 ---
-import type { ArticleFigureModule } from "../../scripts/types";
-import MainLayout from "../astro/MainLayout.astro";
+import type { ModuleProps } from "@/scripts/types";
 import SanityImage from "../SanityImage.astro";
-type Props = ArticleFigureModule;
+import MainLayout from "../astro/MainLayout.astro";
+
+type Props = ModuleProps<"articleFigureModule">;
 
 const { image, width } = Astro.props;
 if (!image) return null;

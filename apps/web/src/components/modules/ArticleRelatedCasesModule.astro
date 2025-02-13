@@ -1,7 +1,7 @@
 ---
-import type { ArticleRelatedCasesModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 
-type Props = ArticleRelatedCasesModule;
+type Props = ModuleProps<"articleRelatedCasesModule">;
 
 const { title, cases } = Astro.props;
 
@@ -28,4 +28,3 @@ if (!cases?.length) return null;
 		</div>
 	</div>
 </section>
-

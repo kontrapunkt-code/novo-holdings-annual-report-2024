@@ -1,7 +1,9 @@
 ---
-import type { SideBySideModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import MainLayout from "../astro/MainLayout.astro";
 import SecondaryButton from "../astro/SecondaryButton.astro";
+
+type Props = ModuleProps<"sideBySideModule">;
 ---
 
 <figure>

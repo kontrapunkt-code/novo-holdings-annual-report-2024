@@ -1,8 +1,8 @@
 ---
-import type { ArticleGalleryModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import SanityImage from "../SanityImage.astro";
 
-type Props = ArticleGalleryModule;
+type Props = ModuleProps<"articleGalleryModule">;
 
 const { title, images } = Astro.props;
 
@@ -35,4 +35,3 @@ if (!images?.length) return null;
 		</div>
 	</div>
 </section>
-

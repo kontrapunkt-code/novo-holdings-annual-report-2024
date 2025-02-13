@@ -1,9 +1,9 @@
 ---
-import type { NewsModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import SanityImage from "../SanityImage.astro";
 import MainLayout from "../astro/MainLayout.astro";
 
-type Props = NewsModule;
+type Props = ModuleProps<"newsModule">;
 
 const { title, description, newsItems } = Astro.props;
 

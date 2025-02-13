@@ -134,8 +134,5 @@ export const GLOBAL_SETTINGS_QUERY = defineQuery(`
 		globalTitle,
 		logo,
 		homePage->,
-		loadingScreenTitle,
-		loadingScreenDescription,
-		loadingScreenButtonText
 	}
 `);

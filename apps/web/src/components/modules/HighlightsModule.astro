@@ -1,9 +1,9 @@
 ---
-import type { HighlightsModule } from "../../scripts/types";
-import MainLayout from "../astro/MainLayout.astro";
+import type { ModuleProps } from "@/scripts/types";
 import HighlightsCardLarge from "../astro/HighlightsCardLarge.astro";
+import MainLayout from "../astro/MainLayout.astro";
 
-type Props = HighlightsModule;
+type Props = ModuleProps<"highlightsModule">;
 
 const { title, highlights } = Astro.props;
 
@@ -22,7 +22,10 @@ const validHighlights = highlights.filter(
 		</h3>
 		{
 			validHighlights.map((highlight) => (
-				<HighlightsCardLarge title={highlight.title} image={highlight.image} />
+				<HighlightsCardLarge
+					title={highlight.title ?? ""}
+					image={highlight.image}
+				/>
 			))
 		}
 	</MainLayout>

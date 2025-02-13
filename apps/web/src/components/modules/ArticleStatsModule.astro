@@ -1,8 +1,8 @@
 ---
-import type { ArticleStatsModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import MainLayout from "../astro/MainLayout.astro";
 
-type Props = ArticleStatsModule;
+type Props = ModuleProps<"articleStatsModule">;
 
 const { title, stats } = Astro.props;
 

@@ -1,9 +1,9 @@
 ---
-import type { CaseHighlightsModule } from "../../scripts/types";
-import MainLayout from "../astro/MainLayout.astro";
+import type { ModuleProps } from "@/scripts/types";
 import HighlightsCardSmall from "../astro/HighlightsCardSmall.astro";
+import MainLayout from "../astro/MainLayout.astro";
 
-type Props = CaseHighlightsModule;
+type Props = ModuleProps<"caseHighlightsModule">;
 
 const { title, cases } = Astro.props;
 
@@ -22,8 +22,8 @@ const validCases = cases.filter(
 		{
 			validCases.map((case_) => (
 				<HighlightsCardSmall
-					collaborator={case_.title}
-					date={case_.period}
+					collaborator={case_.title ?? ""}
+					date={case_.period ?? ""}
 					title={case_.description ?? ""}
 					image={case_.image}
 				/>

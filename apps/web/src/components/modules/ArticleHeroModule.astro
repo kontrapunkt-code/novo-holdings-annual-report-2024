@@ -1,8 +1,8 @@
 ---
-import type { ArticleHeroModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import SanityImage from "../SanityImage.astro";
 
-type Props = ArticleHeroModule;
+type Props = ModuleProps<"articleHeroModule">;
 
 const { title, subtitle, image, date } = Astro.props;
 

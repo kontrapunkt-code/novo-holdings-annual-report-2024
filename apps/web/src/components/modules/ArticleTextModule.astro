@@ -1,8 +1,8 @@
 ---
-import type { ArticleTextModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import { PortableText } from "astro-portabletext";
 
-type Props = ArticleTextModule;
+type Props = ModuleProps<"articleTextModule">;
 
 const { content } = Astro.props;
 

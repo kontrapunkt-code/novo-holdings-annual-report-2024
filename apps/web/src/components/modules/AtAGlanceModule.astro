@@ -1,7 +1,8 @@
 ---
-import type { AtAGlanceModule } from "../../scripts/types";
+import type { ModuleProps } from "@/scripts/types";
 import MainLayout from "../astro/MainLayout.astro";
-type Props = AtAGlanceModule;
+
+type Props = ModuleProps<"atAGlanceModule">;
 
 const title = "At a glance";
 ---

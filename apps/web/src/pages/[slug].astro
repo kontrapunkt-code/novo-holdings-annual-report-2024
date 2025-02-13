@@ -1,8 +1,9 @@
 ---
-import { sanityClient } from "sanity:client";
+import ArticleRelatedCasesModule from "@/components/modules/ArticleRelatedCasesModule.astro";
 import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import type { GetStaticPathsResult } from "astro";
+import { sanityClient } from "sanity:client";
 import ArticleFigureModule from "../components/modules/ArticleFigureModule.astro";
 import ArticleHeroModule from "../components/modules/ArticleHeroModule.astro";
 import ArticleQuoteModule from "../components/modules/ArticleQuoteModule.astro";
@@ -46,8 +47,8 @@ const { page } = Astro.props;
 				// 	return <ArticleGalleryModule {...module} />;
 				case "articleFigureModule":
 					return <ArticleFigureModule {...module} />;
-				// case "articleRelatedCasesModule":
-				// 	return <ArticleRelatedCasesModule {...module} />;
+				case "articleRelatedCasesModule":
+					return <ArticleRelatedCasesModule {...module} />;
 				case "sideBySideModule":
 					return <SideBySideModule {...module} />;
 				case "highlightsModule":
