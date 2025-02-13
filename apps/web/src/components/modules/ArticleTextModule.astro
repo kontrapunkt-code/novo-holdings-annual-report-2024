@@ -1,5 +1,5 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 import { PortableText } from "astro-portabletext";
@@ -12,9 +12,9 @@ if (!content?.length) return null;
 ---
 
 <SectionLayout>
-	<MainLayout>
+	<ArticleLayout>
 		<div class="">
 			<PortableText value={content} />
 		</div>
-	</MainLayout>
+	</ArticleLayout>
 </SectionLayout>

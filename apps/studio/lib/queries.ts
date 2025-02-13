@@ -1,7 +1,8 @@
 import { defineQuery } from "groq";
 
 export const PAGES_QUERY = defineQuery(`
-	*[_type == "page"] {
+	*[_type == "page" || _type == "case"] {
+		_type,
 		title,
 		slug,
 		modules[] {

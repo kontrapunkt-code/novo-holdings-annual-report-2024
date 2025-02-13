@@ -1,5 +1,5 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 
@@ -11,7 +11,7 @@ if (!stats?.length) return null;
 ---
 
 <SectionLayout>
-	<MainLayout>
+	<ArticleLayout>
 		<div
 			class="p-[1.25rem] md:pl-[1.75rem] bg-sky-blue opacity-25 rounded-[0.5rem] col-span-4 md:col-span-6 md:col-start-4"
 		>
@@ -31,5 +31,5 @@ if (!stats?.length) return null;
 				</div>
 			</p>
 		</div>
-	</MainLayout>
+	</ArticleLayout>
 </SectionLayout>

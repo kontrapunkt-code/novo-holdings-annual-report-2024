@@ -1,5 +1,6 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
@@ -12,24 +13,30 @@ if (!quote) return null;
 ---
 
 <SectionLayout>
-	<MainLayout>
-		<blockquote class="quote col-span-4 md:col-span-6 md:col-start-4 pb-[2rem]">
-			{quote}
+	<ArticleLayout>
+		<blockquote class="quote pb-[2rem]">
+			“{quote}”
 		</blockquote>
-		{author && (
-			<div class="md:col-start-4 aspect-square overflow-hidden">
-				<SanityImage
-					image={image}
-					alt={author}
-					width={1200}
-					class="rounded-[0.5rem] object-cover w-full h-full"
-					sizes="(min-width: 1280px) 1200px, 100vw"
-				/>
-			</div>
-			<div class="paragraph-secondary col-span-3">
-				<span class="font-bold">{author}</span>
-				{jobTitle && <p>{jobTitle}</p>}
-			</div>
-		)}
+	</ArticleLayout>
+	<MainLayout>
+		{
+			author && (
+				<>
+					<div class="col-span-1 md:col-start-4">
+						<SanityImage
+							image={image}
+							alt={author}
+							width={1200}
+							class="rounded-[0.5rem] object-cover w-full h-full"
+							sizes="(min-width: 1280px) 1200px, 100vw"
+						/>
+					</div>
+					<div class="paragraph-secondary col-span-3">
+						<span class="font-bold">{author}</span>
+						{jobTitle && <p>{jobTitle}</p>}
+					</div>
+				</>
+			)
+		}
 	</MainLayout>
 </SectionLayout>
