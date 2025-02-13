@@ -1,32 +1,35 @@
 ---
+import SanityImage from "@/components/astro/SanityImage.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import MainLayout from "../astro/MainLayout.astro";
 
 type Props = ModuleProps<"articleQuoteModule">;
 
-const { quote, author, role } = Astro.props;
+const { quote, author, jobTitle, image } = Astro.props;
 
 if (!quote) return null;
 ---
 
-<section>
+<SectionLayout>
 	<MainLayout>
 		<blockquote class="quote col-span-4 md:col-span-6 md:col-start-4 pb-[2rem]">
 			{quote}
 		</blockquote>
 		{author && (
 			<div class="md:col-start-4 aspect-square overflow-hidden">
-				<img
-					class="rounded-[0.5rem] object-cover w-full h-full"
-					src="/temp-images/ceo.png"
+				<SanityImage
+					image={image}
 					alt={author}
+					width={1200}
+					class="rounded-[0.5rem] object-cover w-full h-full"
+					sizes="(min-width: 1280px) 1200px, 100vw"
 				/>
 			</div>
-
 			<div class="paragraph-secondary col-span-3">
 				<span class="font-bold">{author}</span>
-				{role && <p>{role}</p>}
+				{jobTitle && <p>{jobTitle}</p>}
 			</div>
 		)}
 	</MainLayout>
-</section>
+</SectionLayout>

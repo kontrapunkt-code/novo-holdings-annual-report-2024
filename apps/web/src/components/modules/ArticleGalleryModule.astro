@@ -1,6 +1,8 @@
 ---
+import SanityImage from "@/components/astro/SanityImage.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import SanityImage from "../SanityImage.astro";
 
 type Props = ModuleProps<"articleGalleryModule">;
 
@@ -9,8 +11,8 @@ const { title, images } = Astro.props;
 if (!images?.length) return null;
 ---
 
-<section class="py-16 px-4">
-	<div class="max-w-7xl mx-auto">
+<SectionLayout>
+	<MainLayout>
 		{title && <h2 class="text-3xl font-bold mb-8 text-center">{title}</h2>}
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{
@@ -33,5 +35,5 @@ if (!images?.length) return null;
 				))
 			}
 		</div>
-	</div>
-</section>
+	</MainLayout>
+</SectionLayout>

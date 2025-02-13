@@ -1,33 +1,27 @@
 ---
+import CaseCard from "@/components/astro/CaseCard.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import HighlightsCardSmall from "../astro/HighlightsCardSmall.astro";
-import MainLayout from "../astro/MainLayout.astro";
 
 type Props = ModuleProps<"caseHighlightsModule">;
 
 const { title, cases } = Astro.props;
 
 if (!cases?.length) return null;
-
-const validCases = cases.filter(
-	(case_): case_ is NonNullable<typeof case_> =>
-		case_?.title != null && case_?.image != null && case_?.period != null,
-);
 ---
 
-<section>
+<SectionLayout>
 	<MainLayout>
 		<h3 class="headline-extralight pb-[2.5rem] col-span-full">{title}</h3>
-
+	</MainLayout>
+	<MainLayout>
 		{
-			validCases.map((case_) => (
-				<HighlightsCardSmall
-					collaborator={case_.title ?? ""}
-					date={case_.period ?? ""}
-					title={case_.description ?? ""}
-					image={case_.image}
-				/>
+			cases.map((c) => (
+				<div class={cases.length <= 2 ? "col-span-6" : "col-span-4"}>
+					<CaseCard {...c} />
+				</div>
 			))
 		}
 	</MainLayout>
-</section>
+</SectionLayout>

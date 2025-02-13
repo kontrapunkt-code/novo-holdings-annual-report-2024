@@ -1,65 +1,72 @@
 ---
+import ArticleFigureModule from "@/components/modules/ArticleFigureModule.astro";
+import ArticleGalleryModule from "@/components/modules/ArticleGalleryModule.astro";
+import ArticleQuoteModule from "@/components/modules/ArticleQuoteModule.astro";
 import ArticleRelatedCasesModule from "@/components/modules/ArticleRelatedCasesModule.astro";
+import ArticleStatsModule from "@/components/modules/ArticleStatsModule.astro";
+import ArticleTextModule from "@/components/modules/ArticleTextModule.astro";
+import AtAGlanceModule from "@/components/modules/AtAGlanceModule.astro";
+import CaseHighlightsModule from "@/components/modules/CaseHighlightsModule.astro";
+import HighlightsModule from "@/components/modules/HighlightsModule.astro";
+import NewsModule from "@/components/modules/NewsModule.astro";
+import SideBySideModule from "@/components/modules/SideBySideModule.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
 import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import type { GetStaticPathsResult } from "astro";
 import { sanityClient } from "sanity:client";
-import ArticleFigureModule from "../components/modules/ArticleFigureModule.astro";
-import ArticleHeroModule from "../components/modules/ArticleHeroModule.astro";
-import ArticleQuoteModule from "../components/modules/ArticleQuoteModule.astro";
-import ArticleTextModule from "../components/modules/ArticleTextModule.astro";
-import AtAGlanceModule from "../components/modules/AtAGlanceModule.astro";
-import CaseHighlightsModule from "../components/modules/CaseHighlightsModule.astro";
-import HighlightsModule from "../components/modules/HighlightsModule.astro";
-import NewsModule from "../components/modules/NewsModule.astro";
-import SideBySideModule from "../components/modules/SideBySideModule.astro";
-import PageLayout from "../layouts/PageLayout.astro";
 
 export const getStaticPaths = async () => {
 	const pages = await sanityClient.fetch<PAGES_QUERYResult>(PAGES_QUERY);
 
 	const staticPaths = pages.map((page) => ({
-		params: { slug: page.slug ?? "404" },
-		props: { page },
-	})) satisfies GetStaticPathsResult;
+		params: {
+			slug: page.slug?.current ?? "404",
+		},
+		props: {
+			page,
+		},
+	}));
 
-	return staticPaths;
+	return staticPaths satisfies GetStaticPathsResult;
 };
 
 const { page } = Astro.props;
 ---
 
 <PageLayout title={page.title ?? undefined}>
-	{
-		page.modules?.map((module) => {
-			switch (module._type) {
-				case "atAGlanceModule":
-					return <AtAGlanceModule {...module} />;
-				case "articleHeroModule":
-					return <ArticleHeroModule {...module} />;
-				case "articleTextModule":
-					return <ArticleTextModule {...module} />;
-				case "articleQuoteModule":
-					return <ArticleQuoteModule {...module} />;
-				// case "articleStatsModule":
-				// 	return <ArticleStatsModule {...module} />;
-				// case "articleGalleryModule":
-				// 	return <ArticleGalleryModule {...module} />;
-				case "articleFigureModule":
-					return <ArticleFigureModule {...module} />;
-				case "articleRelatedCasesModule":
-					return <ArticleRelatedCasesModule {...module} />;
-				case "sideBySideModule":
-					return <SideBySideModule {...module} />;
-				case "highlightsModule":
-					return <HighlightsModule {...module} />;
-				case "newsModule":
-					return <NewsModule {...module} />;
-				case "caseHighlightsModule":
-					return <CaseHighlightsModule {...module} />;
-				default:
-					return null;
-			}
-		})
-	}
+	<div
+		class="flex flex-col gap-y-[7.5rem] md:gap-y-[12.5rem] max-w-[100rem] mx-auto"
+	>
+		{
+			page.modules?.map((module) => {
+				switch (module._type) {
+					case "atAGlanceModule":
+						return <AtAGlanceModule {...module} />;
+					case "articleTextModule":
+						return <ArticleTextModule {...module} />;
+					case "articleQuoteModule":
+						return <ArticleQuoteModule {...module} />;
+					case "articleStatsModule":
+						return <ArticleStatsModule {...module} />;
+					case "articleGalleryModule":
+						return <ArticleGalleryModule {...module} />;
+					case "articleFigureModule":
+						return <ArticleFigureModule {...module} />;
+					case "articleRelatedCasesModule":
+						return <ArticleRelatedCasesModule {...module} />;
+					case "sideBySideModule":
+						return <SideBySideModule {...module} />;
+					case "highlightsModule":
+						return <HighlightsModule {...module} />;
+					case "newsModule":
+						return <NewsModule {...module} />;
+					case "caseHighlightsModule":
+						return <CaseHighlightsModule {...module} />;
+					default:
+						return null;
+				}
+			})
+		}
+	</div>
 </PageLayout>
