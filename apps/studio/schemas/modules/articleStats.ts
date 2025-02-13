@@ -14,28 +14,19 @@ export default defineType({
 			name: "stats",
 			type: "array",
 			title: "Statistics",
-			of: [
-				{
-					type: "object",
-					fields: [
-						defineField({
-							name: "value",
-							type: "string",
-							title: "Value",
-						}),
-						defineField({
-							name: "label",
-							type: "string",
-							title: "Label",
-						}),
-						defineField({
-							name: "description",
-							type: "text",
-							title: "Description",
-						}),
-					],
-				},
-			],
+			of: [{ type: "text", rows: 2 }],
 		}),
 	],
+	preview: {
+		select: {
+			title: "title",
+			stats: "stats",
+		},
+		prepare({ title, stats }) {
+			return {
+				title: "Article Stats",
+				subtitle: `${title} - ${stats.length} stats`,
+			};
+		},
+	},
 });

@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "articleRelatedCasesModule",
@@ -15,12 +15,24 @@ export default defineType({
 			type: "array",
 			title: "Related Cases",
 			of: [
-				{
+				defineArrayMember({
 					type: "reference",
-					to: [{ type: "page" }],
-				},
+					to: [{ type: "case" }],
+				}),
 			],
-			validation: (Rule) => Rule.max(3),
+			validation: (rule) => rule.max(3),
 		}),
 	],
+	preview: {
+		select: {
+			title: "title",
+			cases: "cases",
+		},
+		prepare({ title, cases }) {
+			return {
+				title: "Article Related Cases",
+				subtitle: `${title} - ${cases?.length} cases`,
+			};
+		},
+	},
 });

@@ -23,6 +23,15 @@ export const structure = (S: StructureBuilder) => {
 										.filter('_type == "page"')
 										.defaultOrdering([{ field: "title", direction: "asc" }]),
 								),
+							S.listItem()
+								.title("Cases")
+								.icon(Document)
+								.child(
+									S.documentList()
+										.title("All Cases")
+										.filter('_type == "case"')
+										.defaultOrdering([{ field: "title", direction: "asc" }]),
+								),
 						]),
 				),
 

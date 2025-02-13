@@ -12,28 +12,32 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-		}),
-		defineField({
-			name: "caption",
-			type: "string",
-			title: "Caption",
-		}),
-		defineField({
-			name: "alt",
-			type: "string",
-			title: "Alt Text",
-		}),
-		defineField({
-			name: "width",
-			type: "string",
-			title: "Width",
-			options: {
-				list: [
-					{ title: "Full Width", value: "full" },
-					{ title: "Medium", value: "medium" },
-					{ title: "Small", value: "small" },
-				],
-			},
+			fields: [
+				defineField({
+					name: "alt",
+					type: "string",
+					title: "Alt Text",
+				}),
+				defineField({
+					name: "caption",
+					type: "string",
+					title: "Caption",
+				}),
+			],
 		}),
 	],
+	preview: {
+		select: {
+			image: "image",
+			alt: "image.alt",
+			caption: "image.caption",
+		},
+		prepare({ image, alt, caption }) {
+			return {
+				title: "Article Figure",
+				subtitle: `${alt ?? "No alt text"} - ${caption ?? "No caption"}`,
+				media: image,
+			};
+		},
+	},
 });

@@ -1,28 +1,17 @@
 ---
+import SanityImage from "@/components/astro/SanityImage.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import SanityImage from "../SanityImage.astro";
-import MainLayout from "../astro/MainLayout.astro";
 
 type Props = ModuleProps<"newsModule">;
 
-const { title, description, newsItems } = Astro.props;
+const { title, newsItems } = Astro.props;
 
 if (!newsItems?.length) return null;
-
-const formatDate = (dateString: string) => {
-	return new Date(dateString).toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	});
-};
-
-const imgSrc = "/temp-images/ceo.png";
-const imgAlt = "a";
-const link = "a";
 ---
 
-<figure>
+<SectionLayout>
 	<MainLayout>
 		{
 			newsItems.map((newsItem) => (
@@ -39,7 +28,6 @@ const link = "a";
 							)}
 						</p>
 					</div>
-
 					{newsItem.image && (
 						<div class="relative rounded-[0.5rem] col-span-4 md:col-span-6">
 							<SanityImage
@@ -79,4 +67,4 @@ const link = "a";
 			))
 		}
 	</MainLayout>
-</figure>
+</SectionLayout>

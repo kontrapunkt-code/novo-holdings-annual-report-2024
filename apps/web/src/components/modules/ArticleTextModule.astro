@@ -1,4 +1,6 @@
 ---
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 import { PortableText } from "astro-portabletext";
 
@@ -9,9 +11,10 @@ const { content } = Astro.props;
 if (!content?.length) return null;
 ---
 
-<section class="py-12 px-4">
-	<p></p>
-	<div class="max-w-3xl mx-auto prose prose-lg">
-		<PortableText value={content} />
-	</div>
-</section>
+<SectionLayout>
+	<MainLayout>
+		<div class="">
+			<PortableText value={content} />
+		</div>
+	</MainLayout>
+</SectionLayout>

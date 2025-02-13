@@ -16,9 +16,31 @@ export default defineType({
 			title: "Author",
 		}),
 		defineField({
-			name: "role",
+			name: "jobTitle",
 			type: "string",
-			title: "Role",
+			title: "Job Title",
+		}),
+		defineField({
+			name: "image",
+			type: "image",
+			title: "Image",
+			options: {
+				hotspot: true,
+			},
 		}),
 	],
+	preview: {
+		select: {
+			author: "author",
+			jobTitle: "jobTitle",
+			image: "image",
+		},
+		prepare({ author, jobTitle, image }) {
+			return {
+				title: "Article Quote",
+				subtitle: `${author} - ${jobTitle}`,
+				media: image,
+			};
+		},
+	},
 });
