@@ -20,7 +20,7 @@
 		"@astrojs/netlify": "6.1.0",
 		"@sanity/types": "^3.75.0",
 		"@types/svg-sprite": "^0.0.39",
-		"astro": "5.2.5",
+		"astro": "5.2.6",
 		"browserslist": "^4.24.4",
 		"browserslist-to-esbuild": "^2.1.1",
 		"csstype": "^3.1.3",
