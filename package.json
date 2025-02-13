@@ -1,4 +1,6 @@
 {
+	"name": "novo-holdings-annual-report-2024",
+	"version": "1.0.0",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@types/bun": "^1.2.2",
@@ -7,7 +9,6 @@
 		"prettier-plugin-astro": "^0.14.1",
 		"turbo": "^2.4.1"
 	},
-	"name": "novo-holdings-annual-report-2024",
 	"packageManager": "bun@1.2.2",
 	"prettier": {
 		"experimentalTernaries": true,
@@ -44,7 +45,6 @@
 		"sharp"
 	],
 	"type": "module",
-	"version": "1.0.0",
 	"workspaces": [
 		"apps/*"
 	]
