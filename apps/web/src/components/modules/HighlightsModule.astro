@@ -1,7 +1,6 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import SectionLayout from "@/layouts/SectionLayout.astro";
+import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"highlightsModule">;
@@ -16,39 +15,37 @@ const validHighlights = highlights.filter(
 );
 ---
 
-<SectionLayout>
-	<MainLayout>
-		<h3 class="headline-extralight pb-[2.5rem] col-span-full">
-			{title}
-		</h3>
-		{
-			validHighlights.map((highlight) => (
-				<figure class="col-span-4 md:col-span-6 pb-[1rem]">
-					<div class="pb-[1.25rem] rounded-[0.5rem]">
-						<SanityImage
-							image={highlight.image}
-							alt={highlight.title ?? ""}
-							width={1200}
-							class="rounded-[0.5rem] w-full h-auto"
-							sizes="(min-width: 1280px) 1200px, 100vw"
+<LandingLayout>
+	<h3 class="headline-extralight pb-[2.5rem] col-span-full">
+		{title}
+	</h3>
+	{
+		validHighlights.map((highlight) => (
+			<figure class="col-span-4 md:col-span-6 pb-[1rem]">
+				<div class="pb-[1.25rem] rounded-[0.5rem]">
+					<SanityImage
+						image={highlight.image}
+						alt={highlight.title ?? ""}
+						width={1200}
+						class="rounded-[0.5rem] w-full h-auto"
+						sizes="(min-width: 1280px) 1200px, 100vw"
+					/>
+				</div>
+				<figcaption class="headline-card flex gap-[0.5rem] items-start hover:text-novo-blue hover:underline">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="32"
+						height="32"
+						viewBox="0 0 24 24"
+					>
+						<path
+							fill="currentColor"
+							d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"
 						/>
-					</div>
-					<figcaption class="headline-card flex gap-[0.5rem] items-start hover:text-novo-blue hover:underline">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="32"
-							height="32"
-							viewBox="0 0 24 24"
-						>
-							<path
-								fill="currentColor"
-								d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"
-							/>
-						</svg>
-						{highlight.title}
-					</figcaption>
-				</figure>
-			))
-		}
-	</MainLayout>
-</SectionLayout>
+					</svg>
+					{highlight.title}
+				</figcaption>
+			</figure>
+		))
+	}
+</LandingLayout>

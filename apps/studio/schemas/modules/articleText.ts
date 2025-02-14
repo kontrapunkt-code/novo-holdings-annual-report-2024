@@ -16,6 +16,7 @@ export default defineType({
 					styles: [
 						{ title: "Paragraph", value: "normal" },
 						{ title: "Headline", value: "h2" },
+						{ title: "Subheadline", value: "h3" },
 					],
 				},
 			],

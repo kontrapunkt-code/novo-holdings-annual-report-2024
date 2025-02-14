@@ -1,23 +1,20 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
-import SectionLayout from "@/layouts/SectionLayout.astro";
+import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"atAGlanceModule">;
 ---
 
-<SectionLayout>
-	<MainLayout>
-		<div class="col-span-4 md:col-span-6">
-			<h2 class="headline-01">Novo Holdings at a Glance</h2>
-		</div>
-		<section class="col-span-4 md:col-span-6 grid md:grid-cols-2 gap-[1rem]">
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-			<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
-		</section>
-	</MainLayout>
-</SectionLayout>
+<LandingLayout>
+	<div class="col-span-4 md:col-span-6">
+		<h2 class="headline-01">Novo Holdings at a Glance</h2>
+	</div>
+	<section class="col-span-4 md:col-span-6 grid md:grid-cols-2 gap-[1rem]">
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+		<div class="w-full bg-sky-blue rounded-[0.5rem] h-[12rem]"></div>
+	</section>
+</LandingLayout>

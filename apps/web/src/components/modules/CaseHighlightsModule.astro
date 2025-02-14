@@ -1,7 +1,6 @@
 ---
 import CaseCard from "@/components/astro/CaseCard.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import SectionLayout from "@/layouts/SectionLayout.astro";
+import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"caseHighlightsModule">;
@@ -11,17 +10,14 @@ const { title, cases } = Astro.props;
 if (!cases?.length) return null;
 ---
 
-<SectionLayout>
-	<MainLayout>
-		<h3 class="headline-extralight pb-[2.5rem] col-span-full">{title}</h3>
-	</MainLayout>
-	<MainLayout>
-		{
-			cases.map((c) => (
-				<div class={cases.length <= 2 ? "col-span-6" : "col-span-4"}>
-					<CaseCard {...c} />
-				</div>
-			))
-		}
-	</MainLayout>
-</SectionLayout>
+<LandingLayout>
+	<h3 class="headline-extralight pb-[2.5rem] col-span-full">{title}</h3>
+
+	{
+		cases.map((c) => (
+			<div class={cases.length <= 2 ? "col-span-6" : "col-span-4"}>
+				<CaseCard {...c} />
+			</div>
+		))
+	}
+</LandingLayout>
