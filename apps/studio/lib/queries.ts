@@ -5,6 +5,10 @@ export const PAGES_QUERY = defineQuery(`
 		_type,
 		title,
 		slug,
+		project,
+		startDate,
+		endDate,
+		heroImage,
 		modules[] {
 			_type == "atAGlanceModule" => {
 				...,

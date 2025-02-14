@@ -1,0 +1,25 @@
+---
+import SanityImage from "@/components/astro/SanityImage.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
+import type { ModuleProps } from "@/scripts/types";
+
+const { title, heroImage, project, startDate, endDate } = Astro.props;
+---
+
+<SectionLayout>
+	<MainLayout>
+		<section class="col-span-full">
+			<p
+				class="flex gap-[1rem] md:gap-[1.5rem] items-center pb-[0.5rem] md:pb-[0.75rem] paragraph-secondary"
+			>
+				<span>{project}</span>
+				<span>{startDate} - {endDate}</span>
+			</p>
+			<h1 class="headline-article pb-[2rem] md:pb-[3rem]">{title}</h1>
+			<div class="overflow-hidden pb-[2rem] md:pb-[3rem]">
+				<SanityImage class="rounded-[0.5rem]" image={heroImage} alt={title} />
+			</div>
+		</section>
+	</MainLayout>
+</SectionLayout>

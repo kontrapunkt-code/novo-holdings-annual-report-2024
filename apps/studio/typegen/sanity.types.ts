@@ -212,6 +212,7 @@ export type ArticleGalleryModule = {
 
 export type ArticleStatsModule = {
 	_type: "articleStatsModule";
+	project?: string;
 	title?: string;
 	stats?: Array<string>;
 };
@@ -512,281 +513,561 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./lib/queries.ts
 // Variable: PAGES_QUERY
-// Query: *[_type == "page"] {		title,		slug,		modules[] {			_type == "atAGlanceModule" => {				...,			},			_type == "articleTextModule" => {				...,			},			_type == "articleQuoteModule" => {				...,			},			_type == "articleStatsModule" => {				...,			},			_type == "articleGalleryModule" => {				...,			},			_type == "articleFigureModule" => {				...,			},			_type == "articleRelatedCasesModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "sideBySideModule" => {				...,			},			_type == "highlightsModule" => {				...,			},			_type == "newsModule" => {				...,			},			_type == "caseHighlightsModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			}		}	}
-export type PAGES_QUERYResult = Array<{
-	title: string | null;
-	slug: Slug | null;
-	modules: Array<
-		| {
-				_key: string;
-				_type: "articleFigureModule";
-				image?: {
-					asset?: {
-						_ref: string;
-						_type: "reference";
-						_weak?: boolean;
-						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-					};
-					hotspot?: SanityImageHotspot;
-					crop?: SanityImageCrop;
-					alt?: string;
-					caption?: string;
-					_type: "image";
-				};
-		  }
-		| {
-				_key: string;
-				_type: "articleGalleryModule";
-				title?: string;
-				images?: Array<{
-					asset?: {
-						_ref: string;
-						_type: "reference";
-						_weak?: boolean;
-						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-					};
-					hotspot?: SanityImageHotspot;
-					crop?: SanityImageCrop;
-					caption?: string;
-					alt?: string;
-					_type: "image";
-					_key: string;
-				}>;
-		  }
-		| {
-				_key: string;
-				_type: "articleQuoteModule";
-				quote?: string;
-				author?: string;
-				jobTitle?: string;
-				image?: {
-					asset?: {
-						_ref: string;
-						_type: "reference";
-						_weak?: boolean;
-						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-					};
-					hotspot?: SanityImageHotspot;
-					crop?: SanityImageCrop;
-					_type: "image";
-				};
-		  }
-		| {
-				_key: string;
-				_type: "articleRelatedCasesModule";
-				title?: string;
-				cases: Array<{
-					title: string | null;
-					slug: Slug | null;
-					project: string | null;
-					startDate: string | null;
-					endDate: string | null;
-					heroImage: {
-						asset?: {
-							_ref: string;
-							_type: "reference";
-							_weak?: boolean;
-							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+// Query: *[_type == "page" || _type == "case"] {		_type,		title,		slug,		modules[] {			_type == "atAGlanceModule" => {				...,			},			_type == "articleTextModule" => {				...,			},			_type == "articleQuoteModule" => {				...,			},			_type == "articleStatsModule" => {				...,			},			_type == "articleGalleryModule" => {				...,			},			_type == "articleFigureModule" => {				...,			},			_type == "articleRelatedCasesModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "sideBySideModule" => {				...,			},			_type == "highlightsModule" => {				...,			},			_type == "newsModule" => {				...,			},			_type == "caseHighlightsModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			}		}	}
+export type PAGES_QUERYResult = Array<
+	| {
+			_type: "case";
+			title: string | null;
+			slug: Slug | null;
+			modules: Array<
+				| {
+						_key: string;
+						_type: "articleFigureModule";
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							alt?: string;
+							caption?: string;
+							_type: "image";
 						};
-						hotspot?: SanityImageHotspot;
-						crop?: SanityImageCrop;
-						alt?: string;
-						_type: "image";
-					} | null;
-				}> | null;
-		  }
-		| {
-				_key: string;
-				_type: "articleStatsModule";
-				title?: string;
-				stats?: Array<string>;
-		  }
-		| {
-				_key: string;
-				_type: "articleTextModule";
-				content?: Array<{
-					children?: Array<{
-						marks?: Array<string>;
-						text?: string;
-						_type: "span";
+				  }
+				| {
 						_key: string;
-					}>;
-					style?:
-						| "blockquote"
-						| "h1"
-						| "h2"
-						| "h3"
-						| "h4"
-						| "h5"
-						| "h6"
-						| "normal";
-					listItem?: "bullet" | "number";
-					markDefs?: Array<{
-						href?: string;
-						_type: "link";
+						_type: "articleGalleryModule";
+						title?: string;
+						images?: Array<{
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							caption?: string;
+							alt?: string;
+							_type: "image";
+							_key: string;
+						}>;
+				  }
+				| {
 						_key: string;
-					}>;
-					level?: number;
-					_type: "block";
-					_key: string;
-				}>;
-		  }
-		| {
-				_key: string;
-				_type: "atAGlanceModule";
-				title?: string;
-				items?: Array<{
-					label?: string;
-					value?: string;
-					_key: string;
-				}>;
-		  }
-		| {
-				_key: string;
-				_type: "caseHighlightsModule";
-				title?: string;
-				cases: Array<{
-					title: string | null;
-					slug: Slug | null;
-					project: string | null;
-					startDate: string | null;
-					endDate: string | null;
-					heroImage: {
-						asset?: {
-							_ref: string;
-							_type: "reference";
-							_weak?: boolean;
-							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+						_type: "articleQuoteModule";
+						quote?: string;
+						author?: string;
+						jobTitle?: string;
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							_type: "image";
 						};
-						hotspot?: SanityImageHotspot;
-						crop?: SanityImageCrop;
-						alt?: string;
-						_type: "image";
-					} | null;
-				}> | null;
-		  }
-		| {
-				_key: string;
-				_type: "highlightsModule";
-				title?: string;
-				highlights?: Array<{
-					title?: string;
-					description?: string;
-					image?: {
-						asset?: {
-							_ref: string;
-							_type: "reference";
-							_weak?: boolean;
-							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+				  }
+				| {
+						_key: string;
+						_type: "articleRelatedCasesModule";
+						title?: string;
+						cases: Array<{
+							title: string | null;
+							slug: Slug | null;
+							project: string | null;
+							startDate: string | null;
+							endDate: string | null;
+							heroImage: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								_type: "image";
+							} | null;
+						}> | null;
+				  }
+				| {
+						_key: string;
+						_type: "articleStatsModule";
+						project?: string;
+						title?: string;
+						stats?: Array<string>;
+				  }
+				| {
+						_key: string;
+						_type: "articleTextModule";
+						content?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "atAGlanceModule";
+						title?: string;
+						items?: Array<{
+							label?: string;
+							value?: string;
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "caseHighlightsModule";
+						title?: string;
+						cases: Array<{
+							title: string | null;
+							slug: Slug | null;
+							project: string | null;
+							startDate: string | null;
+							endDate: string | null;
+							heroImage: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								_type: "image";
+							} | null;
+						}> | null;
+				  }
+				| {
+						_key: string;
+						_type: "highlightsModule";
+						title?: string;
+						highlights?: Array<{
+							title?: string;
+							description?: string;
+							image?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								_type: "image";
+							};
+							link?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "page";
+							};
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "newsModule";
+						title?: string;
+						description?: string;
+						newsItems?: Array<{
+							title?: string;
+							date?: string;
+							excerpt?: string;
+							image?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								_type: "image";
+							};
+							link?: string;
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "sideBySideModule";
+						title?: string;
+						leftContent?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+						rightContent?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							_type: "image";
 						};
-						hotspot?: SanityImageHotspot;
-						crop?: SanityImageCrop;
-						_type: "image";
-					};
-					link?: {
-						_ref: string;
-						_type: "reference";
-						_weak?: boolean;
-						[internalGroqTypeReferenceTo]?: "page";
-					};
-					_key: string;
-				}>;
-		  }
-		| {
-				_key: string;
-				_type: "newsModule";
-				title?: string;
-				description?: string;
-				newsItems?: Array<{
-					title?: string;
-					date?: string;
-					excerpt?: string;
-					image?: {
-						asset?: {
-							_ref: string;
-							_type: "reference";
-							_weak?: boolean;
-							[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+						imagePosition?: "left" | "right";
+				  }
+			> | null;
+	  }
+	| {
+			_type: "page";
+			title: string | null;
+			slug: Slug | null;
+			modules: Array<
+				| {
+						_key: string;
+						_type: "articleFigureModule";
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							alt?: string;
+							caption?: string;
+							_type: "image";
 						};
-						hotspot?: SanityImageHotspot;
-						crop?: SanityImageCrop;
-						_type: "image";
-					};
-					link?: string;
-					_key: string;
-				}>;
-		  }
-		| {
-				_key: string;
-				_type: "sideBySideModule";
-				title?: string;
-				leftContent?: Array<{
-					children?: Array<{
-						marks?: Array<string>;
-						text?: string;
-						_type: "span";
+				  }
+				| {
 						_key: string;
-					}>;
-					style?:
-						| "blockquote"
-						| "h1"
-						| "h2"
-						| "h3"
-						| "h4"
-						| "h5"
-						| "h6"
-						| "normal";
-					listItem?: "bullet" | "number";
-					markDefs?: Array<{
-						href?: string;
-						_type: "link";
+						_type: "articleGalleryModule";
+						title?: string;
+						images?: Array<{
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							caption?: string;
+							alt?: string;
+							_type: "image";
+							_key: string;
+						}>;
+				  }
+				| {
 						_key: string;
-					}>;
-					level?: number;
-					_type: "block";
-					_key: string;
-				}>;
-				rightContent?: Array<{
-					children?: Array<{
-						marks?: Array<string>;
-						text?: string;
-						_type: "span";
+						_type: "articleQuoteModule";
+						quote?: string;
+						author?: string;
+						jobTitle?: string;
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							_type: "image";
+						};
+				  }
+				| {
 						_key: string;
-					}>;
-					style?:
-						| "blockquote"
-						| "h1"
-						| "h2"
-						| "h3"
-						| "h4"
-						| "h5"
-						| "h6"
-						| "normal";
-					listItem?: "bullet" | "number";
-					markDefs?: Array<{
-						href?: string;
-						_type: "link";
+						_type: "articleRelatedCasesModule";
+						title?: string;
+						cases: Array<{
+							title: string | null;
+							slug: Slug | null;
+							project: string | null;
+							startDate: string | null;
+							endDate: string | null;
+							heroImage: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								_type: "image";
+							} | null;
+						}> | null;
+				  }
+				| {
 						_key: string;
-					}>;
-					level?: number;
-					_type: "block";
-					_key: string;
-				}>;
-				image?: {
-					asset?: {
-						_ref: string;
-						_type: "reference";
-						_weak?: boolean;
-						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-					};
-					hotspot?: SanityImageHotspot;
-					crop?: SanityImageCrop;
-					_type: "image";
-				};
-				imagePosition?: "left" | "right";
-		  }
-	> | null;
-}>;
+						_type: "articleStatsModule";
+						project?: string;
+						title?: string;
+						stats?: Array<string>;
+				  }
+				| {
+						_key: string;
+						_type: "articleTextModule";
+						content?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "atAGlanceModule";
+						title?: string;
+						items?: Array<{
+							label?: string;
+							value?: string;
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "caseHighlightsModule";
+						title?: string;
+						cases: Array<{
+							title: string | null;
+							slug: Slug | null;
+							project: string | null;
+							startDate: string | null;
+							endDate: string | null;
+							heroImage: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								_type: "image";
+							} | null;
+						}> | null;
+				  }
+				| {
+						_key: string;
+						_type: "highlightsModule";
+						title?: string;
+						highlights?: Array<{
+							title?: string;
+							description?: string;
+							image?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								_type: "image";
+							};
+							link?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "page";
+							};
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "newsModule";
+						title?: string;
+						description?: string;
+						newsItems?: Array<{
+							title?: string;
+							date?: string;
+							excerpt?: string;
+							image?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								_type: "image";
+							};
+							link?: string;
+							_key: string;
+						}>;
+				  }
+				| {
+						_key: string;
+						_type: "sideBySideModule";
+						title?: string;
+						leftContent?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+						rightContent?: Array<{
+							children?: Array<{
+								marks?: Array<string>;
+								text?: string;
+								_type: "span";
+								_key: string;
+							}>;
+							style?:
+								| "blockquote"
+								| "h1"
+								| "h2"
+								| "h3"
+								| "h4"
+								| "h5"
+								| "h6"
+								| "normal";
+							listItem?: "bullet" | "number";
+							markDefs?: Array<{
+								href?: string;
+								_type: "link";
+								_key: string;
+							}>;
+							level?: number;
+							_type: "block";
+							_key: string;
+						}>;
+						image?: {
+							asset?: {
+								_ref: string;
+								_type: "reference";
+								_weak?: boolean;
+								[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+							};
+							hotspot?: SanityImageHotspot;
+							crop?: SanityImageCrop;
+							_type: "image";
+						};
+						imagePosition?: "left" | "right";
+				  }
+			> | null;
+	  }
+>;
 // Variable: GLOBAL_SETTINGS_QUERY
 // Query: *[_type == "globalSettings"][0] {		globalTitle,		logo,		homePage->,	}
 export type GLOBAL_SETTINGS_QUERYResult = {
@@ -850,7 +1131,7 @@ export type GLOBAL_SETTINGS_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
 	interface SanityQueries {
-		'\n\t*[_type == "page"] {\n\t\ttitle,\n\t\tslug,\n\t\tmodules[] {\n\t\t\t_type == "atAGlanceModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleTextModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleQuoteModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleStatsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleGalleryModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleFigureModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleRelatedCasesModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "sideBySideModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "highlightsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "newsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "caseHighlightsModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t}\n\t\t}\n\t}\n': PAGES_QUERYResult;
+		'\n\t*[_type == "page" || _type == "case"] {\n\t\t_type,\n\t\ttitle,\n\t\tslug,\n\t\tmodules[] {\n\t\t\t_type == "atAGlanceModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleTextModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleQuoteModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleStatsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleGalleryModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleFigureModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleRelatedCasesModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "sideBySideModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "highlightsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "newsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "caseHighlightsModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t}\n\t\t}\n\t}\n': PAGES_QUERYResult;
 		'\n\t*[_type == "globalSettings"][0] {\n\t\tglobalTitle,\n\t\tlogo,\n\t\thomePage->,\n\t}\n': GLOBAL_SETTINGS_QUERYResult;
 	}
 }
