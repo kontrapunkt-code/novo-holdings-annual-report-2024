@@ -43,12 +43,14 @@ const { page } = Astro.props;
 				switch (module._type) {
 					case "atAGlanceModule":
 						return <AtAGlanceModule {...module} />;
+
 					case "articleTextModule":
 						return <ArticleTextModule {...module} />;
 					case "articleQuoteModule":
 						return <ArticleQuoteModule {...module} />;
 					case "articleStatsModule":
 						return <ArticleStatsModule {...module} />;
+
 					case "articleGalleryModule":
 						return <ArticleGalleryModule {...module} />;
 					case "articleFigureModule":

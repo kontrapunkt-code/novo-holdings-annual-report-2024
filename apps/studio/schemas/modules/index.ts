@@ -16,6 +16,7 @@ export const modules = [
 	articleText,
 	articleQuote,
 	articleStats,
+
 	articleGallery,
 	articleFigure,
 	articleRelatedCases,

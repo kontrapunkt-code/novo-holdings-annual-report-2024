@@ -46,7 +46,10 @@ export const PAGES_QUERY = defineQuery(`
 				...,
 			},
 			_type == "newsModule" => {
-				...,
+				caption,
+				title,
+				description,
+				"videoUrl": video.asset->url,
 			},
 			_type == "caseHighlightsModule" => {
 				...,
@@ -58,7 +61,10 @@ export const PAGES_QUERY = defineQuery(`
 					endDate,
 					heroImage,
 				},
-			}
+			},
+			_type == "articleHeroModule" => {
+				...,
+			},
 		}
 	}
 `);

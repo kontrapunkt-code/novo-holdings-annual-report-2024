@@ -1,6 +1,7 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import type { ModuleProps } from "@/scripts/types";
+import { formatYear } from "@/utils/formatDate";
 
 type Props = NonNullable<ModuleProps<"caseHighlightsModule">["cases"]>[number];
 
@@ -24,7 +25,11 @@ if (!heroImage?.asset) return null;
 			class="flex gap-[1rem] items-center pb-[0.5rem] text-novo-blue text-[1rem] leading-[120%]"
 		>
 			<p>{project}</p>
-			<p>{startDate} - {endDate}</p>
+			<p>
+				{formatYear(startDate ?? undefined)} - {
+					formatYear(endDate ?? undefined)
+				}
+			</p>
 		</div>
 		<figcaption class="headline-card">
 			{title}

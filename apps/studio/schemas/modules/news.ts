@@ -6,6 +6,11 @@ export default defineType({
 	type: "object",
 	fields: [
 		defineField({
+			name: "caption",
+			type: "string",
+			title: "Caption",
+		}),
+		defineField({
 			name: "title",
 			type: "string",
 			title: "Title",
@@ -16,44 +21,14 @@ export default defineType({
 			title: "Description",
 		}),
 		defineField({
-			name: "newsItems",
-			type: "array",
-			title: "News Items",
-			of: [
-				{
-					type: "object",
-					fields: [
-						defineField({
-							name: "title",
-							type: "string",
-							title: "Title",
-						}),
-						defineField({
-							name: "date",
-							type: "date",
-							title: "Date",
-						}),
-						defineField({
-							name: "excerpt",
-							type: "text",
-							title: "Excerpt",
-						}),
-						defineField({
-							name: "image",
-							type: "image",
-							title: "Image",
-							options: {
-								hotspot: true,
-							},
-						}),
-						defineField({
-							name: "link",
-							type: "url",
-							title: "External Link",
-						}),
-					],
-				},
-			],
+			name: "video",
+			type: "file",
+			title: "Video",
+		}),
+		defineField({
+			name: "videoUrl",
+			type: "url",
+			title: "Video URL",
 		}),
 	],
 });

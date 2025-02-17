@@ -9,7 +9,7 @@ import type { schemas } from "../schemas";
 type Schema = (typeof schemas)[number]["name"];
 
 // Define types that should be treated as singletons
-const singletonTypes: Set<Schema> = new Set(["countries", "globalSettings"]);
+const singletonTypes: Set<Schema> = new Set(["globalSettings"]);
 
 // Define actions allowed for singleton documents
 const singletonActions: Set<DocumentActionComponent["action"]> = new Set([
@@ -18,11 +18,7 @@ const singletonActions: Set<DocumentActionComponent["action"]> = new Set([
 	"restore",
 ]);
 
-const deleteTypes: Set<Schema> = new Set([
-	"countryLabels",
-	"location",
-	"route",
-]);
+const deleteTypes: Set<Schema> = new Set();
 
 const deleteActions: Set<DocumentActionComponent["action"]> = new Set([
 	"delete",
