@@ -26,9 +26,7 @@ if (!heroImage?.asset) return null;
 		>
 			<p>{project}</p>
 			<p>
-				{formatYear(startDate ?? undefined)} - {
-					formatYear(endDate ?? undefined)
-				}
+				{formatYear(startDate ?? undefined)}-{formatYear(endDate ?? undefined)}
 			</p>
 		</div>
 		<figcaption class="headline-card">

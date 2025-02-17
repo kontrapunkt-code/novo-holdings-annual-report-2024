@@ -25,10 +25,5 @@ export default defineType({
 			type: "file",
 			title: "Video",
 		}),
-		defineField({
-			name: "videoUrl",
-			type: "url",
-			title: "Video URL",
-		}),
 	],
 });

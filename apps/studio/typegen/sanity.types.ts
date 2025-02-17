@@ -60,6 +60,7 @@ export type CaseHighlightsModule = {
 
 export type NewsModule = {
 	_type: "newsModule";
+	caption?: string;
 	title?: string;
 	description?: string;
 	video?: {
@@ -504,7 +505,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./lib/queries.ts
 // Variable: PAGES_QUERY
-// Query: *[_type == "page" || _type == "case"] {		_type,		title,		slug,		project,		startDate,		endDate,		heroImage,		modules[] {			_type == "atAGlanceModule" => {				...,			},			_type == "articleTextModule" => {				...,			},			_type == "articleQuoteModule" => {				...,			},			_type == "articleStatsModule" => {				...,			},			_type == "articleGalleryModule" => {				...,			},			_type == "articleFigureModule" => {				...,			},			_type == "articleRelatedCasesModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "sideBySideModule" => {				...,			},			_type == "highlightsModule" => {				...,			},			_type == "newsModule" => {				...,				"videoUrl": video.asset->url,			},			_type == "caseHighlightsModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "articleHeroModule" => {				...,			},		}	}
+// Query: *[_type == "page" || _type == "case"] {		_type,		title,		slug,		project,		startDate,		endDate,		heroImage,		modules[] {			_type == "atAGlanceModule" => {				...,			},			_type == "articleTextModule" => {				...,			},			_type == "articleQuoteModule" => {				...,			},			_type == "articleStatsModule" => {				...,			},			_type == "articleGalleryModule" => {				...,			},			_type == "articleFigureModule" => {				...,			},			_type == "articleRelatedCasesModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "sideBySideModule" => {				...,			},			_type == "highlightsModule" => {				...,			},			_type == "newsModule" => {				...,				"videoUrl": video.asset -> url,			},			_type == "caseHighlightsModule" => {				...,				cases[] -> {					title,					slug,					project,					startDate,					endDate,					heroImage,				},			},			_type == "articleHeroModule" => {				...,			},		}	}
 export type PAGES_QUERYResult = Array<
 	| {
 			_type: "case";
@@ -697,6 +698,7 @@ export type PAGES_QUERYResult = Array<
 				| {
 						_key: string;
 						_type: "newsModule";
+						caption?: string;
 						title?: string;
 						description?: string;
 						video?: {
@@ -961,6 +963,7 @@ export type PAGES_QUERYResult = Array<
 				| {
 						_key: string;
 						_type: "newsModule";
+						caption?: string;
 						title?: string;
 						description?: string;
 						video?: {
@@ -1109,7 +1112,7 @@ export type GLOBAL_SETTINGS_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
 	interface SanityQueries {
-		'\n\t*[_type == "page" || _type == "case"] {\n\t\t_type,\n\t\ttitle,\n\t\tslug,\n\t\tproject,\n\t\tstartDate,\n\t\tendDate,\n\t\theroImage,\n\t\tmodules[] {\n\t\t\t_type == "atAGlanceModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleTextModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleQuoteModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleStatsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleGalleryModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleFigureModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleRelatedCasesModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "sideBySideModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "highlightsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "newsModule" => {\n\t\t\t\t...,\n\t\t\t\t"videoUrl": video.asset->url,\n\t\t\t},\n\t\t\t_type == "caseHighlightsModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "articleHeroModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t}\n\t}\n': PAGES_QUERYResult;
+		'\n\t*[_type == "page" || _type == "case"] {\n\t\t_type,\n\t\ttitle,\n\t\tslug,\n\t\tproject,\n\t\tstartDate,\n\t\tendDate,\n\t\theroImage,\n\t\tmodules[] {\n\t\t\t_type == "atAGlanceModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleTextModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleQuoteModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleStatsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleGalleryModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleFigureModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "articleRelatedCasesModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "sideBySideModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "highlightsModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t\t_type == "newsModule" => {\n\t\t\t\t...,\n\t\t\t\t"videoUrl": video.asset -> url,\n\t\t\t},\n\t\t\t_type == "caseHighlightsModule" => {\n\t\t\t\t...,\n\t\t\t\tcases[] -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tslug,\n\t\t\t\t\tproject,\n\t\t\t\t\tstartDate,\n\t\t\t\t\tendDate,\n\t\t\t\t\theroImage,\n\t\t\t\t},\n\t\t\t},\n\t\t\t_type == "articleHeroModule" => {\n\t\t\t\t...,\n\t\t\t},\n\t\t}\n\t}\n': PAGES_QUERYResult;
 		'\n\t*[_type == "globalSettings"][0] {\n\t\tglobalTitle,\n\t\tlogo,\n\t\thomePage->,\n\t}\n': GLOBAL_SETTINGS_QUERYResult;
 	}
 }
