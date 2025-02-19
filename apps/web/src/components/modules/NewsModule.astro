@@ -8,20 +8,18 @@ const { caption, title, description, videoUrl } = Astro.props;
 ---
 
 <LandingLayout>
-	<article class="md:grid grid-cols-2 col-span-full">
-		<div>
-			<h2 class="headline-extralight pb-[1.5rem] md:pb-[2rem]">
-				{caption}<br />
-				<span class="headline-semibold">{title}</span>
-			</h2>
-			<p class="paragraph-main pb-[3rem]">{description}</p>
-		</div>
-		<div class="relative">
-			<video class="rounded-[0.5rem]" src={videoUrl}></video>
-			<button
-				class="absolute rounded-[0.5rem] left-[1.25rem] bottom-[1.25rem] pl-[1rem] pr-[1.5rem] py-[0.875rem] bg-white"
-				>test</button
-			>
-		</div>
-	</article>
+	<div class="col-span-4 md:col-span-6">
+		<h2 class="headline-extralight pb-[1.5rem] md:pb-[2rem]">
+			{caption}<br />
+			<span class="headline-semibold">{title}</span>
+		</h2>
+		<p class="paragraph-main pb-[3rem]">{description}</p>
+	</div>
+	<div class="col-span-4 md:col-span-6 relative">
+		<video class="rounded-[0.5rem]" src={videoUrl}></video>
+		<button
+			class="absolute rounded-[0.5rem] left-[1.25rem] bottom-[1.25rem] pl-[1rem] pr-[1.5rem] py-[0.875rem] bg-white"
+			>test</button
+		>
+	</div>
 </LandingLayout>

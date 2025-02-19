@@ -1,17 +1,25 @@
 ---
-const { buttonText, link } = Astro.props;
+import Icon from "@/components/astro/Icon.astro";
+import type { Icon as IconType } from "@novo-holdings-annual-report-2024/lib";
+
+interface Props {
+	buttonText: string;
+	link: string;
+	icon?: IconType;
+}
+
+const { buttonText, link, icon } = Astro.props;
 ---
 
 <button type="button" class="font-medium text-[1.125rem] leading-[140%]">
 	<a class="flex items-center gap-[0.25rem]" href={link}>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="20"
-			height="20"
-			viewBox="0 0 24 24"
-			><path fill="currentColor" d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"
-			></path></svg
-		>
+		{
+			icon && (
+				<span class="flex w-[1.25rem] h-[1.25rem]">
+					<Icon icon={icon} />
+				</span>
+			)
+		}
 		{buttonText}
 	</a>
 </button>

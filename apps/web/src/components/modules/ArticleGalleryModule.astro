@@ -1,36 +1,21 @@
-<!-- ---
+---
 import SanityImage from "@/components/astro/SanityImage.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
+import { Carousel } from "@/components/solid/carousel";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"articleGalleryModule">;
 
-const { title, images } = Astro.props;
-
-if (!images?.length) return null;
+const { images } = Astro.props;
 ---
 
-	<MainLayout>
-		{title && <h2 class="text-3xl font-bold mb-8 text-center">{title}</h2>}
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{
-				images.map((image) => (
-					<figure class="relative">
-						<SanityImage
-							image={image}
-							alt={image.alt ?? image.caption ?? ""}
-							width={800}
-							height={600}
-							class="w-full h-64 object-cover rounded-lg"
-							sizes="(min-width: 1280px) 400px, (min-width: 768px) 350px, 100vw"
-						/>
-						{image.caption && (
-							<figcaption class="mt-2 text-sm text-gray-600">
-								{image.caption}
-							</figcaption>
-						)}
-					</figure>
-				))
-			}
-		</div>
-	</MainLayout> -->
+<div class="mb-[4rem] md:mb-[6rem]">
+	<Carousel client:load {...Astro.props}>
+		{
+			images?.map((image) => (
+				<div class="embla__slide grow-0 shrink-0 basis-full min-w-0">
+					<SanityImage image={image} alt="" />
+				</div>
+			))
+		}
+	</Carousel>
+</div>

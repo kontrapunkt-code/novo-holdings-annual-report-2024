@@ -1,4 +1,5 @@
 ---
+import Icon from "@/components/astro/Icon.astro";
 import SanityImage from "@/components/astro/SanityImage.astro";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
@@ -32,17 +33,9 @@ const validHighlights = highlights.filter(
 					/>
 				</div>
 				<figcaption class="headline-card flex gap-[0.5rem] items-start hover:text-novo-blue hover:underline">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="32"
-						height="32"
-						viewBox="0 0 24 24"
-					>
-						<path
-							fill="currentColor"
-							d="M6.4 18L5 16.6L14.6 7H6V5h12v12h-2V8.4z"
-						/>
-					</svg>
+					<span class="flex w-[2.125rem] h-[2.125rem]">
+						<Icon icon="arrow_outward" />
+					</span>
 					{highlight.title}
 				</figcaption>
 			</figure>

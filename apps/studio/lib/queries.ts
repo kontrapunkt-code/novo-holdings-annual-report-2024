@@ -29,7 +29,7 @@ export const PAGES_QUERY = defineQuery(`
 				...,
 			},
 			_type == "sideBySideModule" => {
-				...,
+  				...,
 			},
 			_type == "highlightsModule" => {
 				...,

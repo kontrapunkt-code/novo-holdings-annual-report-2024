@@ -60,6 +60,10 @@
 	--color-seafoam-green: #6dc28d;
 }
 
+.site-grid {
+	@apply grid grid-cols-4 gap-[1rem] px-[1.5rem] md:grid-cols-12 md:px-[3rem];
+}
+
 .headline-01 {
 	@apply font-sans font-extralight text-[3rem] tracking-[-2%] md:text-[6rem] md:leading-[95%];
 }
