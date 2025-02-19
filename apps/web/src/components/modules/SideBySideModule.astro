@@ -1,28 +1,26 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
+import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 import SecondaryButton from "../astro/SecondaryButton.astro";
 
 type Props = ModuleProps<"sideBySideModule">;
 ---
 
-<figure>
-	<MainLayout>
-		<div class="col-span-4 md:col-span-6">
-			<figcaption class="headline-extralight">Investment strategy</figcaption>
-			<h3 class="headline-semibold pb-[2rem]">
-				Discover our five core strategic investment pillars
-			</h3>
-		</div>
-		<div class="col-span-4 md:col-span-6">
-			<p class="paragraph-main pb-[1rem]">
-				2023 was a notable year for the Novo Group and Novo Holdings: Novozymes
-				(now Novonesis) achieved accelerated organic sales growth throughout the
-				year, and with their merger with Chr. Hansen closed in the beginning of
-				2024, they are set to become an industrial biosolutions powerhouse. Novo
-				Nordisk became Europe's most valuable company...
-			</p>
-			<SecondaryButton buttonText="Learn more" link="a" />
-		</div>
-	</MainLayout>
-</figure>
+<LandingLayout>
+	<figure class="col-span-4 md:col-span-6">
+		<figcaption class="headline-extralight">Investment strategy</figcaption>
+		<h3 class="headline-semibold pb-[2rem]">
+			Discover our five core strategic investment pillars
+		</h3>
+	</figure>
+	<div class="col-span-4 md:col-span-6">
+		<p class="paragraph-main pb-[1rem]">
+			2023 was a notable year for the Novo Group and Novo Holdings: Novozymes
+			(now Novonesis) achieved accelerated organic sales growth throughout the
+			year, and with their merger with Chr. Hansen closed in the beginning of
+			2024, they are set to become an industrial biosolutions powerhouse. Novo
+			Nordisk became Europe's most valuable company...
+		</p>
+		<SecondaryButton buttonText="Learn more" link="a" />
+	</div>
+</LandingLayout>

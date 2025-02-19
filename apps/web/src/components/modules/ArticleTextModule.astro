@@ -1,6 +1,5 @@
 ---
-import ArticleLayout from "@/layouts/ArticleLayout.astro";
-import SectionLayout from "@/layouts/SectionLayout.astro";
+import CaseLayout from "@/layouts/CaseLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 import { PortableText } from "astro-portabletext";
 
@@ -11,10 +10,8 @@ const { content } = Astro.props;
 if (!content?.length) return null;
 ---
 
-<SectionLayout>
-	<ArticleLayout>
-		<div class="">
-			<PortableText value={content} />
-		</div>
-	</ArticleLayout>
-</SectionLayout>
+<CaseLayout>
+	<div class="article-text">
+		<PortableText value={content} />
+	</div>
+</CaseLayout>

@@ -6,6 +6,12 @@ export default defineType({
 	type: "object",
 	fields: [
 		defineField({
+			name: "project",
+			type: "string",
+			title: "Project",
+		}),
+
+		defineField({
 			name: "title",
 			type: "string",
 			title: "Title",

@@ -9,18 +9,17 @@ export default defineType({
 			name: "content",
 			type: "array",
 			title: "Content",
-			of: [{ type: "block" }],
+			of: [
+				{
+					type: "block",
+					// Define available text styles in Sanity UI
+					styles: [
+						{ title: "Paragraph", value: "normal" },
+						{ title: "Headline", value: "h2" },
+						{ title: "Subheadline", value: "h3" },
+					],
+				},
+			],
 		}),
 	],
-	preview: {
-		select: {
-			content: "content",
-		},
-		prepare({ content }) {
-			return {
-				title: "Article Text",
-				subtitle: `${content.length} blocks`,
-			};
-		},
-	},
 });

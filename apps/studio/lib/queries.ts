@@ -5,6 +5,10 @@ export const PAGES_QUERY = defineQuery(`
 		_type,
 		title,
 		slug,
+		project,
+		startDate,
+		endDate,
+		heroImage,
 		modules[] {
 			_type == "atAGlanceModule" => {
 				...,
@@ -24,17 +28,6 @@ export const PAGES_QUERY = defineQuery(`
 			_type == "articleFigureModule" => {
 				...,
 			},
-			_type == "articleRelatedCasesModule" => {
-				...,
-				cases[] -> {
-					title,
-					slug,
-					project,
-					startDate,
-					endDate,
-					heroImage,
-				},
-			},
 			_type == "sideBySideModule" => {
 				...,
 			},
@@ -43,6 +36,7 @@ export const PAGES_QUERY = defineQuery(`
 			},
 			_type == "newsModule" => {
 				...,
+				"videoUrl": video.asset -> url,
 			},
 			_type == "caseHighlightsModule" => {
 				...,
@@ -54,7 +48,10 @@ export const PAGES_QUERY = defineQuery(`
 					endDate,
 					heroImage,
 				},
-			}
+			},
+			_type == "articleHeroModule" => {
+				...,
+			},
 		}
 	}
 `);

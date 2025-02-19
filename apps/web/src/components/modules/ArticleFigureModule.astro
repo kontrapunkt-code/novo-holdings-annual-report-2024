@@ -1,7 +1,6 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
-import ArticleLayout from "@/layouts/ArticleLayout.astro";
-import SectionLayout from "@/layouts/SectionLayout.astro";
+import CaseLayout from "@/layouts/CaseLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"articleFigureModule">;
@@ -10,16 +9,14 @@ const { image } = Astro.props;
 if (!image) return null;
 ---
 
-<SectionLayout>
-	<ArticleLayout>
-		<div class="overflow-hidden">
-			<SanityImage
-				image={image}
-				alt=""
-				width={1200}
-				class="rounded-[0.5rem] object-cover w-full h-full"
-				sizes="(min-width: 1280px) 1200px, 100vw"
-			/>
-		</div>
-	</ArticleLayout>
-</SectionLayout>
+<CaseLayout>
+	<div class="overflow-hidden">
+		<SanityImage
+			image={image}
+			alt=""
+			width={1200}
+			class="rounded-[0.5rem] object-cover w-full h-full"
+			sizes="(min-width: 1280px) 1200px, 100vw"
+		/>
+	</div>
+</CaseLayout>
