@@ -1,7 +1,8 @@
-<!-- ---
+---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
+import { App } from "../solid/app";
 
 type Props = ModuleProps<"articleGalleryModule">;
 
@@ -10,27 +11,4 @@ const { title, images } = Astro.props;
 if (!images?.length) return null;
 ---
 
-	<MainLayout>
-		{title && <h2 class="text-3xl font-bold mb-8 text-center">{title}</h2>}
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{
-				images.map((image) => (
-					<figure class="relative">
-						<SanityImage
-							image={image}
-							alt={image.alt ?? image.caption ?? ""}
-							width={800}
-							height={600}
-							class="w-full h-64 object-cover rounded-lg"
-							sizes="(min-width: 1280px) 400px, (min-width: 768px) 350px, 100vw"
-						/>
-						{image.caption && (
-							<figcaption class="mt-2 text-sm text-gray-600">
-								{image.caption}
-							</figcaption>
-						)}
-					</figure>
-				))
-			}
-		</div>
-	</MainLayout> -->
+<App client:load />

@@ -6,40 +6,29 @@ export default defineType({
 	type: "object",
 	fields: [
 		defineField({
+			name: "caption",
+			type: "string",
+			title: "Caption",
+		}),
+		defineField({
 			name: "title",
 			type: "string",
 			title: "Title",
 		}),
 		defineField({
-			name: "leftContent",
-			type: "array",
-			title: "Left Content",
-			of: [{ type: "block" }],
-		}),
-		defineField({
-			name: "rightContent",
-			type: "array",
-			title: "Right Content",
-			of: [{ type: "block" }],
-		}),
-		defineField({
-			name: "image",
-			type: "image",
-			title: "Image",
-			options: {
-				hotspot: true,
-			},
-		}),
-		defineField({
-			name: "imagePosition",
+			name: "description",
 			type: "string",
-			title: "Image Position",
-			options: {
-				list: [
-					{ title: "Left", value: "left" },
-					{ title: "Right", value: "right" },
-				],
-			},
+			title: "Description",
+		}),
+		defineField({
+			name: "buttonText",
+			type: "string",
+			title: "Button Text",
+		}),
+		defineField({
+			name: "link",
+			type: "url",
+			title: "Link",
 		}),
 	],
 });

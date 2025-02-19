@@ -10,6 +10,7 @@
 		"@tailwindcss/vite": "^4.0.6",
 		"@turf/turf": "^7.2.0",
 		"astro-portabletext": "^0.11.1",
+		"embla-carousel-solid": "^8.5.2",
 		"motion": "^12.4.2",
 		"sanity": "3.75.0",
 		"solid-js": "^1.9.4",
