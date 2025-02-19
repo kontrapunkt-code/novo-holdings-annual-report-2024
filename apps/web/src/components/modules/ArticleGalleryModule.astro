@@ -1,14 +1,19 @@
 ---
-import SanityImage from "@/components/astro/SanityImage.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import { App } from "../solid/app";
+import { Carousel } from "../solid/carousel";
+import SanityImage from "../astro/SanityImage.astro";
 
 type Props = ModuleProps<"articleGalleryModule">;
 
-const { title, images } = Astro.props;
-
-if (!images?.length) return null;
+const { images } = Astro.props;
 ---
 
-<App client:load />
+<Carousel client:load {...Astro.props}>
+	{
+		images?.map((image) => (
+			<div class="embla__slide">
+				<SanityImage image={image} alt="" />
+			</div>
+		))
+	}
+</Carousel>

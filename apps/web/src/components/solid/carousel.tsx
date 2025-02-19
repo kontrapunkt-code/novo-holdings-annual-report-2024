@@ -1,32 +1,31 @@
-import { Index } from "solid-js";
+import type { ModuleProps } from "@/scripts/types";
+import createEmblaCarousel from "embla-carousel-solid";
+import { onMount, type ParentComponent } from "solid-js";
 
-import { Card, CardContent } from "~/components/ui/card";
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-} from "~/components/ui/carousel";
+export const Carousel: ParentComponent<ModuleProps<"articleGalleryModule">> = (
+	props,
+) => {
+	const [emblaRef, emblaApi] = createEmblaCarousel(() => ({
+		slides: ".embla__slide",
+	}));
 
-export function CarouselDemo() {
+	// onMount(() => {
+	// 	const api = emblaApi();
+	// 	if (api) {
+	// 		console.log(api.slideNodes()); // Access API
+	// 	}
+	// });
+
 	return (
-		<Carousel class="w-full max-w-xs">
-			<CarouselContent>
-				<Index each={Array.from({ length: 5 })}>
-					{(_, index) => (
-						<CarouselItem>
-							<div class="p-1">
-								<figure class="flex aspect-square items-center justify-center p-6">
-									<span class="text-4xl font-semibold">{index + 1}</span>
-								</figure>
-							</div>
-						</CarouselItem>
-					)}
-				</Index>
-			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
-		</Carousel>
+		<div class="embla" ref={emblaRef}>
+			<div className="embla__viewport">
+				<div class="embla__container">{props.children}</div>
+			</div>
+
+			<div class="px-[1.5rem] md:px-[3rem]">
+				<button class="embla__prev">Prev</button>
+				<button class="embla__next">Next</button>
+			</div>
+		</div>
 	);
-}
+};

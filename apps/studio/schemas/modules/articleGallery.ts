@@ -6,34 +6,30 @@ export default defineType({
 	type: "object",
 	fields: [
 		defineField({
-			name: "title",
+			name: "caption",
 			type: "string",
-			title: "Title",
+			title: "Caption",
+		}),
+		defineField({
+			name: "description",
+			type: "text",
+			title: "Description",
+		}),
+		defineField({
+			name: "buttonText",
+			type: "string",
+			title: "Button Text",
+		}),
+		defineField({
+			name: "link",
+			type: "string",
+			title: "Link",
 		}),
 		defineField({
 			name: "images",
 			type: "array",
 			title: "Images",
-			of: [
-				{
-					type: "image",
-					options: {
-						hotspot: true,
-					},
-					fields: [
-						defineField({
-							name: "caption",
-							type: "string",
-							title: "Caption",
-						}),
-						defineField({
-							name: "alt",
-							type: "string",
-							title: "Alt Text",
-						}),
-					],
-				},
-			],
+			of: [{ type: "image" }],
 		}),
 	],
 });
