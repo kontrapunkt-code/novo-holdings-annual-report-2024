@@ -1,12 +1,9 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import type { ModuleProps } from "@/scripts/types";
-import { formatYear } from "@/utils/formatDate";
+import { formatYear } from "@/scripts/helpers";
 
 const { title, heroImage, project, startDate, endDate } = Astro.props;
-
-console.log("HERO CASE");
 ---
 
 <MainLayout>

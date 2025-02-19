@@ -1,7 +1,6 @@
 import articleFigure from "./articleFigure";
 import articleGallery from "./articleGallery";
 import articleQuote from "./articleQuote";
-import articleRelatedCases from "./articleRelatedCases";
 import articleStats from "./articleStats";
 import articleText from "./articleText";
 import atAGlance from "./atAGlance";
@@ -16,10 +15,8 @@ export const modules = [
 	articleText,
 	articleQuote,
 	articleStats,
-
 	articleGallery,
 	articleFigure,
-	articleRelatedCases,
 	sideBySide,
 	highlights,
 	news,

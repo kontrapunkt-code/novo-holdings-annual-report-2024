@@ -1,14 +1,13 @@
 ---
+import HeroCase from "@/components/astro/HeroCase.astro";
 import ArticleFigureModule from "@/components/modules/ArticleFigureModule.astro";
 import ArticleGalleryModule from "@/components/modules/ArticleGalleryModule.astro";
 import ArticleQuoteModule from "@/components/modules/ArticleQuoteModule.astro";
-import ArticleRelatedCasesModule from "@/components/modules/ArticleRelatedCasesModule.astro";
 import ArticleStatsModule from "@/components/modules/ArticleStatsModule.astro";
 import ArticleTextModule from "@/components/modules/ArticleTextModule.astro";
 import AtAGlanceModule from "@/components/modules/AtAGlanceModule.astro";
 import CaseHighlightsModule from "@/components/modules/CaseHighlightsModule.astro";
 import HighlightsModule from "@/components/modules/HighlightsModule.astro";
-import HeroCase from "@/components/astro/HeroCase.astro";
 import NewsModule from "@/components/modules/NewsModule.astro";
 import SideBySideModule from "@/components/modules/SideBySideModule.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
@@ -55,8 +54,6 @@ const { page } = Astro.props;
 						return <ArticleGalleryModule {...module} />;
 					case "articleFigureModule":
 						return <ArticleFigureModule {...module} />;
-					case "articleRelatedCasesModule":
-						return <ArticleRelatedCasesModule {...module} />;
 					case "sideBySideModule":
 						return <SideBySideModule {...module} />;
 					case "highlightsModule":

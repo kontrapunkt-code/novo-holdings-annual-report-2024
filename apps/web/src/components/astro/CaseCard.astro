@@ -1,7 +1,7 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
+import { formatYear } from "@/scripts/helpers";
 import type { ModuleProps } from "@/scripts/types";
-import { formatYear } from "@/utils/formatDate";
 
 type Props = NonNullable<ModuleProps<"caseHighlightsModule">["cases"]>[number];
 

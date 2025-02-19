@@ -1,7 +1,6 @@
 ---
 import CaseLayout from "@/layouts/CaseLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
-import StatsListItem from "@/components/astro/StatsListItem.astro";
 
 type Props = ModuleProps<"articleStatsModule">;
 
@@ -19,9 +18,8 @@ if (!stats?.length) return null;
 		>
 			<span class="font-bold">{project}</span>{title}
 		</h4>
-
 		<ul class="list-disc pl-[1rem]">
-			{stats.map((s) => <StatsListItem text={s} />)}
+			{stats.map((stat) => <li class="paragraph-secondary">{stat}</li>)}
 		</ul>
 	</div>
 </CaseLayout>

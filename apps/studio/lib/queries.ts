@@ -28,17 +28,6 @@ export const PAGES_QUERY = defineQuery(`
 			_type == "articleFigureModule" => {
 				...,
 			},
-			_type == "articleRelatedCasesModule" => {
-				...,
-				cases[] -> {
-					title,
-					slug,
-					project,
-					startDate,
-					endDate,
-					heroImage,
-				},
-			},
 			_type == "sideBySideModule" => {
 				...,
 			},
