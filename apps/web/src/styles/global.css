@@ -60,7 +60,11 @@
 	--color-seafoam-green: #6dc28d;
 }
 
-#B2B7CD .headline-01 {
+.site-grid {
+	@apply grid grid-cols-4 gap-[1rem] px-[1.5rem] md:grid-cols-12 md:px-[3rem];
+}
+
+.headline-01 {
 	@apply font-sans font-extralight text-[3rem] tracking-[-2%] md:text-[6rem] md:leading-[95%];
 }
 
@@ -100,32 +104,4 @@
 
 .quote {
 	@apply font-sans font-extralight italic text-novo-blue text-[1.5rem] leading-[120%] md:text-[2.25rem];
-}
-
-.embla {
-	overflow: hidden;
-	& button {
-		margin-top: 2rem;
-		margin-bottom: 6rem;
-		padding: 0.875rem;
-		background-color: hsla(0, 0%, 0%, 5%);
-	}
-}
-
-.embla__container {
-	display: flex;
-	background-color: hsla(0, 0%, 0%, 5%);
-}
-
-.embla__slide {
-	flex: 0 0 100%;
-	min-width: 0;
-}
-
-.embla__prev {
-	border-radius: 0.5rem 0 0 0.5rem;
-}
-
-.embla__next {
-	border-radius: 0 0.5rem 0.5rem 0;
 }
