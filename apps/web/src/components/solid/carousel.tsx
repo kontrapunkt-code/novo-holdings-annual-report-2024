@@ -1,6 +1,7 @@
 import type { ModuleProps } from "@/scripts/types";
 import createEmblaCarousel from "embla-carousel-solid";
 import type { ParentComponent } from "solid-js";
+import { Icon } from "./icon";
 
 export const Carousel: ParentComponent<ModuleProps<"articleGalleryModule">> = (
 	props,
@@ -39,14 +40,18 @@ export const Carousel: ParentComponent<ModuleProps<"articleGalleryModule">> = (
 						class="rounded-l-lg p-[0.875rem] bg-[hsla(0,0%,0%,0.05)]"
 						onClick={previousSlide}
 					>
-						Prev
+						<span class="flex w-[1.5rem] h-[1.5rem]">
+							<Icon icon="arrow_back" />
+						</span>
 					</button>
 					<button
 						type="button"
 						class="rounded-r-lg p-[0.875rem] bg-[hsla(0,0%,0%,0.05)]"
 						onClick={nextSlide}
 					>
-						Next
+						<span class="flex w-[1.5rem] h-[1.5rem]">
+							<Icon icon="arrow_forward" />
+						</span>
 					</button>
 				</div>
 			</div>

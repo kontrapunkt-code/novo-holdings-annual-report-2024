@@ -1,0 +1,19 @@
+---
+import type { Icon as IconType } from "@novo-holdings-annual-report-2024/lib";
+
+interface Props {
+	icon?: IconType | null;
+	title?: string;
+}
+
+const { icon, title } = Astro.props;
+---
+
+{
+	icon && (
+		<svg xmlns="http://www.w3.org/2000/svg" data-icon={icon}>
+			<title>{title ?? icon}</title>
+			<use href={`/api/icons.svg#${icon}`} />
+		</svg>
+	)
+}
