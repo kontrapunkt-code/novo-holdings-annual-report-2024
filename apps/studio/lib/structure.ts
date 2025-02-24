@@ -1,4 +1,4 @@
-import { Document, Settings } from "@carbon/icons-react";
+import { CogIcon, DocumentIcon } from "@sanity/icons";
 import type { StructureBuilder } from "sanity/structure";
 
 export const structure = (S: StructureBuilder) => {
@@ -8,7 +8,7 @@ export const structure = (S: StructureBuilder) => {
 			// Pages list
 			S.listItem()
 				.title("Pages")
-				.icon(Document)
+				.icon(DocumentIcon)
 				.child(
 					S.list()
 						.title("Pages")
@@ -16,7 +16,7 @@ export const structure = (S: StructureBuilder) => {
 							// All pages
 							S.listItem()
 								.title("All Pages")
-								.icon(Document)
+								.icon(DocumentIcon)
 								.child(
 									S.documentList()
 										.title("All Pages")
@@ -25,7 +25,7 @@ export const structure = (S: StructureBuilder) => {
 								),
 							S.listItem()
 								.title("Cases")
-								.icon(Document)
+								.icon(DocumentIcon)
 								.child(
 									S.documentList()
 										.title("All Cases")
@@ -40,7 +40,7 @@ export const structure = (S: StructureBuilder) => {
 			// Global settings
 			S.listItem()
 				.title("Settings")
-				.icon(Settings)
+				.icon(CogIcon)
 				.child(
 					S.document()
 						.id("globalSettings")

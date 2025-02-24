@@ -16,7 +16,7 @@
 		"typegen": {
 			"cache": false
 		},
-		"update-deps": {
+		"update:deps": {
 			"cache": false
 		},
 		"deploy": {

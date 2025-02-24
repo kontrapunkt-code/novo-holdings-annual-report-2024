@@ -3,13 +3,13 @@
 	"version": "1.0.0",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@types/bun": "^1.2.2",
-		"npm-check-updates": "^17.1.14",
-		"prettier": "^3.5.0",
+		"@types/bun": "^1.2.3",
+		"npm-check-updates": "^17.1.15",
+		"prettier": "^3.5.2",
 		"prettier-plugin-astro": "^0.14.1",
 		"turbo": "^2.4.2"
 	},
-	"packageManager": "bun@1.2.2",
+	"packageManager": "bun@1.2.3",
 	"prettier": {
 		"experimentalTernaries": true,
 		"experimentalOperatorPosition": "start",
@@ -34,7 +34,7 @@
 		"dev": "turbo run dev",
 		"reinstall": "rm -rf node_modules && rm -rf apps/web/node_modules && rm -rf apps/studio/node_modules && rm -rf apps/lib/node_modules && rm bun.lock && bun i",
 		"typegen": "turbo run typegen",
-		"update-deps": "ncu -u --format group -i && cd apps/web && bun run update-deps && cd ../studio && bun run update-deps && cd ../lib && bun run update-deps && cd ../.."
+		"update:deps": "ncu -u --format group -i && cd apps/web && bun run update:deps && cd ../studio && bun run update:deps && cd ../lib && bun run update:deps && cd ../.."
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",

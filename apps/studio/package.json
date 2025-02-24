@@ -1,19 +1,19 @@
 {
 	"dependencies": {
-		"@carbon/icons-react": "^11.55.0",
-		"@sanity/cli": "3.75.0",
+		"@sanity/cli": "3.77.0",
+		"@sanity/icons": "^3.6.0",
 		"@sanity/orderable-document-list": "^1.2.3",
-		"@sanity/vision": "3.75.0",
+		"@sanity/vision": "3.77.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"sanity": "3.75.0",
+		"sanity": "3.77.0",
 		"styled-components": "^6.1.15"
 	},
 	"devDependencies": {
 		"@sanity/eslint-config-studio": "^5.0.1",
 		"@types/react": "^18.3.12",
-		"eslint": "^9.20.1",
-		"prettier": "^3.5.0",
+		"eslint": "^9.21.0",
+		"prettier": "^3.5.2",
 		"typescript": "^5.7.3"
 	},
 	"exports": {
@@ -32,7 +32,7 @@
 		"generate": "sanity typegen generate --config-path typegen/sanity-typegen.json",
 		"start": "sanity start",
 		"typegen": "bun run extract && bun run generate",
-		"update-deps": "ncu -u --format group -i"
+		"update:deps": "ncu -u --format group -i"
 	},
 	"version": "1.0.0"
 }
