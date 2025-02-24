@@ -47,5 +47,8 @@
 	"type": "module",
 	"workspaces": [
 		"apps/*"
-	]
+	],
+	"dependencies": {
+		"@lottielab/lottie-player": "^1.1.3"
+	}
 }

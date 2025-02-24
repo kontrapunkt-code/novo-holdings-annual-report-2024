@@ -23,12 +23,12 @@ const validHighlights = highlights.filter(
 	{
 		validHighlights.map((highlight) => (
 			<figure class="col-span-4 md:col-span-6 pb-[1rem]">
-				<div class="pb-[1.25rem] rounded-[0.5rem]">
+				<div class="pb-[1.25rem] rounded-lg">
 					<SanityImage
 						image={highlight.image}
 						alt={highlight.title ?? ""}
 						width={1200}
-						class="rounded-[0.5rem] w-full h-auto"
+						class="rounded-lg w-full h-auto"
 						sizes="(min-width: 1280px) 1200px, 100vw"
 					/>
 				</div>

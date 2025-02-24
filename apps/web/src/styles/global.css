@@ -61,7 +61,7 @@
 }
 
 .site-grid {
-	@apply grid grid-cols-4 gap-[1rem] px-[1.5rem] md:grid-cols-12 md:px-[3rem];
+	@apply grid grid-cols-4 gap-4 px-[1.5rem] md:grid-cols-12 md:px-[3rem];
 }
 
 .headline-01 {
