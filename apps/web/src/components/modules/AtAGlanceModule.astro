@@ -1,4 +1,6 @@
 ---
+import { LottieGrid } from "@/components/solid/lottie-grid";
+import type { Props as LottieGridProps } from "@/components/solid/lottie-grid";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { ModuleProps } from "@/scripts/types";
 import type { LottieJSON } from "@lottielab/lottie-player";
@@ -9,7 +11,10 @@ const animations = Object.entries(
 	import.meta.glob<LottieJSON>("/public/animations/*.json", {
 		eager: true,
 	}),
-);
+).map(([key, value]) => ({
+	src: key.replace("/public", ""),
+	aspectRatio: `${value.w}/${value.h}`,
+})) satisfies LottieGridProps["animations"];
 ---
 
 <LandingLayout>
@@ -19,48 +24,36 @@ const animations = Object.entries(
 	<section
 		class="add-a-glance-section col-span-4 md:col-span-6 grid md:grid-cols-2 gap-4"
 	>
-		{
-			animations.map(([src, animation]) => (
-				<div
-					class="w-full bg-[#B2B7CD] rounded-lg overflow-hidden"
-					style={`aspect-ratio: ${animation.w}/${animation.h}`}
-				>
-					<lottie-player
-						src={src.replaceAll("/public", "")}
-						class="w-full h-full at-a-glance-lottie"
-					/>
-				</div>
-			))
-		}
+		<LottieGrid animations={animations} client:load />
 	</section>
 </LandingLayout>
 
 <script>
-	import type { LottieWeb } from "@lottielab/lottie-player";
-	import "@lottielab/lottie-player/web";
+	// import "@lottielab/lottie-player/web";
+	// import type LottieWeb from "@lottielab/lottie-player/web";
 
-	async function playLotties() {
-		const lotties: NodeListOf<LottieWeb> = document.querySelectorAll(
-			"lottie-player.at-a-glance-lottie",
-		);
+	// async function playLotties() {
+	// 	const lotties: NodeListOf<LottieWeb> = document.querySelectorAll(
+	// 		"lottie-player.at-a-glance-lottie",
+	// 	);
 
-		await Promise.all(
-			[...lotties].map(
-				(l) => new Promise((r) => l.addEventListener("load", r)),
-			),
-		);
+	// 	await Promise.all(
+	// 		[...lotties].map(
+	// 			(l) => new Promise((r) => l.addEventListener("load", r)),
+	// 		),
+	// 	);
 
-		for (const lottie of lotties) {
-			lottie.loop = false;
-			lottie.pause();
-		}
+	// 	for (const lottie of lotties) {
+	// 		lottie.loop = false;
+	// 		lottie.pause();
+	// 	}
 
-		for (const lottie of lotties) {
-			lottie.play();
+	// 	for (const lottie of lotties) {
+	// 		lottie.play();
 
-			await new Promise((resolve) => setTimeout(resolve, 100));
-		}
-	}
+	// 		await new Promise((resolve) => setTimeout(resolve, 100));
+	// 	}
+	// }
 
-	playLotties();
+	// playLotties();
 </script>
