@@ -2,9 +2,10 @@
 import Footer from "@/components/astro/Footer.astro";
 import Header from "@/components/astro/Header.astro";
 import "@/styles/global.css";
+import { sanityClient } from "sanity:client";
+import Router from "@/components/astro/Router.astro";
 import { GLOBAL_SETTINGS_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
 import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
-import { sanityClient } from "sanity:client";
 
 interface Props {
 	title?: string;
@@ -26,6 +27,7 @@ const pageTitle =
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Novo Holdings Annual Report 2024" />
+		<Router />
 		<title>{pageTitle}</title>
 	</head>
 	<body class="min-h-screen bg-white">
@@ -36,3 +38,7 @@ const pageTitle =
 		<Footer settings={settings} />
 	</body>
 </html>
+
+<script>
+	import "@/scripts/page";
+</script>

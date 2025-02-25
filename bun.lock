@@ -53,6 +53,7 @@
         "@tailwindcss/vite": "^4.0.8",
         "astro-portabletext": "^0.11.1",
         "embla-carousel-solid": "^8.5.2",
+        "lenis": "^1.1.21",
         "motion": "^12.4.7",
         "sanity": "3.77.0",
         "solid-js": "^1.9.5",
@@ -1889,6 +1890,8 @@
     "language-tags": ["language-tags@1.0.9", "", { "dependencies": { "language-subtag-registry": "^0.3.20" } }, "sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA=="],
 
     "lazystream": ["lazystream@1.0.1", "", { "dependencies": { "readable-stream": "^2.0.5" } }, "sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw=="],
+
+    "lenis": ["lenis@1.1.21", "", { "peerDependencies": { "react": ">=17.0.0", "vue": ">=3.0.0" }, "optionalPeers": ["react", "vue"] }, "sha512-t3QIs6NsBiZr9HPFRndT0hKGq6uII3XpZrbJHhxnG5X0ep7t8+PXpQO7fFhEYh2zN0oc23VsvjN6a8Jq1geF4g=="],
 
     "leven": ["leven@3.1.0", "", {}, "sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A=="],
 

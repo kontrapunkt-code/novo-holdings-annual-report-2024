@@ -1,5 +1,4 @@
 import { EASE_IN_OUT_QUART } from "@/scripts/ease";
-import type { LottieWeb } from "@lottielab/lottie-player";
 import { animate, stagger } from "motion";
 import { For, type VoidComponent, onMount } from "solid-js";
 
@@ -16,18 +15,21 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 	onMount(async () => {
 		if (!grid) return;
 
-		await import("@lottielab/lottie-player/web");
+		const { default: LottieWeb } = await import("@lottielab/lottie-player/web");
 
 		const wrappers: NodeListOf<HTMLDivElement> =
 			grid.querySelectorAll(".lottie-wrapper");
 
 		for (const wrapper of wrappers) {
-			const lottie: LottieWeb | null = wrapper.querySelector("lottie-player");
-			if (!lottie) continue;
-
+			const lottie = new LottieWeb();
+			const src = wrapper.getAttribute("data-src") ?? "";
 			const index = Array.from(wrappers).indexOf(wrapper);
 			const staggerer = stagger(0.2);
 			const delay = staggerer(index, wrappers.length) * 1000;
+
+			lottie.setAttribute("src", src);
+			lottie.classList.add("w-full", "h-full");
+			wrapper.append(lottie);
 
 			Promise.all([
 				new Promise((resolve) => lottie.addEventListener("load", resolve)),
@@ -58,15 +60,17 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 	});
 
 	return (
-		<div class="col-span-4 md:col-span-4 grid md:grid-cols-3 gap-4" ref={grid}>
+		<div
+			class="columns-3 gap-4 *:w-full *:bg-[#B2B7CD] *:rounded-lg *:overflow-hidden *:opacity-0 *:mb-4"
+			ref={grid}
+		>
 			<For each={props.animations}>
 				{(animation) => (
 					<div
-						class="lottie-wrapper w-full bg-[#B2B7CD] rounded-lg overflow-hidden opacity-0"
+						class="lottie-wrapper"
 						style={`aspect-ratio: ${animation.aspectRatio}`}
-					>
-						<lottie-player class="w-full h-full" src={animation.src} />
-					</div>
+						data-src={animation.src}
+					/>
 				)}
 			</For>
 		</div>
