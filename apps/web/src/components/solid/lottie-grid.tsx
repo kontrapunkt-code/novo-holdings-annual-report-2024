@@ -1,3 +1,4 @@
+import { EASE_IN_OUT_QUART } from "@/scripts/ease";
 import type { LottieWeb } from "@lottielab/lottie-player";
 import { animate, stagger } from "motion";
 import { For, type VoidComponent, onMount } from "solid-js";
@@ -25,7 +26,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			if (!lottie) continue;
 
 			const index = Array.from(wrappers).indexOf(wrapper);
-			const staggerer = stagger(0.1);
+			const staggerer = stagger(0.2);
 			const delay = staggerer(index, wrappers.length) * 1000;
 
 			Promise.all([
@@ -34,18 +35,22 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			]).then(() => {
 				lottie.loop = false;
 				lottie.seek(0);
-				lottie.play();
+				lottie.pause();
+
+				setTimeout(() => {
+					lottie.play();
+				}, 300);
 
 				animate(
 					wrapper,
 					{
 						opacity: 1,
 						y: ["2rem", "0rem"],
+						filter: ["blur(0.25rem)", "blur(0px)"],
 					},
 					{
-						type: "spring",
-						visualDuration: 0.5,
-						bounce: 0.3,
+						duration: 0.8,
+						ease: EASE_IN_OUT_QUART,
 					},
 				);
 			});
@@ -53,7 +58,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 	});
 
 	return (
-		<div class="col-span-4 md:col-span-6 grid md:grid-cols-2 gap-4" ref={grid}>
+		<div class="col-span-4 md:col-span-4 grid md:grid-cols-3 gap-4" ref={grid}>
 			<For each={props.animations}>
 				{(animation) => (
 					<div

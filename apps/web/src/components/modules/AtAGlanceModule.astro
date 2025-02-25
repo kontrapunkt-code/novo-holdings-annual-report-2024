@@ -18,12 +18,10 @@ const animations = Object.entries(
 ---
 
 <LandingLayout>
-	<div class="col-span-4 md:col-span-6">
-		<h2 class="headline-01">Novo Holdings at a Glance</h2>
-	</div>
-	<section
-		class="add-a-glance-section col-span-4 md:col-span-6 grid md:grid-cols-2 gap-4"
-	>
+	<h2 class="headline-01 col-span-full text-center mb-4">
+		Novo Holdings at a Glance
+	</h2>
+	<section class="add-a-glance-section col-span-full">
 		<LottieGrid animations={animations} client:load />
 	</section>
 </LandingLayout>
