@@ -1,25 +1,32 @@
 ---
+import { VideoPlayer } from "@/components/solid/video-player";
 import LandingLayout from "@/layouts/LandingLayout.astro";
+import { buildSanityImage } from "@/scripts/image-url-builder";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"newsModule">;
 
 const { caption, title, description, video } = Astro.props;
+
+const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset ?? "");
 ---
 
 <LandingLayout>
 	<div class="col-span-4 md:col-span-6">
-		<h2 class="headline-extralight pb-[1.5rem] md:pb-[2rem]">
+		<h2 class="headline-extralight pb-6 md:pb-8">
 			{caption}<br />
 			<span class="headline-semibold">{title}</span>
 		</h2>
-		<p class="paragraph-main pb-[3rem]">{description}</p>
+		<p class="paragraph-main pb-12">{description}</p>
 	</div>
 	<div class="col-span-4 md:col-span-6 relative">
-		<video class="rounded-lg" src={video?.asset?.url}></video>
-		<button
-			class="absolute rounded-lg left-[1.25rem] bottom-[1.25rem] pl-[1rem] pr-[1.5rem] py-[0.875rem] bg-white"
-			>test</button
-		>
+		<VideoPlayer
+			client:load
+			src={video?.asset?.url ?? ""}
+			alt={video?.callToAction ?? ""}
+			thumbnailSrc={thumbnailSrc}
+			thumbnailAlt={video?.thumbnail?.alt ?? ""}
+			callToAction={video?.callToAction}
+		/>
 	</div>
 </LandingLayout>

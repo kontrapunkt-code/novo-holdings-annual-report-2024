@@ -39,6 +39,7 @@ export const ICONS = [
 	"arrow_outward",
 	"close",
 	"download",
+	"play_arrow",
 ] as const;
 
 export type Icon = (typeof ICONS)[number];

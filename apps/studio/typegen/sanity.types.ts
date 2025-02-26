@@ -70,6 +70,20 @@ export type NewsModule = {
 			_weak?: boolean;
 			[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
 		};
+		callToAction?: string;
+		thumbnail?: {
+			asset?: {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+			};
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			caption?: string;
+			_type: "imageCombo";
+		};
 		_type: "file";
 	};
 };
@@ -270,20 +284,6 @@ export type Case = {
 	>;
 };
 
-export type ImageCombo = {
-	_type: "imageCombo";
-	asset?: {
-		_ref: string;
-		_type: "reference";
-		_weak?: boolean;
-		[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-	};
-	hotspot?: SanityImageHotspot;
-	crop?: SanityImageCrop;
-	alt?: string;
-	caption?: string;
-};
-
 export type GlobalSettings = {
 	_id: string;
 	_type: "globalSettings";
@@ -351,6 +351,20 @@ export type Page = {
 				_key: string;
 		  } & CaseHighlightsModule)
 	>;
+};
+
+export type ImageCombo = {
+	_type: "imageCombo";
+	asset?: {
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+	};
+	hotspot?: SanityImageHotspot;
+	crop?: SanityImageCrop;
+	alt?: string;
+	caption?: string;
 };
 
 export type SanityImageCrop = {
@@ -454,9 +468,9 @@ export type AllSanitySchemaTypes =
 	| ArticleTextModule
 	| AtAGlanceModule
 	| Case
-	| ImageCombo
 	| GlobalSettings
 	| Page
+	| ImageCombo
 	| SanityImageCrop
 	| SanityImageHotspot
 	| SanityImageAsset
@@ -686,6 +700,20 @@ export type PAGES_QUERYResult = Array<
 								url: string | null;
 								source?: SanityAssetSourceData;
 							} | null;
+							callToAction?: string;
+							thumbnail?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								caption?: string;
+								_type: "imageCombo";
+							};
 							_type: "file";
 						} | null;
 				  }
@@ -906,6 +934,20 @@ export type PAGES_QUERYResult = Array<
 								url: string | null;
 								source?: SanityAssetSourceData;
 							} | null;
+							callToAction?: string;
+							thumbnail?: {
+								asset?: {
+									_ref: string;
+									_type: "reference";
+									_weak?: boolean;
+									[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+								};
+								hotspot?: SanityImageHotspot;
+								crop?: SanityImageCrop;
+								alt?: string;
+								caption?: string;
+								_type: "imageCombo";
+							};
 							_type: "file";
 						} | null;
 				  }

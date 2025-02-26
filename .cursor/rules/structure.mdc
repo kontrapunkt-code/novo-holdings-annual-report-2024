@@ -76,26 +76,6 @@ globs:
 │       ├── astro.config.mjs
 │       ├── package.json
 │       ├── public
-│       │   ├── animations
-│       │   │   ├── Briefcase_02.json
-│       │   │   ├── Coin_02.json
-│       │   │   ├── Cubes_02.json
-│       │   │   ├── Globe_03.json
-│       │   │   ├── Map_02.json
-│       │   │   ├── MoneyBag_02.json
-│       │   │   ├── Pig_02.json
-│       │   │   ├── Pyramid_02.json
-│       │   │   └── Target_02.json
-│       │   ├── animations-type
-│       │   │   ├── Briefcase_03.json
-│       │   │   ├── Coin_03.json
-│       │   │   ├── Cubes_03.json
-│       │   │   ├── Globe_04.json
-│       │   │   ├── Map_03.json
-│       │   │   ├── MoneyBag_03.json
-│       │   │   ├── Pig_03.json
-│       │   │   ├── Pyramid_03.json
-│       │   │   └── Target_03.json
 │       │   ├── favicon.svg
 │       │   ├── fonts
 │       │   │   ├── NovoApplySans-Bd.woff2
@@ -179,5 +159,5 @@ globs:
 ├── tsconfig.json
 └── turbo.json
 
-28 directories, 145 files
+26 directories, 127 files
 ```

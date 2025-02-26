@@ -1,6 +1,5 @@
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { muxInput } from "sanity-plugin-mux-input";
 import { structureTool } from "sanity/structure";
 import { actions, templates } from "./lib";
 import { structure } from "./lib/structure";
@@ -16,7 +15,6 @@ export default defineConfig({
 			structure,
 		}),
 		visionTool(),
-		muxInput(),
 	],
 	schema: {
 		types: schemas,
