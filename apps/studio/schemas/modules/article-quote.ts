@@ -33,13 +33,13 @@ export default defineType({
 		select: {
 			author: "author",
 			jobTitle: "jobTitle",
-			image: "image",
+			media: "image",
 		},
-		prepare({ author, jobTitle, image }) {
+		prepare({ author, jobTitle, media }) {
 			return {
 				title: "Article Quote",
 				subtitle: `${author} - ${jobTitle}`,
-				media: image,
+				media,
 			};
 		},
 	},

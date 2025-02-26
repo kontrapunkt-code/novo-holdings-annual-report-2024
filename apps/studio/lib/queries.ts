@@ -12,6 +12,16 @@ export const PAGES_QUERY = defineQuery(`
 		modules[] {
 			_type == "atAGlanceModule" => {
 				...,
+				animations[] {
+					...,
+					lottie {
+						...,
+						asset -> {
+							...,
+							url
+						},
+					},
+				},
 			},
 			_type == "articleTextModule" => {
 				...,
@@ -36,7 +46,13 @@ export const PAGES_QUERY = defineQuery(`
 			},
 			_type == "newsModule" => {
 				...,
-				"videoUrl": video.asset -> url,
+				video {
+					...,
+					asset -> {
+						...,
+						url
+					},
+				},
 			},
 			_type == "caseHighlightsModule" => {
 				...,

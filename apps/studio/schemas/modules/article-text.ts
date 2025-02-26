@@ -22,4 +22,15 @@ export default defineType({
 			],
 		}),
 	],
+	preview: {
+		select: {
+			subtitle: "content.0.children.0.text",
+		},
+		prepare({ subtitle }) {
+			return {
+				title: "Article Text",
+				subtitle,
+			};
+		},
+	},
 });

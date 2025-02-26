@@ -26,4 +26,15 @@ export default defineType({
 			title: "Video",
 		}),
 	],
+	preview: {
+		select: {
+			subtitle: "title",
+		},
+		prepare({ subtitle }) {
+			return {
+				title: "News",
+				subtitle,
+			};
+		},
+	},
 });

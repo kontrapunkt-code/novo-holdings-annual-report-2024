@@ -1,57 +1,54 @@
 ---
 import { LottieGrid } from "@/components/solid/lottie-grid";
-import type { Props as LottieGridProps } from "@/components/solid/lottie-grid";
 import LandingLayout from "@/layouts/LandingLayout.astro";
+import { tryCatch } from "@/scripts/helpers";
 import type { ModuleProps } from "@/scripts/types";
-import type { LottieJSON } from "@lottielab/lottie-player";
 
 type Props = ModuleProps<"atAGlanceModule">;
 
-const animations = Object.entries(
-	import.meta.glob<LottieJSON>("/public/animations/*.json", {
-		eager: true,
-	}),
-).map(([key, value]) => ({
-	src: key.replace("/public", ""),
-	aspectRatio: `${value.w}/${value.h}`,
-})) satisfies LottieGridProps["animations"];
+const { title, animations: animationsProp } = Astro.props;
+
+const animations = await Promise.all(
+	animationsProp?.map(async (animation) => {
+		const [aspectRatio] = await tryCatch(async () => {
+			const response = await fetch(animation?.lottie?.asset?.url ?? "");
+			const { w, h } = await response.json();
+			return `${w}/${h}`;
+		});
+
+		return {
+			src: animation.lottie?.asset?.url ?? "",
+			aspectRatio: aspectRatio ?? "1/1",
+		};
+	}) ?? [],
+);
 ---
 
 <LandingLayout>
-	<h2 class="headline-01 col-span-full text-center mb-4">
-		Novo Holdings at a Glance
+	<h2 class="headline-extralight col-span-full text-center mb-4">
+		{title}
 	</h2>
 	<section class="add-a-glance-section col-span-full">
 		<LottieGrid {animations} client:load />
 	</section>
 </LandingLayout>
 
-<script>
-	// import "@lottielab/lottie-player/web";
-	// import type LottieWeb from "@lottielab/lottie-player/web";
-
-	// async function playLotties() {
-	// 	const lotties: NodeListOf<LottieWeb> = document.querySelectorAll(
-	// 		"lottie-player.at-a-glance-lottie",
-	// 	);
-
-	// 	await Promise.all(
-	// 		[...lotties].map(
-	// 			(l) => new Promise((r) => l.addEventListener("load", r)),
-	// 		),
-	// 	);
-
-	// 	for (const lottie of lotties) {
-	// 		lottie.loop = false;
-	// 		lottie.pause();
-	// 	}
-
-	// 	for (const lottie of lotties) {
-	// 		lottie.play();
-
-	// 		await new Promise((resolve) => setTimeout(resolve, 100));
-	// 	}
-	// }
-
-	// playLotties();
-</script>
+<style is:global>
+	.at-a-glance-grid > * {
+		border: 0.0625rem solid transparent;
+		border-radius: 0.5rem;
+		background:
+			linear-gradient(
+				to bottom,
+				hsl(from #b2b7cd h s calc(l + 2%)) 0%,
+				hsl(from #b2b7cd h s calc(l - 2%)) 100%
+			),
+			linear-gradient(
+				to bottom,
+				hsl(from #b2b7cd h s l) 0%,
+				hsl(from #b2b7cd h s calc(l - 6%)) 100%
+			);
+		background-clip: padding-box, border-box;
+		background-origin: padding-box, border-box;
+	}
+</style>
