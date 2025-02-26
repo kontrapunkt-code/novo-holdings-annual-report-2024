@@ -22,7 +22,7 @@ export default defineType({
 		}),
 		defineField({
 			name: "video",
-			type: "file",
+			type: "mux.video",
 			title: "Video",
 		}),
 	],
