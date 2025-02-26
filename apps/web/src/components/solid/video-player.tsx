@@ -48,7 +48,7 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 			{ duration: 0.2, ease: EASE_OUT_CUBIC, delay: 0.1 },
 		);
 
-		const { lenis } = await import("@/scripts/page");
+		const { lenis } = await import("@/scripts/lenis");
 		lenis.on("scroll", close);
 	};
 
@@ -75,7 +75,7 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 		const lightbox = lightboxRef();
 		if (!video || !lightbox) return;
 
-		const { lenis } = await import("@/scripts/page");
+		const { lenis } = await import("@/scripts/lenis");
 		lenis.off("scroll", close);
 
 		animate(lightbox, { opacity: 0 }, { duration: 0.2, ease: EASE_OUT_CUBIC });
