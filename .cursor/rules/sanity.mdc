@@ -1,9 +1,9 @@
 ---
-description:
-globs:
+description: 
+globs: 
+alwaysApply: false
 ---
 
-# Your rule content
+# Sanity
 
-- You can @ files here
-- You can use markdown but dont have to
+

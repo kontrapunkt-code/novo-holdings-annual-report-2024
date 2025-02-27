@@ -27,7 +27,7 @@ const { page } = Astro.props;
 
 <PageLayout title={page.title ?? undefined}>
 	<div class="flex flex-col max-w-[100rem] mx-auto">
-		{page._type === "case" && <HeroCase {...page} />}
+		<HeroCase {...page} />
 		<PageModules modules={page.modules} />
 	</div>
 </PageLayout>

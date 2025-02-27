@@ -2,6 +2,9 @@
 import SanityImage from "@/components/astro/SanityImage.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { formatYear } from "@/scripts/helpers";
+import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+
+type Props = NonNullable<PAGES_QUERYResult[number]>;
 
 const { title, heroImage, project, startDate, endDate } = Astro.props;
 ---
@@ -12,15 +15,17 @@ const { title, heroImage, project, startDate, endDate } = Astro.props;
 			class="flex gap-4 md:gap-[1.5rem] items-center pb-[0.5rem] md:pb-[0.75rem] paragraph-secondary text-novo-blue"
 		>
 			<span>{project}</span>
-			<span
-				>{formatYear(startDate ?? undefined)}-{
-					formatYear(endDate ?? undefined)
-				}</span
-			>
+			<span>
+				{formatYear(startDate ?? undefined)}-{formatYear(endDate ?? undefined)}
+			</span>
 		</p>
 		<h1 class="headline-article pb-[2rem] md:pb-[3rem]">{title}</h1>
 		<div class="overflow-hidden pb-[2rem] md:pb-[3rem]">
-			<SanityImage class="rounded-lg" image={heroImage} alt={title} />
+			<SanityImage
+				class="rounded-lg"
+				image={heroImage?.asset ?? undefined}
+				alt={title ?? ""}
+			/>
 		</div>
 	</section>
 </MainLayout>

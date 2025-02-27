@@ -1,0 +1,48 @@
+---
+import ArticleFigureModule from "@/components/modules/ArticleFigureModule.astro";
+import ArticleGalleryModule from "@/components/modules/ArticleGalleryModule.astro";
+import ArticleQuoteModule from "@/components/modules/ArticleQuoteModule.astro";
+import ArticleStatsModule from "@/components/modules/ArticleStatsModule.astro";
+import ArticleTextModule from "@/components/modules/ArticleTextModule.astro";
+import AtAGlanceModule from "@/components/modules/AtAGlanceModule.astro";
+import CaseHighlightsModule from "@/components/modules/CaseHighlightsModule.astro";
+import HighlightsModule from "@/components/modules/HighlightsModule.astro";
+import NewsModule from "@/components/modules/NewsModule.astro";
+import SideBySideModule from "@/components/modules/SideBySideModule.astro";
+import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+
+interface Props {
+	modules: NonNullable<PAGES_QUERYResult[number]>["modules"];
+}
+
+const { modules } = Astro.props;
+---
+
+{
+	modules?.map((module) => {
+		switch (module._type) {
+			case "atAGlanceModule":
+				return <AtAGlanceModule {...module} />;
+			case "articleTextModule":
+				return <ArticleTextModule {...module} />;
+			case "articleQuoteModule":
+				return <ArticleQuoteModule {...module} />;
+			case "articleStatsModule":
+				return <ArticleStatsModule {...module} />;
+			case "articleGalleryModule":
+				return <ArticleGalleryModule {...module} />;
+			case "articleFigureModule":
+				return <ArticleFigureModule {...module} />;
+			case "sideBySideModule":
+				return <SideBySideModule {...module} />;
+			case "highlightsModule":
+				return <HighlightsModule {...module} />;
+			case "newsModule":
+				return <NewsModule {...module} />;
+			case "caseHighlightsModule":
+				return <CaseHighlightsModule {...module} />;
+			default:
+				return null;
+		}
+	})
+}

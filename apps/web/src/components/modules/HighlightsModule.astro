@@ -25,7 +25,7 @@ const validHighlights = highlights.filter(
 			<figure class="col-span-4 md:col-span-6 pb-[1rem]">
 				<div class="pb-[1.25rem] rounded-lg">
 					<SanityImage
-						image={highlight.image}
+						image={highlight.image?.asset ?? undefined}
 						alt={highlight.title ?? ""}
 						width={1200}
 						class="rounded-lg w-full h-auto"

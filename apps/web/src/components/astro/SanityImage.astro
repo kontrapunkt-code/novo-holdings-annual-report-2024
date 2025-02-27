@@ -1,10 +1,12 @@
 ---
 import { buildSanityImage } from "@/scripts/image-url-builder";
-import type { SanityImageType } from "@/scripts/types";
+import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 import { Image } from "astro:assets";
 
 interface Props {
-	image: SanityImageType;
+	image: NonNullable<
+		NonNullable<PAGES_QUERYResult[number]>["heroImage"]
+	>["asset"];
 	alt: string;
 	width?: number;
 	height?: number;

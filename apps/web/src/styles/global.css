@@ -115,6 +115,26 @@
 	--color-light-blue: #b2b7cd;
 }
 
+@keyframes slide-up {
+	0% {
+		transform: translateY(10vh);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-down {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(10vh);
+	}
+}
+
 .site-grid {
 	@apply grid grid-cols-4 gap-4 px-[1.5rem] md:grid-cols-12 md:px-[3rem];
 }

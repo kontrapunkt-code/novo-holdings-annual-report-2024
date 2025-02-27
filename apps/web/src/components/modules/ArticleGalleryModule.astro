@@ -13,7 +13,7 @@ const { images } = Astro.props;
 		{
 			images?.map((image) => (
 				<div class="embla__slide grow-0 shrink-0 basis-full min-w-0">
-					<SanityImage image={image} alt="" />
+					<SanityImage image={image?.asset ?? undefined} alt="" />
 				</div>
 			))
 		}

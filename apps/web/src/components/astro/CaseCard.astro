@@ -14,7 +14,7 @@ if (!heroImage?.asset) return null;
 	<figure class="col-span-4 pb-[1rem]">
 		<div class="pb-[1.25rem] rounded-lg">
 			<SanityImage
-				image={heroImage}
+				image={heroImage?.asset ?? undefined}
 				alt={title ?? ""}
 				width={800}
 				class="rounded-lg w-full h-auto"

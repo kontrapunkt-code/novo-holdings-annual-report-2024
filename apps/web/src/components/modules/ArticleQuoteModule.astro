@@ -19,8 +19,8 @@ if (!quote) return null;
 			<div class="grid grid-cols-4 gap-4">
 				<div class="col-span-1">
 					<SanityImage
-						image={image}
-						alt={author}
+						image={image?.asset ?? undefined}
+						alt={author ?? ""}
 						width={1200}
 						class="rounded-lg object-cover w-full h-full"
 						sizes="(min-width: 1280px) 1200px, 100vw"
