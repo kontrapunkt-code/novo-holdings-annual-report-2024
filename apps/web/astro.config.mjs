@@ -1,4 +1,3 @@
-import netlify from "@astrojs/netlify";
 import solidJs from "@astrojs/solid-js";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
@@ -20,9 +19,9 @@ export default defineConfig({
 	devToolbar: {
 		enabled: false,
 	},
-	adapter: netlify({
-		edgeMiddleware: false,
-	}),
+	// adapter: netlify({
+	// 	edgeMiddleware: false,
+	// }),
 	image: {
 		domains: ["cdn.sanity.io"],
 	},

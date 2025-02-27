@@ -1,13 +1,38 @@
 ---
 import PrimaryButton from "@/components/astro/PrimaryButton.astro";
+import { generateGradient } from "@/scripts/linear-gradient";
 import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
 
 interface Props {
 	settings: GLOBAL_SETTINGS_QUERYResult;
 }
+
+const blurs = [
+	"backdrop-blur-[0.0625rem]",
+	"backdrop-blur-[0.125rem]",
+	"backdrop-blur-[0.25rem]",
+	"backdrop-blur-[0.5rem]",
+	"backdrop-blur-[1rem]",
+] as const;
+
+const linearGradient = generateGradient({
+	start: "rgba(255, 255, 255, 0.7)",
+	end: "rgba(255, 255, 255, 0)",
+	steps: 20,
+	direction: "to bottom",
+	ease: [0.2, 0, 0.2, 1],
+});
+
+const maskGradient = generateGradient({
+	start: "rgba(0, 0, 0, 1)",
+	end: "rgba(0, 0, 0, 0)",
+	steps: 20,
+	direction: "to bottom",
+	ease: [0.2, 0, 0.2, 1],
+});
 ---
 
-<header class="w-full py-[1rem] mb-[6rem] sticky top-0 bg-white z-50">
+<header class="w-full py-[1rem] mb-[6rem] sticky top-0 z-1">
 	<nav
 		class="max-w-[100rem] flex justify-between items-start mx-auto px-[1.5rem] md:px-[3rem] text-novo-blue"
 	>
@@ -16,4 +41,44 @@ interface Props {
 		</p>
 		<PrimaryButton buttonText="Download Report" link="/" icon="download" />
 	</nav>
+	<div class="blurs-parent absolute inset-0 h-[100%] -z-2 pointer-events-none">
+		{
+			blurs.map((blur) => (
+				<div
+					class:list={["header-backdrop absolute inset-0 -z-1 h-[250%]", blur]}
+					style={{
+						maskImage: maskGradient,
+					}}
+				/>
+			))
+		}
+	</div>
 </header>
+
+<style is:global define:vars={{ linearGradient }}>
+	.blurs-parent {
+		background: var(--linearGradient);
+	}
+
+	.header-backdrop {
+		mask-image: linear-gradient(
+			to bottom,
+			hsl(0, 0%, 0%) 0%,
+			hsla(0, 0%, 0%, 0.987) 11%,
+			hsla(0, 0%, 0%, 0.951) 20.1%,
+			hsla(0, 0%, 0%, 0.896) 27.7%,
+			hsla(0, 0%, 0%, 0.825) 34%,
+			hsla(0, 0%, 0%, 0.741) 39.3%,
+			hsla(0, 0%, 0%, 0.648) 43.8%,
+			hsla(0, 0%, 0%, 0.55) 48%,
+			hsla(0, 0%, 0%, 0.45) 52%,
+			hsla(0, 0%, 0%, 0.352) 56.2%,
+			hsla(0, 0%, 0%, 0.259) 60.7%,
+			hsla(0, 0%, 0%, 0.175) 66%,
+			hsla(0, 0%, 0%, 0.104) 72.3%,
+			hsla(0, 0%, 0%, 0.049) 79.9%,
+			hsla(0, 0%, 0%, 0.013) 89%,
+			hsla(0, 0%, 0%, 0) 100%
+		);
+	}
+</style>

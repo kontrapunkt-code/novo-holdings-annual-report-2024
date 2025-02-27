@@ -1,99 +1,54 @@
 ---
+import { LottieGrid } from "@/components/solid/lottie-grid";
 import LandingLayout from "@/layouts/LandingLayout.astro";
+import { tryCatch } from "@/scripts/helpers";
 import type { ModuleProps } from "@/scripts/types";
 
 type Props = ModuleProps<"atAGlanceModule">;
+
+const { title, animations: animationsProp } = Astro.props;
+
+const animations = await Promise.all(
+	animationsProp?.map(async (animation) => {
+		const [aspectRatio] = await tryCatch(async () => {
+			const response = await fetch(animation?.lottie?.asset?.url ?? "");
+			const { w, h } = await response.json();
+			return `${w}/${h}`;
+		});
+
+		return {
+			src: animation.lottie?.asset?.url ?? "",
+			aspectRatio: aspectRatio ?? "1/1",
+		};
+	}) ?? [],
+);
 ---
 
-<script
-	src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-></script>
-
 <LandingLayout>
-	<div class="col-span-4 md:col-span-6">
-		<h2 class="headline-01">Novo Holdings at a Glance</h2>
-	</div>
-	<section class="col-span-4 md:col-span-6 grid md:grid-cols-2 gap-[1rem]">
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Briefcase_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Coin_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Cubes_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Globe_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Map_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/MoneyBag_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Pig_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Pyramid_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
-		<div class="w-full bg-[#B2B7CD] rounded-[0.5rem] overflow-hidden">
-			<lottie-player
-				src="/animations/Target_02.json"
-				background="transparent"
-				speed="1"
-				style="width: 100%; height: auto;"
-				loop
-				autoplay></lottie-player>
-		</div>
+	<h2 class="headline-extralight col-span-full text-center mb-4">
+		{title}
+	</h2>
+	<section class="add-a-glance-section col-span-full">
+		<LottieGrid {animations} client:load />
 	</section>
 </LandingLayout>
+
+<style is:global>
+	.at-a-glance-grid > * {
+		border: 0.0625rem solid transparent;
+		border-radius: 0.5rem;
+		background:
+			linear-gradient(
+				to bottom,
+				hsl(from #b2b7cd h s calc(l + 2%)) 0%,
+				hsl(from #b2b7cd h s calc(l - 2%)) 100%
+			),
+			linear-gradient(
+				to bottom,
+				hsl(from #b2b7cd h s l) 0%,
+				hsl(from #b2b7cd h s calc(l - 6%)) 100%
+			);
+		background-clip: padding-box, border-box;
+		background-origin: padding-box, border-box;
+	}
+</style>

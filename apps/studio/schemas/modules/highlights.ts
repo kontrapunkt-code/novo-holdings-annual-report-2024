@@ -47,4 +47,15 @@ export default defineType({
 			],
 		}),
 	],
+	preview: {
+		select: {
+			subtitle: "highlights.0.title",
+		},
+		prepare({ subtitle }) {
+			return {
+				title: "Highlights",
+				subtitle,
+			};
+		},
+	},
 });

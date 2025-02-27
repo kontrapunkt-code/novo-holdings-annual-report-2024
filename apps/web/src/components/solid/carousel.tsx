@@ -9,7 +9,6 @@ export const Carousel: ParentComponent<ModuleProps<"articleGalleryModule">> = (
 	const [emblaRef, emblaApi] = createEmblaCarousel(() => ({
 		slides: ".embla__slide",
 		startIndex: 1,
-		// loop: true,
 	}));
 
 	const previousSlide = () => {

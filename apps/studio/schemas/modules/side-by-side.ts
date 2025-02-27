@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-	name: "articleGalleryModule",
-	title: "Article Gallery Module",
+	name: "sideBySideModule",
+	title: "Side by Side Module",
 	type: "object",
 	fields: [
 		defineField({
@@ -11,8 +11,13 @@ export default defineType({
 			title: "Caption",
 		}),
 		defineField({
+			name: "title",
+			type: "string",
+			title: "Title",
+		}),
+		defineField({
 			name: "description",
-			type: "text",
+			type: "string",
 			title: "Description",
 		}),
 		defineField({
@@ -22,14 +27,19 @@ export default defineType({
 		}),
 		defineField({
 			name: "link",
-			type: "string",
+			type: "url",
 			title: "Link",
 		}),
-		defineField({
-			name: "images",
-			type: "array",
-			title: "Images",
-			of: [{ type: "image" }],
-		}),
 	],
+	preview: {
+		select: {
+			subtitle: "title",
+		},
+		prepare({ subtitle }) {
+			return {
+				title: "Side by Side",
+				subtitle,
+			};
+		},
+	},
 });

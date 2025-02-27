@@ -1,0 +1,33 @@
+---
+import HeroCase from "@/components/astro/HeroCase.astro";
+import PageModules from "@/components/astro/PageModules.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
+import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import type { GetStaticPathsResult } from "astro";
+import { sanityClient } from "sanity:client";
+
+export const getStaticPaths = async () => {
+	const pages = await sanityClient.fetch<PAGES_QUERYResult>(PAGES_QUERY);
+
+	const staticPaths = pages.map((page) => ({
+		params: {
+			slug: page.slug?.current ?? "404",
+		},
+		props: {
+			page,
+		},
+	}));
+
+	return staticPaths satisfies GetStaticPathsResult;
+};
+
+const { page } = Astro.props;
+---
+
+<PageLayout title={page.title ?? undefined}>
+	<div class="flex flex-col max-w-[100rem] mx-auto">
+		<HeroCase {...page} />
+		<PageModules modules={page.modules} />
+	</div>
+</PageLayout>

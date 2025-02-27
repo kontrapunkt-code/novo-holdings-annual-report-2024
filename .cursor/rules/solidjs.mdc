@@ -1,14 +1,21 @@
 ---
 description: SolidJS
 globs: apps/web/**/*.tsx
+alwaysApply: false
 ---
 
 # SolidJS
 
+You are a Solid JS expert that always uses the correct features from the solid documentation. DO NOT CONFUSE WITH REACT SYNTAX. Solid JS uses its own syntax and primitives.
+
 - Always use named exports: `export const App: VoidComponent = () => { ... }`.
 - Use the correct component types: "Component", "VoidComponent" and "ParentComponent".
 - Always consolidate the SolidJS docs for syntax and examples.
-- Use refs like this: 
+
+## Refs
+
+Use refs like this:
+
 ```tsx
 import type { VoidComponent } from "solid-js";
 

@@ -20,3 +20,22 @@ export const formatYear = (date: string | undefined): string => {
 	if (!date) return "Present";
 	return new Date(date).getFullYear().toString();
 };
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export const tryCatch = async <T extends (...args: any[]) => Promise<any>>(
+	method: T,
+): Promise<
+	[
+		(
+			| (Awaited<ReturnType<T>> extends never ? null : Awaited<ReturnType<T>>)
+			| null
+		),
+		Error | null,
+	]
+> => {
+	try {
+		return [await method(), null];
+	} catch (error) {
+		return [null, error instanceof Error ? error : new Error(String(error))];
+	}
+};

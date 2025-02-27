@@ -24,6 +24,32 @@ export default defineType({
 			name: "video",
 			type: "file",
 			title: "Video",
+			options: {
+				accept: "video/*",
+			},
+			fields: [
+				defineField({
+					name: "callToAction",
+					type: "string",
+					title: "Call to Action",
+				}),
+				defineField({
+					name: "thumbnail",
+					type: "imageCombo",
+					title: "Thumbnail",
+				}),
+			],
 		}),
 	],
+	preview: {
+		select: {
+			subtitle: "title",
+		},
+		prepare({ subtitle }) {
+			return {
+				title: "News",
+				subtitle,
+			};
+		},
+	},
 });
