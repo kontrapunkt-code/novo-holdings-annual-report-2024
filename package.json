@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@kontrapunkt/shared": "^0.1.7",
 		"@types/bun": "^1.2.4",
 		"npm-check-updates": "^17.1.15",
 		"prettier": "^3.5.2",
