@@ -1,7 +1,6 @@
 ---
 import { buildSanityImage } from "@/scripts/image-url-builder";
 import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
-import { Image } from "astro:assets";
 
 interface Props {
 	image: NonNullable<
@@ -21,4 +20,4 @@ if (!image) return null;
 const url = buildSanityImage(image, { width, height });
 ---
 
-<Image src={url} alt={alt} inferSize class={className} sizes={sizes} />
+<img src={url} alt={alt} class={className} sizes={sizes} />
