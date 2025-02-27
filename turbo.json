@@ -1,6 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalEnv": ["SANITY_STUDIO_TOKEN"],
+	"globalEnv": [],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"]
