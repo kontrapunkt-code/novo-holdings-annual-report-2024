@@ -5,7 +5,7 @@
       "name": "novo-holdings-annual-report-2024",
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@types/bun": "^1.2.2",
+        "@types/bun": "^1.2.3",
         "npm-check-updates": "^17.1.15",
         "prettier": "^3.5.2",
         "prettier-plugin-astro": "^0.14.1",
