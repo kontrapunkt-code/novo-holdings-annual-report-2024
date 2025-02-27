@@ -5,6 +5,7 @@
 	],
 	"dependencies": {
 		"@astrojs/solid-js": "^5.0.4",
+		"@lottielab/lottie-player": "^1.1.3",
 		"@sanity/astro": "^3.2.5",
 		"@sanity/client": "6.28.1",
 		"@tailwindcss/vite": "^4.0.9",
