@@ -5,7 +5,7 @@
       "name": "novo-holdings-annual-report-2024",
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@kontrapunkt/shared": "^0.1.7",
+        "@kontrapunkt/shared": "^0.1.13",
         "@types/bun": "^1.2.4",
         "npm-check-updates": "^17.1.15",
         "prettier": "^3.5.2",
@@ -546,7 +546,7 @@
 
     "@juggle/resize-observer": ["@juggle/resize-observer@3.4.0", "", {}, "sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA=="],
 
-    "@kontrapunkt/shared": ["@kontrapunkt/shared@0.1.7", "", { "peerDependencies": { "bun": ">=1.0.0" }, "bin": { "kp-shared": "dist/index.js" } }, "sha512-0Jbdu7eHdBgXFqV3tnej/YNYQPfeGouktI7VyvXgQt+tW0PsuVe7cBDeivDX5TE3ePkkheiSixkLozV4LYgJNQ=="],
+    "@kontrapunkt/shared": ["@kontrapunkt/shared@0.1.13", "", { "peerDependencies": { "bun": ">=1.0.0" }, "bin": { "kp-shared": "dist/index.js" } }, "sha512-WMUPftMqAjJ3Kke1/jphrdtN2mQotSm3rBiocVOGN4P+Aj81L8d9BSdliG+a3nBSg4gUQExjegM6J0aw/ZFIMQ=="],
 
     "@lezer/common": ["@lezer/common@1.2.3", "", {}, "sha512-w7ojc8ejBqr2REPsWxJjrMFsA/ysDCFICn8zEOR9mrqzOu2amhITYuLD8ag6XZf0CFXDrhKqw7+tW8cX66NaDA=="],
 
