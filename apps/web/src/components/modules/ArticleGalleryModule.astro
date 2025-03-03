@@ -1,9 +1,9 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import { Carousel } from "@/components/solid/carousel";
-import type { ModuleProps } from "@/scripts/types";
+import type { CaseModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"articleGalleryModule">;
+type Props = CaseModuleProps<"articleGalleryModule">;
 
 const { images } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { images } = Astro.props;
 		{
 			images?.map((image) => (
 				<div class="embla__slide grow-0 shrink-0 basis-full min-w-0">
-					<SanityImage image={image?.asset ?? undefined} alt="" />
+					<SanityImage alt="" {...image} />
 				</div>
 			))
 		}

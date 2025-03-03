@@ -1,13 +1,11 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import CaseLayout from "@/layouts/CaseLayout.astro";
-import type { ModuleProps } from "@/scripts/types";
+import type { CaseModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"articleQuoteModule">;
+type Props = CaseModuleProps<"articleQuoteModule">;
 
 const { quote, author, jobTitle, image } = Astro.props;
-
-if (!quote) return null;
 ---
 
 <CaseLayout>
@@ -18,13 +16,15 @@ if (!quote) return null;
 		author && (
 			<div class="grid grid-cols-4 gap-4">
 				<div class="col-span-1">
-					<SanityImage
-						image={image?.asset ?? undefined}
-						alt={author ?? ""}
-						width={1200}
-						class="rounded-lg object-cover w-full h-full"
-						sizes="(min-width: 1280px) 1200px, 100vw"
-					/>
+					{image && (
+						<SanityImage
+							{...image}
+							alt={author ?? ""}
+							width={1200}
+							class="rounded-lg object-cover w-full h-full"
+							sizes="(min-width: 1280px) 1200px, 100vw"
+						/>
+					)}
 				</div>
 				<div class="paragraph-secondary col-span-3">
 					<span class="font-bold">{author}</span>

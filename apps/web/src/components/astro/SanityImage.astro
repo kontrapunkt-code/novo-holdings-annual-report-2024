@@ -1,11 +1,8 @@
 ---
 import { buildSanityImage } from "@/scripts/image-url-builder";
-import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import type { ImageCombo } from "@novo-holdings-annual-report-2024/studio/types";
 
-interface Props {
-	image: NonNullable<
-		NonNullable<PAGES_QUERYResult[number]>["heroImage"]
-	>["asset"];
+interface Props extends ImageCombo {
 	alt: string;
 	width?: number;
 	height?: number;
@@ -13,11 +10,11 @@ interface Props {
 	sizes?: string;
 }
 
-const { image, alt, width, height, class: className, sizes } = Astro.props;
+const { alt, width, height, class: className, sizes, asset } = Astro.props;
 
-if (!image) return null;
+if (!asset) return null;
 
-const url = buildSanityImage(image, { width, height });
+const url = buildSanityImage(asset, { width, height });
 ---
 
 <img src={url} alt={alt} class={className} sizes={sizes} />

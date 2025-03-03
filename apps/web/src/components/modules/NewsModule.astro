@@ -2,13 +2,13 @@
 import { VideoPlayer } from "@/components/solid/video-player";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import { buildSanityImage } from "@/scripts/image-url-builder";
-import type { ModuleProps } from "@/scripts/types";
+import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"newsModule">;
+type Props = PageModuleProps<"newsModule">;
 
 const { caption, title, description, video } = Astro.props;
 
-const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset ?? "");
+const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset);
 ---
 
 <LandingLayout>

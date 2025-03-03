@@ -2,9 +2,9 @@
 import { LottieGrid } from "@/components/solid/lottie-grid";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import { tryCatch } from "@/scripts/helpers";
-import type { ModuleProps } from "@/scripts/types";
+import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"atAGlanceModule">;
+type Props = PageModuleProps<"atAGlanceModule">;
 
 const { title, animations: animationsProp } = Astro.props;
 

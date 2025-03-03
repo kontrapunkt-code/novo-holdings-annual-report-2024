@@ -1,17 +1,11 @@
 ---
-import { GLOBAL_SETTINGS_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
-import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
-import { sanityClient } from "sanity:client";
-
-const global = await sanityClient.fetch<GLOBAL_SETTINGS_QUERYResult>(
-	GLOBAL_SETTINGS_QUERY,
-);
+import { globalSettings } from "@/scripts/queries";
 
 // Ensure homepage has a valid slug
-if (!global?.homePage?.slug?.current) {
+if (!globalSettings[0]?.homePageSlug) {
 	return Astro.redirect("/404");
 }
 
 // Redirect to the homepage with proper slug
-return Astro.rewrite(`/${global.homePage.slug.current}`);
+return Astro.rewrite(`/${globalSettings[0].homePageSlug}`);
 ---

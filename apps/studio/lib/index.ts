@@ -1,7 +1,6 @@
 import type {
 	DocumentActionComponent,
 	DocumentActionsContext,
-	StringRule,
 	Template,
 } from "sanity";
 import type { schemas } from "../schemas";
@@ -18,31 +17,18 @@ const singletonActions: Set<DocumentActionComponent["action"]> = new Set([
 	"restore",
 ]);
 
-const deleteTypes: Set<Schema> = new Set();
-
-const deleteActions: Set<DocumentActionComponent["action"]> = new Set([
-	"delete",
-	"discardChanges",
-	"publish",
-	"restore",
-	"duplicate",
-]);
-
 // Filter out singleton types and specific document types from the global "New document" menu options
 export const templates = (templates: Template[]) =>
-	templates.filter((t) => !singletonTypes.has(t.schemaType as Schema));
+	templates.filter(
+		(template) => !singletonTypes.has(template.schemaType as Schema),
+	);
 
 // For singleton types, only allow actions that are explicitly included in the `singletonActions` list
 // For non-singleton types, return all actions
 export const actions = (
-	input: DocumentActionComponent[],
+	components: DocumentActionComponent[],
 	context: DocumentActionsContext,
 ) =>
 	singletonTypes.has(context.schemaType as Schema) ?
-		input.filter(({ action }) => singletonActions.has(action))
-	: deleteTypes.has(context.schemaType as Schema) ?
-		input.filter(({ action }) => deleteActions.has(action))
-	:	input;
-
-export const literal = (string: string) => (rule: StringRule) =>
-	rule.custom((value) => value === string || `Type must be '${string}'`);
+		components.filter((component) => singletonActions.has(component.action))
+	:	components;

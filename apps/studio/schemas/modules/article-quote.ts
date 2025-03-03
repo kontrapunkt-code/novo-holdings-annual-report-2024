@@ -22,11 +22,8 @@ export default defineType({
 		}),
 		defineField({
 			name: "image",
-			type: "image",
+			type: "imageCombo",
 			title: "Image",
-			options: {
-				hotspot: true,
-			},
 		}),
 	],
 	preview: {

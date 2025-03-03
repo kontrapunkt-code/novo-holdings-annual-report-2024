@@ -1,9 +1,9 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import CaseLayout from "@/layouts/CaseLayout.astro";
-import type { ModuleProps } from "@/scripts/types";
+import type { CaseModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"articleFigureModule">;
+type Props = CaseModuleProps<"articleFigureModule">;
 
 const { image } = Astro.props;
 if (!image) return null;
@@ -12,7 +12,7 @@ if (!image) return null;
 <CaseLayout>
 	<div class="overflow-hidden">
 		<SanityImage
-			image={image?.asset ?? undefined}
+			{...image}
 			alt=""
 			width={1200}
 			class="rounded-lg object-cover w-full h-full"

@@ -15,7 +15,7 @@ interface VideoPlayerProps {
 	alt: string;
 	thumbnailSrc?: string;
 	thumbnailAlt?: string;
-	callToAction?: string;
+	callToAction?: string | null;
 }
 
 export const VideoPlayer: VoidComponent<VideoPlayerProps> = (

@@ -1,5 +1,10 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { modules } from "./modules";
+import articleFigure from "./modules/article-figure";
+import articleGallery from "./modules/article-gallery";
+import articleQuote from "./modules/article-quote";
+import articleStats from "./modules/article-stats";
+import articleText from "./modules/article-text";
+import caseHighlights from "./modules/case-highlights";
 
 export default defineType({
 	name: "case",
@@ -37,21 +42,21 @@ export default defineType({
 		}),
 		defineField({
 			name: "heroImage",
-			type: "image",
+			type: "imageCombo",
 			title: "Hero Image",
-			fields: [
-				defineField({
-					name: "alt",
-					type: "string",
-					title: "Alt Text",
-				}),
-			],
 		}),
 		defineField({
 			name: "modules",
 			type: "array",
 			title: "Case Modules",
-			of: modules.map((module) => defineArrayMember({ type: module.name })),
+			of: [
+				articleText,
+				articleQuote,
+				articleStats,
+				articleGallery,
+				articleFigure,
+				caseHighlights,
+			].map((module) => defineArrayMember({ type: module.name })),
 		}),
 	],
 	preview: {

@@ -1,5 +1,9 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { modules } from "./modules";
+import atAGlance from "./modules/at-a-glance";
+import caseHighlights from "./modules/case-highlights";
+import highlights from "./modules/highlights";
+import news from "./modules/news";
+import sideBySide from "./modules/side-by-side";
 
 export default defineType({
 	name: "page",
@@ -28,7 +32,9 @@ export default defineType({
 			type: "array",
 			title: "Page Modules",
 			description: "Add, edit, and reorder page sections",
-			of: modules.map((module) => defineArrayMember({ type: module.name })),
+			of: [atAGlance, highlights, news, sideBySide, caseHighlights].map(
+				(module) => defineArrayMember({ type: module.name }),
+			),
 		}),
 	],
 });

@@ -1,14 +1,13 @@
 ---
-import HeroCase from "@/components/astro/HeroCase.astro";
 import PageModules from "@/components/astro/PageModules.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import { PAGES_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
-import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
-import type { GetStaticPathsResult } from "astro";
-import { sanityClient } from "sanity:client";
+import { pagesQuery, runQuery } from "@/scripts/queries";
+import type { GetStaticPathsResult, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = async () => {
-	const pages = await sanityClient.fetch<PAGES_QUERYResult>(PAGES_QUERY);
+	const pages = await runQuery(pagesQuery, {
+		parameters: {},
+	});
 
 	const staticPaths = pages.map((page) => ({
 		params: {
@@ -22,12 +21,11 @@ export const getStaticPaths = async () => {
 	return staticPaths satisfies GetStaticPathsResult;
 };
 
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
 const { page } = Astro.props;
 ---
 
 <PageLayout title={page.title ?? undefined}>
-	<div class="flex flex-col max-w-[100rem] mx-auto">
-		{page._type === "case" && <HeroCase {...page} />}
-		<PageModules modules={page.modules} />
-	</div>
+	<PageModules modules={page.modules} />
 </PageLayout>

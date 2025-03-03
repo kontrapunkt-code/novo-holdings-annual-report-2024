@@ -2,9 +2,9 @@
 import SanityImage from "@/components/astro/SanityImage.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { formatYear } from "@/scripts/helpers";
-import type { PAGES_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import type { Case } from "@/scripts/queries";
 
-type Props = NonNullable<PAGES_QUERYResult[number]>;
+type Props = Case;
 
 const { title, heroImage, project, startDate, endDate } = Astro.props;
 ---
@@ -21,11 +21,11 @@ const { title, heroImage, project, startDate, endDate } = Astro.props;
 		</p>
 		<h1 class="headline-article pb-[2rem] md:pb-[3rem]">{title}</h1>
 		<div class="overflow-hidden pb-[2rem] md:pb-[3rem]">
-			<SanityImage
-				class="rounded-lg"
-				image={heroImage?.asset ?? undefined}
-				alt={title ?? ""}
-			/>
+			{
+				heroImage && (
+					<SanityImage {...heroImage} class="rounded-lg" alt={title ?? ""} />
+				)
+			}
 		</div>
 	</section>
 </MainLayout>

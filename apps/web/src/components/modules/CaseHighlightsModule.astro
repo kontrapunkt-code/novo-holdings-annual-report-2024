@@ -1,9 +1,9 @@
 ---
 import CaseCard from "@/components/astro/CaseCard.astro";
 import LandingLayout from "@/layouts/LandingLayout.astro";
-import type { ModuleProps } from "@/scripts/types";
+import type { CaseModuleProps } from "@/scripts/queries";
 
-type Props = ModuleProps<"caseHighlightsModule">;
+type Props = CaseModuleProps<"caseHighlightsModule">;
 
 const { title, cases } = Astro.props;
 
