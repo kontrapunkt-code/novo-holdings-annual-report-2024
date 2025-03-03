@@ -6,9 +6,11 @@ import type {
 import { sanityClient } from "sanity:client";
 
 export function buildSanityImage(
-	image: SanityImageSource,
+	image?: SanityImageSource,
 	options: ImageUrlBuilderOptions = {},
 ) {
+	if (!image) return;
+
 	const builder = imageUrlBuilder(sanityClient);
 
 	const {

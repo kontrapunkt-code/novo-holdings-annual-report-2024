@@ -1,11 +1,11 @@
 ---
 import PrimaryButton from "@/components/astro/PrimaryButton.astro";
 import { generateGradient } from "@/scripts/linear-gradient";
-import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import type { GlobalSettings } from "@/scripts/queries";
 
-interface Props {
-	settings: GLOBAL_SETTINGS_QUERYResult;
-}
+type Props = GlobalSettings;
+
+const { globalTitle } = Astro.props;
 
 const blurs = [
 	"backdrop-blur-[0.0625rem]",
@@ -37,7 +37,7 @@ const maskGradient = generateGradient({
 		class="max-w-[100rem] flex justify-between items-start mx-auto px-[1.5rem] md:px-[3rem] text-novo-blue"
 	>
 		<p class="text-[1.125rem] leading-[90%]">
-			novo<br /><span class="font-bold">holdings</span>
+			{globalTitle}<br /><span class="font-bold">holdings</span>
 		</p>
 		<PrimaryButton buttonText="Download Report" link="/" icon="download" />
 	</nav>

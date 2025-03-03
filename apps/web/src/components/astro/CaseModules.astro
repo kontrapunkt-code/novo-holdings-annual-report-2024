@@ -1,0 +1,36 @@
+---
+import ArticleFigureModule from "@/components/modules/ArticleFigureModule.astro";
+import ArticleGalleryModule from "@/components/modules/ArticleGalleryModule.astro";
+import ArticleQuoteModule from "@/components/modules/ArticleQuoteModule.astro";
+import ArticleStatsModule from "@/components/modules/ArticleStatsModule.astro";
+import ArticleTextModule from "@/components/modules/ArticleTextModule.astro";
+import CaseHighlightsModule from "@/components/modules/CaseHighlightsModule.astro";
+import type { CaseModules } from "@/scripts/queries";
+
+interface Props {
+	modules: CaseModules;
+}
+
+const { modules } = Astro.props;
+---
+
+{
+	modules?.map((module) => {
+		switch (module?._type) {
+			case "articleTextModule":
+				return <ArticleTextModule {...module} />;
+			case "articleQuoteModule":
+				return <ArticleQuoteModule {...module} />;
+			case "articleStatsModule":
+				return <ArticleStatsModule {...module} />;
+			case "articleGalleryModule":
+				return <ArticleGalleryModule {...module} />;
+			case "articleFigureModule":
+				return <ArticleFigureModule {...module} />;
+			case "caseHighlightsModule":
+				return <CaseHighlightsModule {...module} />;
+			default:
+				return null;
+		}
+	})
+}

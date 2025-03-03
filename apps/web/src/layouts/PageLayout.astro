@@ -1,22 +1,23 @@
 ---
 import Footer from "@/components/astro/Footer.astro";
 import Header from "@/components/astro/Header.astro";
-import "@/styles/global.css";
-import { sanityClient } from "sanity:client";
 import Router from "@/components/astro/Router.astro";
-import { GLOBAL_SETTINGS_QUERY } from "@novo-holdings-annual-report-2024/studio/queries";
-import type { GLOBAL_SETTINGS_QUERYResult } from "@novo-holdings-annual-report-2024/studio/types";
+import { globalSettings } from "@/scripts/queries";
+import "@/styles/global.css";
 
 interface Props {
 	title?: string;
 }
 
 const { title } = Astro.props;
-const settings = await sanityClient.fetch<GLOBAL_SETTINGS_QUERYResult>(
-	GLOBAL_SETTINGS_QUERY,
-);
-const pageTitle =
-	title ? `${title} | ${settings?.globalTitle}` : settings?.globalTitle;
+
+if (!globalSettings[0]) {
+	throw new Error("Global settings not found");
+}
+
+const { globalTitle } = globalSettings[0];
+
+const pageTitle = title ? `${title} | ${globalTitle}` : globalTitle;
 ---
 
 <!doctype html>
@@ -31,11 +32,13 @@ const pageTitle =
 		<title>{pageTitle}</title>
 	</head>
 	<body class="min-h-screen bg-white">
-		<Header settings={settings} />
+		<Header {...globalSettings[0]} />
 		<main class="w-full">
-			<slot />
+			<div class="flex flex-col max-w-[100rem] mx-auto">
+				<slot />
+			</div>
 		</main>
-		<Footer settings={settings} />
+		<Footer {...globalSettings[0]} />
 		<div id="portal" class="z-2 absolute w-0 h-0"></div>
 	</body>
 </html>
