@@ -1,15 +1,11 @@
 ---
 import PageModules from "@/components/astro/PageModules.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import { pagesQuery, runQuery } from "@/scripts/queries";
+import { pages } from "@/scripts/queries";
 import type { GetStaticPathsResult, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = async () => {
-	const pages = await runQuery(pagesQuery, {
-		parameters: {},
-	});
-
-	const staticPaths = pages.map((page) => ({
+	const staticPaths = (await pages).map((page) => ({
 		params: {
 			slug: page.slug ?? "404",
 		},

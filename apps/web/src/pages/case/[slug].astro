@@ -6,7 +6,7 @@ import { cases } from "@/scripts/queries";
 import type { GetStaticPathsResult, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = async () => {
-	const staticPaths = cases.map((page) => ({
+	const staticPaths = (await cases).map((page) => ({
 		params: {
 			slug: page.slug ?? "404",
 		},
