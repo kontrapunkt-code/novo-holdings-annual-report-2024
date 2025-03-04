@@ -197,14 +197,13 @@ export const globalSettingsQuery = q.star
 		})),
 	}));
 
-export const pages = runQuery(pagesQuery);
-export const cases = runQuery(caseQuery);
-export const globalSettings = runQuery(globalSettingsQuery);
+export const pagesResult = runQuery(pagesQuery);
+export const casesResult = runQuery(caseQuery);
+export const globalSettingsResult = runQuery(globalSettingsQuery);
 
-export type GlobalSettings = Awaited<typeof globalSettings>[number];
-
-export type Page = Awaited<typeof pages>[number];
-export type Case = Awaited<typeof cases>[number];
+export type GlobalSettings = Awaited<typeof globalSettingsResult>[number];
+export type Page = Awaited<typeof pagesResult>[number];
+export type Case = Awaited<typeof casesResult>[number];
 
 export type PageModules = Page["modules"];
 export type CaseModules = Case["modules"];
