@@ -39,10 +39,9 @@ export const actions = (
 	:	components;
 
 export function defineSlugField(
-	fieldDefinition?: Partial<FieldDefinition<"slug">>,
-	prefix?: string,
+	fieldDefinition: { prefix?: string } & FieldDefinition<"slug">,
 ) {
-	const slugField = Object.assign(
+	return Object.assign(
 		defineField({
 			name: "slug",
 			type: "slug",
@@ -55,8 +54,11 @@ export function defineSlugField(
 					if (!input) return true;
 					if (input.endsWith("/")) return `Slug cannot end with "/"`;
 					if (input.startsWith("/")) return `Slug cannot start with "/"`;
-					if (prefix && !input.startsWith(prefix))
-						return `Slug must start with "${prefix}"`;
+					if (
+						fieldDefinition.prefix
+						&& !input.startsWith(fieldDefinition.prefix)
+					)
+						return `Slug must start with "${fieldDefinition.prefix}"`;
 					return true;
 				}),
 			options: Object.assign(
@@ -65,10 +67,10 @@ export function defineSlugField(
 					maxLength: 30,
 					slugify(source: string) {
 						const options = { lower: true, trim: true, strict: true };
-						const slug = `${prefix || ""}${slugify(source, options)}`;
+						const slug = `${fieldDefinition.prefix || ""}${slugify(source, options)}`;
 						return slug;
 					},
-					isUnique: async (slug: string, context: SlugValidationContext) => {
+					async isUnique(slug: string, context: SlugValidationContext) {
 						const { document, getClient } = context;
 						const client = getClient({ apiVersion: "2025-01-01" });
 						const id = document?._id.replace(/^drafts\./, "");
@@ -88,6 +90,4 @@ export function defineSlugField(
 		}),
 		fieldDefinition,
 	);
-
-	return slugField;
 }

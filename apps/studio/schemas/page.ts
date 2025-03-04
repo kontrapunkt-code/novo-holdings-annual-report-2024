@@ -18,13 +18,10 @@ export default defineType({
 			description: "The title of the page.",
 			validation: (rule) => rule.required(),
 		}),
-		defineSlugField(
-			{
-				name: "slug",
-				type: "slug",
-			},
-			"",
-		),
+		defineSlugField({
+			name: "slug",
+			type: "slug",
+		}),
 		defineField({
 			name: "modules",
 			type: "array",

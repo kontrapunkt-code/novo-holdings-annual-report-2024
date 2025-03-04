@@ -17,13 +17,11 @@ export default defineType({
 			type: "string",
 			title: "Title",
 		}),
-		defineSlugField(
-			{
-				name: "slug",
-				type: "slug",
-			},
-			"case/",
-		),
+		defineSlugField({
+			name: "slug",
+			type: "slug",
+			prefix: "case/",
+		}),
 		defineField({
 			name: "project",
 			type: "string",
