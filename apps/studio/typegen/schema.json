@@ -268,10 +268,6 @@
                       {
                         "type": "string",
                         "value": "h2"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h3"
                       }
                     ]
                   },
@@ -1924,52 +1920,6 @@
         "value": {
           "type": "object",
           "attributes": {
-            "logo": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "object",
-                "attributes": {
-                  "asset": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "object",
-                      "attributes": {
-                        "_ref": {
-                          "type": "objectAttribute",
-                          "value": {
-                            "type": "string"
-                          }
-                        },
-                        "_type": {
-                          "type": "objectAttribute",
-                          "value": {
-                            "type": "string",
-                            "value": "reference"
-                          }
-                        },
-                        "_weak": {
-                          "type": "objectAttribute",
-                          "value": {
-                            "type": "boolean"
-                          },
-                          "optional": true
-                        }
-                      },
-                      "dereferencesTo": "sanity.fileAsset"
-                    },
-                    "optional": true
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "file"
-                    }
-                  }
-                }
-              },
-              "optional": true
-            },
             "copyright": {
               "type": "objectAttribute",
               "value": {
@@ -2247,7 +2197,7 @@
           },
           "optional": true
         },
-        "phone": {
+        "tel": {
           "type": "objectAttribute",
           "value": {
             "type": "string"

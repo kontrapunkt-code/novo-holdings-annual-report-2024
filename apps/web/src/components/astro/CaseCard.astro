@@ -1,4 +1,5 @@
 ---
+import Link from "@/components/astro/Link.astro";
 import SanityImage from "@/components/astro/SanityImage.astro";
 import { formatYear } from "@/scripts/helpers";
 import type { CaseModuleProps } from "@/scripts/queries";
@@ -12,7 +13,7 @@ const { title, slug, project, startDate, endDate, heroImage } = Astro.props;
 if (!heroImage) return null;
 ---
 
-<a href={slug?.current ?? ""}>
+<Link link={{ slug }} class="col-span-4 pb-[1rem]">
 	<figure class="col-span-4 pb-[1rem]">
 		<div class="rounded-lg pb-[1.25rem]">
 			<SanityImage
@@ -35,4 +36,4 @@ if (!heroImage) return null;
 			{title}
 		</figcaption>
 	</figure>
-</a>
+</Link>

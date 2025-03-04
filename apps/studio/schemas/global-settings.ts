@@ -62,14 +62,6 @@ export default defineType({
 			group: "footer",
 			fields: [
 				defineField({
-					name: "logo",
-					type: "file",
-					title: "Logo",
-					options: {
-						accept: "image/svg+xml",
-					},
-				}),
-				defineField({
 					name: "copyright",
 					type: "text",
 					title: "Copyright",

@@ -22,7 +22,7 @@ const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset);
 	<div class="relative col-span-4 md:col-span-6">
 		<VideoPlayer
 			client:load
-			src={video?.asset?.url ?? ""}
+			src={video?.src ?? ""}
 			alt={video?.callToAction ?? ""}
 			thumbnailSrc={thumbnailSrc}
 			thumbnailAlt={video?.thumbnail?.alt ?? ""}

@@ -1,5 +1,6 @@
 ---
 import Icon from "@/components/astro/Icon.astro";
+import Link from "@/components/astro/Link.astro";
 import PrimaryButton from "@/components/astro/PrimaryButton.astro";
 import type { GlobalSettings } from "@/scripts/queries";
 
@@ -16,11 +17,12 @@ const { footer } = Astro.props;
 			<div class="text-[2rem] leading-[90%] text-white md:text-[4rem]">
 				<Icon icon="logo" class="aspect-[257/122] h-28" />
 			</div>
-			<PrimaryButton
-				buttonText={footer?.backlink?.text ?? "Back to Main Site"}
-				link={footer?.backlink?.url ?? "/"}
-				icon="arrow_outward"
-			/>
+			<Link link={footer?.backlink} class="text-white">
+				<PrimaryButton
+					buttonText={footer?.backlink?.text ?? "Back to Main Site"}
+					icon="arrow_outward"
+				/>
+			</Link>
 		</div>
 		<nav>
 			<ul
@@ -29,7 +31,9 @@ const { footer } = Astro.props;
 				{
 					footer?.links?.map((link) => (
 						<li>
-							<a href={link.url}>{link.label}</a>
+							<Link link={link} class="text-white">
+								{link.text}
+							</Link>
 						</li>
 					))
 				}

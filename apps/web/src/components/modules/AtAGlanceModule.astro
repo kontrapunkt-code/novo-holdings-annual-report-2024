@@ -11,13 +11,13 @@ const { title, animations: animationsProp } = Astro.props;
 const animations = await Promise.all(
 	animationsProp?.map(async (animation) => {
 		const [aspectRatio] = await tryCatch(async () => {
-			const response = await fetch(animation?.lottie?.asset?.url ?? "");
+			const response = await fetch(animation?.src ?? "");
 			const { w, h } = await response.json();
 			return `${w}/${h}`;
 		});
 
 		return {
-			src: animation.lottie?.asset?.url ?? "",
+			src: animation.src ?? "",
 			aspectRatio: aspectRatio ?? "1/1",
 		};
 	}) ?? [],

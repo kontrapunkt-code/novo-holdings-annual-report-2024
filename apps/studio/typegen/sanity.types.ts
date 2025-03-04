@@ -55,7 +55,7 @@ export type ArticleTextModule = {
 			_type: "span";
 			_key: string;
 		}>;
-		style?: "normal" | "h2" | "h3";
+		style?: "normal" | "h2";
 		listItem?: "bullet" | "number";
 		markDefs?: Array<{
 			href?: string;
@@ -341,15 +341,6 @@ export type GlobalSettings = {
 		callToAction?: Link;
 	};
 	footer?: {
-		logo?: {
-			asset?: {
-				_ref: string;
-				_type: "reference";
-				_weak?: boolean;
-				[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-			};
-			_type: "file";
-		};
 		copyright?: string;
 		backlink?: Link;
 		links?: Array<
@@ -405,7 +396,7 @@ export type Link = {
 		  };
 	external?: string;
 	mailto?: string;
-	phone?: string;
+	tel?: string;
 };
 
 export type ImageCombo = {

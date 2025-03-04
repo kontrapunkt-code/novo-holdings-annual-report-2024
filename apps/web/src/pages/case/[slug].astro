@@ -8,7 +8,7 @@ import type { GetStaticPathsResult, InferGetStaticPropsType } from "astro";
 export const getStaticPaths = async () => {
 	const staticPaths = cases.map((page) => ({
 		params: {
-			slug: page.slug?.current ?? "404",
+			slug: page.slug ?? "404",
 		},
 		props: {
 			page,

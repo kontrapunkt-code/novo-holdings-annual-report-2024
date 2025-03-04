@@ -11,7 +11,7 @@ export const getStaticPaths = async () => {
 
 	const staticPaths = pages.map((page) => ({
 		params: {
-			slug: page.slug?.current ?? "404",
+			slug: page.slug ?? "404",
 		},
 		props: {
 			page,
