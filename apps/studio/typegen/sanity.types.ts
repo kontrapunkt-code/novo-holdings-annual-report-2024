@@ -100,7 +100,7 @@ export type ArticleGalleryModule = {
 	caption?: string;
 	description?: string;
 	buttonText?: string;
-	link?: string;
+	link?: Link;
 	images?: Array<{
 		asset?: {
 			_ref: string;
@@ -152,7 +152,7 @@ export type SideBySideModule = {
 	title?: string;
 	description?: string;
 	buttonText?: string;
-	link?: string;
+	link?: Link;
 };
 
 export type NewsModule = {
@@ -204,12 +204,7 @@ export type HighlightsModule = {
 			caption?: string;
 			_type: "imageCombo";
 		};
-		link?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "page";
-		};
+		link?: Link;
 		_key: string;
 	}>;
 };
@@ -334,24 +329,35 @@ export type GlobalSettings = {
 	_updatedAt: string;
 	_rev: string;
 	globalTitle?: string;
-	logo?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-		};
-		_type: "file";
-	};
 	homePage?: {
 		_ref: string;
 		_type: "reference";
 		_weak?: boolean;
 		[internalGroqTypeReferenceTo]?: "page";
 	};
-	loadingScreenTitle?: string;
-	loadingScreenDescription?: string;
-	loadingScreenButtonText?: string;
+	header?: {
+		subtitle?: string;
+		subtitleLine2?: string;
+		callToAction?: Link;
+	};
+	footer?: {
+		logo?: {
+			asset?: {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+			};
+			_type: "file";
+		};
+		copyright?: string;
+		backlink?: Link;
+		links?: Array<
+			{
+				_key: string;
+			} & Link
+		>;
+	};
 };
 
 export type Page = {
@@ -381,6 +387,27 @@ export type Page = {
 	>;
 };
 
+export type Link = {
+	_type: "link";
+	text?: string;
+	page?:
+		| {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "page";
+		  }
+		| {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "case";
+		  };
+	external?: string;
+	mailto?: string;
+	phone?: string;
+};
+
 export type ImageCombo = {
 	_type: "imageCombo";
 	asset?: {
@@ -393,12 +420,6 @@ export type ImageCombo = {
 	crop?: SanityImageCrop;
 	alt?: string;
 	caption?: string;
-};
-
-export type Slug = {
-	_type: "slug";
-	current?: string;
-	source?: string;
 };
 
 export type SanityFileAsset = {
@@ -430,6 +451,12 @@ export type SanityAssetSourceData = {
 	url?: string;
 };
 
+export type Slug = {
+	_type: "slug";
+	current?: string;
+	source?: string;
+};
+
 export type AllSanitySchemaTypes =
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
@@ -452,8 +479,9 @@ export type AllSanitySchemaTypes =
 	| SanityImageMetadata
 	| GlobalSettings
 	| Page
+	| Link
 	| ImageCombo
-	| Slug
 	| SanityFileAsset
-	| SanityAssetSourceData;
+	| SanityAssetSourceData
+	| Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

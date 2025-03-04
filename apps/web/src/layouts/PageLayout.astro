@@ -34,12 +34,12 @@ const pageTitle = title ? `${title} | ${globalTitle}` : globalTitle;
 	<body class="min-h-screen bg-white">
 		<Header {...globalSettings[0]} />
 		<main class="w-full">
-			<div class="flex flex-col max-w-[100rem] mx-auto">
+			<div class="mx-auto flex max-w-[100rem] flex-col">
 				<slot />
 			</div>
 		</main>
 		<Footer {...globalSettings[0]} />
-		<div id="portal" class="z-2 absolute w-0 h-0"></div>
+		<div id="portal" class="absolute z-2 h-0 w-0"></div>
 	</body>
 </html>
 

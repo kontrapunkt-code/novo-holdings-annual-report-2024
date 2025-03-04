@@ -22,7 +22,7 @@ export default defineType({
 		}),
 		defineField({
 			name: "link",
-			type: "string",
+			type: "link",
 			title: "Link",
 		}),
 		defineField({

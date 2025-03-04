@@ -100,11 +100,11 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 				/>
 				<button
 					type="button"
-					class="absolute rounded-lg left-5 bottom-5 px-4 py-3.5 bg-white bg-opacity-40 backdrop-blur-xl flex items-center text-black cursor-pointer"
+					class="bg-opacity-40 absolute bottom-5 left-5 flex cursor-pointer items-center rounded-lg bg-white px-4 py-3.5 text-black backdrop-blur-xl"
 					onClick={open}
 					onKeyDown={keyDownOpen}
 				>
-					<Icon icon="play_arrow" class="w-6 h-6" />
+					<Icon icon="play_arrow" class="h-6 w-6" />
 					<span class="px-2">{props.callToAction}</span>
 				</button>
 			</div>
@@ -118,7 +118,7 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 				>
 					<div
 						id="video-lightbox"
-						class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center opacity-0 p-4 "
+						class="fixed inset-0 flex items-center justify-center bg-black/50 p-4 opacity-0 backdrop-blur-sm"
 						onClick={closeLightbox}
 						onKeyDown={keyDownClose}
 						ref={setLightboxRef}
@@ -127,7 +127,7 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 							src={props.src}
 							controls
 							autoplay
-							class="rounded-lg opacity-0 bg-black max-h-full max-w-full"
+							class="max-h-full max-w-full rounded-lg bg-black opacity-0"
 							ref={setVideoRef}
 						>
 							<track kind="captions" />

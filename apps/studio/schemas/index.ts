@@ -1,6 +1,7 @@
 import case_ from "./case";
 import globalSettings from "./global-settings";
 import imageCombo from "./image-combo";
+import link from "./link";
 import articleFigure from "./modules/article-figure";
 import articleGallery from "./modules/article-gallery";
 import articleQuote from "./modules/article-quote";
@@ -18,6 +19,7 @@ export const schemas = [
 	page,
 	imageCombo,
 	case_,
+	link,
 
 	// Modules
 	atAGlance,

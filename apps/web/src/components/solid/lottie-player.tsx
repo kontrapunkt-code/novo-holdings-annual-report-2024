@@ -33,5 +33,5 @@ export const LottiePlayer: VoidComponent<Props> = (props) => {
 		lottie.play();
 	});
 
-	return <lottie-player class="w-full h-full" ref={lottie} />;
+	return <lottie-player class="h-full w-full" ref={lottie} />;
 };

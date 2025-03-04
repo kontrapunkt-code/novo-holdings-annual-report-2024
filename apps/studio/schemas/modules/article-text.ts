@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "articleTextModule",
@@ -10,15 +10,14 @@ export default defineType({
 			type: "array",
 			title: "Content",
 			of: [
-				{
+				defineArrayMember({
 					type: "block",
-					// Define available text styles in Sanity UI
 					styles: [
 						{ title: "Paragraph", value: "normal" },
 						{ title: "Headline", value: "h2" },
 						{ title: "Subheadline", value: "h3" },
 					],
-				},
+				}),
 			],
 		}),
 	],

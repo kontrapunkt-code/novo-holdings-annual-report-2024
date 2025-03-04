@@ -14,17 +14,17 @@ if (!heroImage) return null;
 
 <a href={slug?.current ?? ""}>
 	<figure class="col-span-4 pb-[1rem]">
-		<div class="pb-[1.25rem] rounded-lg">
+		<div class="rounded-lg pb-[1.25rem]">
 			<SanityImage
 				{...heroImage}
 				alt={title ?? ""}
 				width={800}
-				class="rounded-lg w-full h-auto"
+				class="h-auto w-full rounded-lg"
 				sizes="(min-width: 1280px) 800px, 100vw"
 			/>
 		</div>
 		<div
-			class="flex gap-4 items-center pb-[0.5rem] text-novo-blue text-[1rem] leading-[120%]"
+			class="text-novo-blue flex items-center gap-4 pb-[0.5rem] text-[1rem] leading-[120%]"
 		>
 			<p>{project}</p>
 			<p>

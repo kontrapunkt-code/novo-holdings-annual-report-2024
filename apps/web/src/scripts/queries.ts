@@ -164,6 +164,8 @@ export const globalSettingsQuery = q.star
 			.field("homePage")
 			.deref()
 			.field("slug.current"),
+		header: true,
+		footer: true,
 	}));
 
 export const pages = await runQuery(pagesQuery);

@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineSlugField } from "../lib";
 import articleFigure from "./modules/article-figure";
 import articleGallery from "./modules/article-gallery";
 import articleQuote from "./modules/article-quote";
@@ -16,15 +17,13 @@ export default defineType({
 			type: "string",
 			title: "Title",
 		}),
-		defineField({
-			name: "slug",
-			type: "slug",
-			title: "Slug",
-			options: {
-				source: "title",
+		defineSlugField(
+			{
+				name: "slug",
+				type: "slug",
 			},
-			validation: (rule) => rule.required(),
-		}),
+			"case/",
+		),
 		defineField({
 			name: "project",
 			type: "string",

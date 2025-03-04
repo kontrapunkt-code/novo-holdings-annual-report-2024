@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "articleStatsModule",
@@ -20,7 +20,7 @@ export default defineType({
 			name: "stats",
 			type: "array",
 			title: "Statistics",
-			of: [{ type: "text", rows: 2 }],
+			of: [defineArrayMember({ type: "text", rows: 2 })],
 		}),
 	],
 	preview: {

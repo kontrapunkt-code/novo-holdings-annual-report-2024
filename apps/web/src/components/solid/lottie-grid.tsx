@@ -61,7 +61,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 	return (
 		<div
-			class="columns-3 gap-4 at-a-glance-grid *:w-full *:rounded-lg *:overflow-hidden *:opacity-0 *:mb-4"
+			class="at-a-glance-grid columns-3 gap-4 *:mb-4 *:w-full *:overflow-hidden *:rounded-lg *:opacity-0"
 			ref={grid}
 		>
 			<For each={props.animations}>

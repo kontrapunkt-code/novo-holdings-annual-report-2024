@@ -1,0 +1,32 @@
+---
+interface Props {
+	link?: {
+		url?: string;
+		external?: boolean;
+		mailto?: boolean;
+		phone?: boolean;
+	};
+}
+
+const { link } = Astro.props;
+---
+
+{
+	link ?
+		link.mailto ?
+			<a href={`mailto:${link.url}`}>
+				<slot />
+			</a>
+		: link.phone ?
+			<a href={`tel:${link.url}`}>
+				<slot />
+			</a>
+		: link.external ?
+			<a href={link.url} target="_blank" rel="noopener noreferrer">
+				<slot />
+			</a>
+		:	<a href={link.url}>
+				<slot />
+			</a>
+	:	<slot />
+}

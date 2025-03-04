@@ -3,23 +3,26 @@ import Icon from "@/components/astro/Icon.astro";
 import type { Icon as IconType } from "@novo-holdings-annual-report-2024/lib";
 
 interface Props {
-	buttonText: string;
-	link: string;
+	buttonText?: string;
+	link?: string;
 	icon?: IconType;
 }
 
 const { buttonText, link, icon } = Astro.props;
 ---
 
-<button type="button" class="font-medium text-[1.125rem] leading-[140%]">
-	<a class="flex items-center gap-[0.25rem]" href={link}>
-		{
-			icon && (
-				<span class="flex w-[1.25rem] h-[1.25rem]">
-					<Icon icon={icon} />
+{
+	link ?
+		<a class="text-[1.125rem] leading-[140%] font-medium" href={link}>
+			<button type="button" class="flex items-center gap-[0.25rem]">
+				{icon && <Icon icon={icon} class="flex h-[1.25rem] w-[1.25rem]" />}
+				<span class="decoration-novo-blue-30 underline decoration-1 underline-offset-[25%]">
+					{buttonText}
 				</span>
-			)
-		}
-		{buttonText}
-	</a>
-</button>
+			</button>
+		</a>
+	:	<button type="button" class="flex items-center gap-[0.25rem]">
+			{icon && <Icon icon={icon} class="flex h-[1.25rem] w-[1.25rem]" />}
+			<span>{buttonText}</span>
+		</button>
+}

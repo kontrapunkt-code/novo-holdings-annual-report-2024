@@ -39,6 +39,7 @@ export const ICONS = [
 	"arrow_outward",
 	"close",
 	"download",
+	"logo",
 	"play_arrow",
 ] as const;
 

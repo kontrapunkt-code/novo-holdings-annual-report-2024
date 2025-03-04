@@ -19,7 +19,7 @@ const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset);
 		</h2>
 		<p class="paragraph-main pb-12">{description}</p>
 	</div>
-	<div class="col-span-4 md:col-span-6 relative">
+	<div class="relative col-span-4 md:col-span-6">
 		<VideoPlayer
 			client:load
 			src={video?.asset?.url ?? ""}

@@ -1,35 +1,38 @@
 ---
+import Icon from "@/components/astro/Icon.astro";
 import PrimaryButton from "@/components/astro/PrimaryButton.astro";
 import type { GlobalSettings } from "@/scripts/queries";
 
 type Props = GlobalSettings;
+
+const { footer } = Astro.props;
 ---
 
-<footer class="bg-novo-blue text-white w-full">
+<footer class="bg-novo-blue w-full text-white">
 	<div
-		class="max-w-[100rem] mx-auto w-full grid gap-[12.5rem] px-[1.5rem] md:px-[3rem] py-[1.5rem] md:pb-[2.5rem]"
+		class="mx-auto grid w-full max-w-[100rem] gap-[12.5rem] px-[1.5rem] py-[1.5rem] md:px-[3rem] md:pb-[2.5rem]"
 	>
-		<div class="flex justify-between items-start">
-			<div class="text-[2rem] md:text-[4rem] leading-[90%]">
-				<p>novo<br /><span class="font-bold">holdings</span></p>
+		<div class="flex items-start justify-between">
+			<div class="text-[2rem] leading-[90%] text-white md:text-[4rem]">
+				<Icon icon="logo" class="aspect-[257/122] h-28" />
 			</div>
 			<PrimaryButton
-				buttonText="Back to Main Site"
-				link="/"
+				buttonText={footer?.backlink?.text ?? "Back to Main Site"}
+				link={footer?.backlink?.url ?? "/"}
 				icon="arrow_outward"
 			/>
 		</div>
 		<nav>
 			<ul
-				class="max-w-[100rem] grid md:flex gap-4 md:gap-[2rem] font-medium text-[0.875rem] leading-[120%]"
+				class="grid max-w-[100rem] gap-4 text-[0.875rem] leading-[120%] font-medium md:flex md:gap-[2rem]"
 			>
-				<li>Privacy notice</li>
-				<li>Code of Conduct</li>
-				<li>Whistleblower</li>
-				<li>Articles of association</li>
-				<li>Policy on data ethics</li>
-				<li>Electronic invoicing</li>
-				<li>Diversity policy</li>
+				{
+					footer?.links?.map((link) => (
+						<li>
+							<a href={link.url}>{link.label}</a>
+						</li>
+					))
+				}
 			</ul>
 		</nav>
 	</div>

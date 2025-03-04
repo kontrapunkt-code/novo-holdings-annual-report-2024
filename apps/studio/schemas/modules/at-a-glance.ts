@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "atAGlanceModule",
@@ -15,7 +15,7 @@ export default defineType({
 			type: "array",
 			title: "Animations",
 			of: [
-				{
+				defineArrayMember({
 					type: "object",
 					fields: [
 						defineField({
@@ -32,7 +32,7 @@ export default defineType({
 							title: "lottie.asset.originalFilename",
 						},
 					},
-				},
+				}),
 			],
 		}),
 	],
