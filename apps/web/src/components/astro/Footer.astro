@@ -1,7 +1,7 @@
 ---
+import Button from "@/components/astro/Button.astro";
 import Icon from "@/components/astro/Icon.astro";
 import Link from "@/components/astro/Link.astro";
-import PrimaryButton from "@/components/astro/PrimaryButton.astro";
 import type { GlobalSettings } from "@/scripts/queries";
 
 type Props = GlobalSettings;
@@ -13,16 +13,11 @@ const { footer } = Astro.props;
 	<div
 		class="mx-auto grid w-full max-w-[100rem] gap-[12.5rem] px-[1.5rem] py-[1.5rem] md:px-[3rem] md:pb-[2.5rem]"
 	>
-		<div class="flex items-start justify-between">
-			<div class="text-[2rem] leading-[90%] text-white md:text-[4rem]">
+		<div class="flex items-start justify-between text-white">
+			<div class="text-[2rem] leading-[90%] md:text-[4rem]">
 				<Icon icon="logo" class="aspect-[257/122] h-28" />
 			</div>
-			<Link link={footer?.backlink} class="text-white">
-				<PrimaryButton
-					buttonText={footer?.backlink?.text ?? "Back to Main Site"}
-					icon="arrow_outward"
-				/>
-			</Link>
+			<Button link={footer?.backlink} icon="arrow_outward" />
 		</div>
 		<nav>
 			<ul

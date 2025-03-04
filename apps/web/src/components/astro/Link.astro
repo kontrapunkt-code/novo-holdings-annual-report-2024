@@ -11,20 +11,20 @@ const { mailto, tel, external, slug } = link ?? {};
 ---
 
 {
-	mailto ?
-		<a href={`mailto:${mailto}`} {...props}>
-			<slot />
-		</a>
-	: tel ?
-		<a href={`tel:${tel}`} {...props}>
+	slug ?
+		<a href={`/${slug}`} {...props}>
 			<slot />
 		</a>
 	: external ?
 		<a href={external} target="_blank" rel="noopener noreferrer" {...props}>
 			<slot />
 		</a>
-	: slug ?
-		<a href={`/${slug}`} {...props}>
+	: mailto ?
+		<a href={`mailto:${mailto}`} {...props}>
+			<slot />
+		</a>
+	: tel ?
+		<a href={`tel:${tel}`} {...props}>
 			<slot />
 		</a>
 	:	<slot />

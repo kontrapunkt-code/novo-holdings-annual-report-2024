@@ -15,7 +15,7 @@ export default defineType({
 		}),
 		defineField({
 			name: "external",
-			type: "string",
+			type: "url",
 		}),
 		defineField({
 			name: "mailto",

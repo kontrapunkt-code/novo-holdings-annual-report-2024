@@ -181,3 +181,11 @@
 .quote {
 	@apply text-novo-blue font-sans text-[1.5rem] leading-[120%] font-extralight italic md:text-[2.25rem];
 }
+
+.side-by-side-module h2 {
+	@apply mb-6 font-sans text-[1.75rem] leading-[115%] font-extralight -tracking-[1%] md:mb-8 md:text-[2.625rem];
+}
+
+.side-by-side-module strong {
+	@apply font-bold;
+}

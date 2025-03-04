@@ -148,11 +148,100 @@ export type CaseHighlightsModule = {
 
 export type SideBySideModule = {
 	_type: "sideBySideModule";
-	caption?: string;
-	title?: string;
-	description?: string;
-	buttonText?: string;
-	link?: Link;
+	left?: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: "span";
+					_key: string;
+				}>;
+				style?: "normal" | "h2";
+				listItem?: never;
+				markDefs?: Array<
+					{
+						_key: string;
+					} & Link
+				>;
+				level?: number;
+				_type: "block";
+				_key: string;
+		  }
+		| ({
+				_key: string;
+		  } & Button)
+		| {
+				asset?: {
+					_ref: string;
+					_type: "reference";
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+				};
+				callToAction?: string;
+				thumbnail?: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					alt?: string;
+					caption?: string;
+					_type: "imageCombo";
+				};
+				_type: "video";
+				_key: string;
+		  }
+	>;
+	right?: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: "span";
+					_key: string;
+				}>;
+				style?: "normal" | "h2";
+				listItem?: never;
+				markDefs?: Array<
+					{
+						_key: string;
+					} & Link
+				>;
+				level?: number;
+				_type: "block";
+				_key: string;
+		  }
+		| ({
+				_key: string;
+		  } & Button)
+		| {
+				asset?: {
+					_ref: string;
+					_type: "reference";
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+				};
+				callToAction?: string;
+				thumbnail?: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					alt?: string;
+					caption?: string;
+					_type: "imageCombo";
+				};
+				_type: "video";
+				_key: string;
+		  }
+	>;
 };
 
 export type NewsModule = {
@@ -224,6 +313,45 @@ export type AtAGlanceModule = {
 		};
 		_key: string;
 	}>;
+};
+
+export type Icon =
+	| "arrow_back"
+	| "arrow_forward"
+	| "arrow_outward"
+	| "close"
+	| "download"
+	| "logo"
+	| "play_arrow";
+
+export type Button = {
+	_type: "button";
+	icon?: Icon;
+	link?: Link;
+};
+
+export type Video = {
+	_type: "video";
+	asset?: {
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+	};
+	callToAction?: string;
+	thumbnail?: {
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		caption?: string;
+		_type: "imageCombo";
+	};
 };
 
 export type Case = {
@@ -463,6 +591,9 @@ export type AllSanitySchemaTypes =
 	| NewsModule
 	| HighlightsModule
 	| AtAGlanceModule
+	| Icon
+	| Button
+	| Video
 	| Case
 	| SanityImageCrop
 	| SanityImageHotspot

@@ -21,6 +21,17 @@ const linkFragment = q.fragmentForType<"link">().project((link) => ({
 	slug: link.field("page").deref().field("slug.current"),
 }));
 
+const buttonFragment = q.fragmentForType<"button">().project((button) => ({
+	icon: button.field("icon"),
+	link: button.field("link").project(linkFragment),
+}));
+
+const videoFragment = q.fragmentForType<"video">().project((video) => ({
+	callToAction: true,
+	thumbnail: true,
+	src: video.field("asset").deref().field("url"),
+}));
+
 const articleFigureModule = q
 	.fragmentForType<"articleFigureModule">()
 	.project(() => ({
@@ -107,11 +118,26 @@ const newsModule = q.fragmentForType<"newsModule">().project((module) => ({
 const sideBySideModule = q
 	.fragmentForType<"sideBySideModule">()
 	.project((module) => ({
-		buttonText: true,
-		caption: true,
-		description: true,
-		link: module.field("link").project(linkFragment),
-		title: true,
+		left: module.field("left[]").project((block) => ({
+			...block.conditionalByType({
+				block: {
+					"...": true,
+				},
+				link: linkFragment,
+				video: videoFragment,
+				button: buttonFragment,
+			}),
+		})),
+		right: module.field("right[]").project((block) => ({
+			...block.conditionalByType({
+				block: {
+					"...": true,
+				},
+				link: linkFragment,
+				video: videoFragment,
+				button: buttonFragment,
+			}),
+		})),
 	}));
 
 const pageModuleMap = {
