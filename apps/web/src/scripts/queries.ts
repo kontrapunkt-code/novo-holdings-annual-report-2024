@@ -13,6 +13,25 @@ export const runQuery = makeSafeQueryRunner((query) =>
 	sanityClient.fetch(query),
 );
 
+const linkFragment = q.fragmentForType<"link">().project((link) => ({
+	external: true,
+	mailto: true,
+	tel: true,
+	text: true,
+	slug: link.field("page").deref().field("slug.current"),
+}));
+
+const buttonFragment = q.fragmentForType<"button">().project((button) => ({
+	icon: button.field("icon"),
+	link: button.field("link").project(linkFragment),
+}));
+
+const videoFragment = q.fragmentForType<"video">().project((video) => ({
+	callToAction: true,
+	thumbnail: true,
+	src: video.field("asset").deref().field("url"),
+}));
+
 const articleFigureModule = q
 	.fragmentForType<"articleFigureModule">()
 	.project(() => ({
@@ -21,11 +40,11 @@ const articleFigureModule = q
 
 const articleGalleryModule = q
 	.fragmentForType<"articleGalleryModule">()
-	.project(() => ({
+	.project((module) => ({
 		buttonText: true,
 		caption: true,
 		description: true,
-		link: true,
+		link: module.field("link").project(linkFragment),
 		images: true,
 	}));
 
@@ -57,14 +76,7 @@ const atAGlanceModule = q
 	.project((module) => ({
 		title: true,
 		animations: module.field("animations[]").project((animation) => ({
-			lottie: animation.field("lottie").project((lottie) => ({
-				asset: lottie
-					.field("asset")
-					.deref()
-					.project((asset) => ({
-						url: asset.field("url"),
-					})),
-			})),
+			src: animation.field("lottie.asset").deref().field("url"),
 		})),
 	}));
 
@@ -81,7 +93,7 @@ const caseHighlightsModule = q
 				endDate: true,
 				heroImage: true,
 				project: true,
-				slug: true,
+				slug: "slug.current",
 			})),
 	}));
 
@@ -99,23 +111,33 @@ const newsModule = q.fragmentForType<"newsModule">().project((module) => ({
 	video: module.field("video").project((video) => ({
 		callToAction: true,
 		thumbnail: true,
-		asset: video
-			.field("asset")
-			.deref()
-			.project((asset) => ({
-				url: asset.field("url"),
-			})),
+		src: video.field("asset").deref().field("url"),
 	})),
 }));
 
 const sideBySideModule = q
 	.fragmentForType<"sideBySideModule">()
-	.project(() => ({
-		buttonText: true,
-		caption: true,
-		description: true,
-		link: true,
-		title: true,
+	.project((module) => ({
+		left: module.field("left[]").project((block) => ({
+			...block.conditionalByType({
+				block: {
+					"...": true,
+				},
+				link: linkFragment,
+				video: videoFragment,
+				button: buttonFragment,
+			}),
+		})),
+		right: module.field("right[]").project((block) => ({
+			...block.conditionalByType({
+				block: {
+					"...": true,
+				},
+				link: linkFragment,
+				video: videoFragment,
+				button: buttonFragment,
+			}),
+		})),
 	}));
 
 const pageModuleMap = {
@@ -137,7 +159,7 @@ const caseModuleMap = {
 
 export const pagesQuery = q.star.filterByType("page").project((page) => ({
 	title: true,
-	slug: true,
+	slug: "slug.current",
 	modules: page.field("modules[]").project((modules) => ({
 		...modules.conditionalByType(pageModuleMap),
 	})),
@@ -145,7 +167,7 @@ export const pagesQuery = q.star.filterByType("page").project((page) => ({
 
 export const caseQuery = q.star.filterByType("case").project((page) => ({
 	title: true,
-	slug: true,
+	slug: "slug.current",
 	startDate: true,
 	endDate: true,
 	heroImage: true,
@@ -159,21 +181,29 @@ export const globalSettingsQuery = q.star
 	.filterByType("globalSettings")
 	.project((globalSettings) => ({
 		globalTitle: true,
-		logo: true,
 		homePageSlug: globalSettings
 			.field("homePage")
 			.deref()
 			.field("slug.current"),
+		header: globalSettings.field("header").project((header) => ({
+			subtitle: true,
+			subtitleLine2: true,
+			callToAction: header.field("callToAction").project(linkFragment),
+		})),
+		footer: globalSettings.field("footer").project((footer) => ({
+			copyright: true,
+			backlink: footer.field("backlink").project(linkFragment),
+			links: footer.field("links[]").project(linkFragment),
+		})),
 	}));
 
-export const pages = await runQuery(pagesQuery);
-export const cases = await runQuery(caseQuery);
-export const globalSettings = await runQuery(globalSettingsQuery);
+export const pagesResult = runQuery(pagesQuery);
+export const casesResult = runQuery(caseQuery);
+export const globalSettingsResult = runQuery(globalSettingsQuery);
 
-export type GlobalSettings = (typeof globalSettings)[number];
-
-export type Page = (typeof pages)[number];
-export type Case = (typeof cases)[number];
+export type GlobalSettings = Awaited<typeof globalSettingsResult>[number];
+export type Page = Awaited<typeof pagesResult>[number];
+export type Case = Awaited<typeof casesResult>[number];
 
 export type PageModules = Page["modules"];
 export type CaseModules = Case["modules"];

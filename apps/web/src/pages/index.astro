@@ -1,11 +1,13 @@
 ---
-import { globalSettings } from "@/scripts/queries";
+import { globalSettingsResult } from "@/scripts/queries";
+
+const [globalSettings] = await globalSettingsResult;
 
 // Ensure homepage has a valid slug
-if (!globalSettings[0]?.homePageSlug) {
+if (!globalSettings?.homePageSlug) {
 	return Astro.redirect("/404");
 }
 
 // Redirect to the homepage with proper slug
-return Astro.rewrite(`/${globalSettings[0].homePageSlug}`);
+return Astro.rewrite(`/${globalSettings.homePageSlug}`);
 ---

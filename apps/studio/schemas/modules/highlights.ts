@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "highlightsModule",
@@ -15,7 +15,7 @@ export default defineType({
 			type: "array",
 			title: "Highlights",
 			of: [
-				{
+				defineArrayMember({
 					type: "object",
 					fields: [
 						defineField({
@@ -38,12 +38,11 @@ export default defineType({
 						}),
 						defineField({
 							name: "link",
-							type: "reference",
-							title: "Link to Page",
-							to: [{ type: "page" }],
+							type: "link",
+							title: "Link",
 						}),
 					],
-				},
+				}),
 			],
 		}),
 	],

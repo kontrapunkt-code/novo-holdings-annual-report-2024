@@ -3,19 +3,18 @@ import PageLayout from "../layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Page Not Found">
-	<div class="min-h-[50vh] flex items-center justify-center">
-		<div class="max-w-2xl mx-auto text-center px-4">
-			<h1 class="text-4xl md:text-6xl font-bold mb-4">404</h1>
-			<p class="text-xl md:text-2xl text-gray-600 mb-8">
+	<div class="flex min-h-[50vh] items-center justify-center">
+		<div class="mx-auto max-w-2xl px-4 text-center">
+			<h1 class="mb-4 text-4xl font-bold md:text-6xl">404</h1>
+			<p class="mb-8 text-xl text-gray-600 md:text-2xl">
 				The page you're looking for doesn't exist or has been moved.
 			</p>
 			<a
 				href="/"
-				class="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+				class="inline-block rounded-lg bg-black px-8 py-3 text-white transition-colors hover:bg-gray-800"
 			>
 				Go to Homepage
 			</a>
 		</div>
 	</div>
 </PageLayout>
-

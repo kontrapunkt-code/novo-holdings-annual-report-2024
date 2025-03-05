@@ -1,0 +1,31 @@
+---
+import type { GlobalSettings } from "@/scripts/queries";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+	link?: Partial<NonNullable<GlobalSettings["header"]>["callToAction"]>;
+}
+
+const { link, ...props } = Astro.props;
+const { mailto, tel, external, slug } = link ?? {};
+---
+
+{
+	slug ?
+		<a href={`/${slug}`} {...props}>
+			<slot />
+		</a>
+	: external ?
+		<a href={external} target="_blank" rel="noopener noreferrer" {...props}>
+			<slot />
+		</a>
+	: mailto ?
+		<a href={`mailto:${mailto}`} {...props}>
+			<slot />
+		</a>
+	: tel ?
+		<a href={`tel:${tel}`} {...props}>
+			<slot />
+		</a>
+	:	<slot />
+}

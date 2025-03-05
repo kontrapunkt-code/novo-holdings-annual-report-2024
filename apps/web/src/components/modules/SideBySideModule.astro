@@ -1,20 +1,24 @@
 ---
+import SideBySideType from "@/components/astro/SideBySideType.astro";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { PageModuleProps } from "@/scripts/queries";
-import SecondaryButton from "../astro/SecondaryButton.astro";
+import { PortableText } from "astro-portabletext";
 
 type Props = PageModuleProps<"sideBySideModule">;
 
-const { caption, title, description, buttonText, link } = Astro.props;
+const { left, right } = Astro.props;
+
+const components = {
+	type: SideBySideType,
+};
 ---
 
 <LandingLayout>
-	<figure class="col-span-4 md:col-span-6">
-		<figcaption class="headline-extralight">{caption}</figcaption>
-		<h3 class="headline-semibold pb-[2rem]">{title}</h3>
-	</figure>
-	<div class="col-span-4 md:col-span-6">
-		<p class="paragraph-main pb-[2rem]">{description}</p>
-		<SecondaryButton buttonText={buttonText} link={link} />
-	</div>
+	{
+		[left, right].map((block) => (
+			<div class="side-by-side-module col-span-4 md:col-span-6">
+				{block && <PortableText value={block} components={components} />}
+			</div>
+		))
+	}
 </LandingLayout>

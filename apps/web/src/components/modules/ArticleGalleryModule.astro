@@ -12,7 +12,7 @@ const { images } = Astro.props;
 	<Carousel client:load {...Astro.props}>
 		{
 			images?.map((image) => (
-				<div class="embla__slide grow-0 shrink-0 basis-full min-w-0">
+				<div class="embla__slide min-w-0 shrink-0 grow-0 basis-full">
 					<SanityImage alt="" {...image} />
 				</div>
 			))

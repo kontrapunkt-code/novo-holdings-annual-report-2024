@@ -2,13 +2,14 @@
 import CaseModules from "@/components/astro/CaseModules.astro";
 import HeroCase from "@/components/astro/HeroCase.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import { cases } from "@/scripts/queries";
+import { casesResult } from "@/scripts/queries";
 import type { GetStaticPathsResult, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = async () => {
+	const cases = await casesResult;
 	const staticPaths = cases.map((page) => ({
 		params: {
-			slug: page.slug?.current ?? "404",
+			slug: page.slug?.split("case/")[1] ?? "404",
 		},
 		props: {
 			page,

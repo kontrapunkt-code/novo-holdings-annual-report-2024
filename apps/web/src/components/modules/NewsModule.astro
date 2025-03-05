@@ -1,14 +1,11 @@
 ---
-import { VideoPlayer } from "@/components/solid/video-player";
+import Video from "@/components/astro/Video.astro";
 import LandingLayout from "@/layouts/LandingLayout.astro";
-import { buildSanityImage } from "@/scripts/image-url-builder";
 import type { PageModuleProps } from "@/scripts/queries";
 
 type Props = PageModuleProps<"newsModule">;
 
 const { caption, title, description, video } = Astro.props;
-
-const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset);
 ---
 
 <LandingLayout>
@@ -19,14 +16,7 @@ const thumbnailSrc = buildSanityImage(video?.thumbnail?.asset);
 		</h2>
 		<p class="paragraph-main pb-12">{description}</p>
 	</div>
-	<div class="col-span-4 md:col-span-6 relative">
-		<VideoPlayer
-			client:load
-			src={video?.asset?.url ?? ""}
-			alt={video?.callToAction ?? ""}
-			thumbnailSrc={thumbnailSrc}
-			thumbnailAlt={video?.thumbnail?.alt ?? ""}
-			callToAction={video?.callToAction}
-		/>
+	<div class="relative col-span-4 md:col-span-6">
+		<Video {...video} />
 	</div>
 </LandingLayout>

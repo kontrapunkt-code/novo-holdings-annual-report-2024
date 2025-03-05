@@ -106,6 +106,7 @@
 		"Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 		"Segoe UI Symbol", "Noto Color Emoji";
 	--color-novo-blue: #001965;
+	--color-novo-blue-30: #0019654d;
 	--color-white: #ffffff;
 	--color-black: #000000;
 	--color-blue-grey: #43485c;
@@ -140,24 +141,24 @@
 }
 
 .headline-01 {
-	@apply font-sans font-extralight text-[3rem] tracking-[-2%] md:text-[6rem] md:leading-[95%];
+	@apply font-sans text-[3rem] font-extralight tracking-[-2%] md:text-[6rem] md:leading-[95%];
 }
 
 .headline-article {
-	@apply font-sans font-extralight text-[2rem] leading-[110%] tracking-[-1%] md:text-[3.375rem] md:leading-[105%];
+	@apply font-sans text-[2rem] leading-[110%] font-extralight tracking-[-1%] md:text-[3.375rem] md:leading-[105%];
 }
 
 .headline-extralight {
-	@apply font-sans font-extralight text-[1.75rem] leading-[115%] tracking-[-1%] md:text-[2.625rem];
+	@apply font-sans text-[1.75rem] leading-[115%] font-extralight tracking-[-1%] md:text-[2.625rem];
 }
 
 .headline-semibold {
-	@apply font-sans font-semibold text-[1.75rem] leading-[115%] tracking-[-1%] md:text-[2.625rem];
+	@apply font-sans text-[1.75rem] leading-[115%] font-semibold tracking-[-1%] md:text-[2.625rem];
 }
 
 .headline-sub,
 .article-text h2 {
-	@apply font-sans font-extralight text-[1.5rem] leading-[120%] md:text-[2.25rem] pb-[2rem] md:pb-[3rem];
+	@apply pb-[2rem] font-sans text-[1.5rem] leading-[120%] font-extralight md:pb-[3rem] md:text-[2.25rem];
 }
 
 .headline-card {
@@ -166,17 +167,25 @@
 
 .paragraph-article,
 .article-text p {
-	@apply font-sans text-[1rem] leading-[140%] md:text-[1.25rem] pb-[1lh] last:pb-[0];
+	@apply pb-[1lh] font-sans text-[1rem] leading-[140%] last:pb-[0] md:text-[1.25rem];
 }
 
 .article-text h3 {
-	@apply font-sans font-bold text-[1rem] leading-[140%] md:text-[1.25rem];
+	@apply font-sans text-[1rem] leading-[140%] font-bold md:text-[1.25rem];
 }
 
 .paragraph-secondary {
-	@apply font-sans text-[1rem] md:text-[1.125rem] leading-[140%];
+	@apply font-sans text-[1rem] leading-[140%] md:text-[1.125rem];
 }
 
 .quote {
-	@apply font-sans font-extralight italic text-novo-blue text-[1.5rem] leading-[120%] md:text-[2.25rem];
+	@apply text-novo-blue font-sans text-[1.5rem] leading-[120%] font-extralight italic md:text-[2.25rem];
+}
+
+.side-by-side-module h2 {
+	@apply mb-6 font-sans text-[1.75rem] leading-[115%] font-extralight -tracking-[1%] md:mb-8 md:text-[2.625rem];
+}
+
+.side-by-side-module strong {
+	@apply font-bold;
 }

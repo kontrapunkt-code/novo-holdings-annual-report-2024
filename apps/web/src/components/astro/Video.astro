@@ -1,0 +1,20 @@
+---
+import { buildSanityImage } from "@/scripts/image-url-builder";
+import type { PageModuleProps } from "@/scripts/queries";
+import { VideoPlayer } from "../solid/video-player";
+
+type Props = Partial<PageModuleProps<"newsModule">["video"]>;
+
+const { src, thumbnail, callToAction } = Astro.props ?? {};
+
+const thumbnailSrc = buildSanityImage(thumbnail?.asset);
+---
+
+<VideoPlayer
+	client:load
+	src={src ?? ""}
+	alt={callToAction ?? ""}
+	thumbnailSrc={thumbnailSrc}
+	thumbnailAlt={thumbnail?.alt ?? ""}
+	callToAction={callToAction}
+/>

@@ -5,6 +5,7 @@
 		"npm-check-updates": "^17.1.15",
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-tailwindcss": "^0.6.11",
 		"turbo": "^2.4.4"
 	},
 	"name": "novo-holdings-annual-report-2024",
@@ -21,7 +22,8 @@
 			}
 		],
 		"plugins": [
-			"prettier-plugin-astro"
+			"prettier-plugin-astro",
+			"prettier-plugin-tailwindcss"
 		],
 		"useTabs": true
 	},
@@ -33,7 +35,7 @@
 		"dev": "turbo run dev",
 		"reinstall": "rm -rf node_modules && rm -rf apps/web/node_modules && rm -rf apps/studio/node_modules && rm -rf apps/lib/node_modules && rm bun.lock && bun i",
 		"typegen": "turbo run typegen",
-		"update:deps": "ncu -u --format group -i && cd apps/web && bun run update:deps && cd ../studio && bun run update:deps && cd ../lib && bun run update:deps && cd ../.."
+		"update:deps": "ncu -u --format group -i && turbo run update:deps"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",

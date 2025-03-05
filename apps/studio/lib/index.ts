@@ -1,8 +1,13 @@
-import type {
-	DocumentActionComponent,
-	DocumentActionsContext,
-	Template,
+import {
+	type DocumentActionComponent,
+	type DocumentActionsContext,
+	type FieldDefinition,
+	type Slug,
+	type SlugValidationContext,
+	type Template,
+	defineField,
 } from "sanity";
+import slugify from "slugify";
 import type { schemas } from "../schemas";
 
 type Schema = (typeof schemas)[number]["name"];
@@ -32,3 +37,57 @@ export const actions = (
 	singletonTypes.has(context.schemaType as Schema) ?
 		components.filter((component) => singletonActions.has(component.action))
 	:	components;
+
+export function defineSlugField(
+	fieldDefinition: { prefix?: string } & FieldDefinition<"slug">,
+) {
+	return Object.assign(
+		defineField({
+			name: "slug",
+			type: "slug",
+			title: "Slug",
+			description:
+				"The url for this page: https://your-site.com/en/[SLUG]. You should always click 'Generate' to generate from the page's title.",
+			validation: (rule) =>
+				rule.required().custom((slug?: Slug) => {
+					const input = slug?.current || "";
+					if (!input) return true;
+					if (input.endsWith("/")) return `Slug cannot end with "/"`;
+					if (input.startsWith("/")) return `Slug cannot start with "/"`;
+					if (
+						fieldDefinition.prefix
+						&& !input.startsWith(fieldDefinition.prefix)
+					)
+						return `Slug must start with "${fieldDefinition.prefix}"`;
+					return true;
+				}),
+			options: Object.assign(
+				{
+					source: "title",
+					maxLength: 30,
+					slugify(source: string) {
+						const options = { lower: true, trim: true, strict: true };
+						const slug = `${fieldDefinition.prefix || ""}${slugify(source, options)}`;
+						return slug;
+					},
+					async isUnique(slug: string, context: SlugValidationContext) {
+						const { document, getClient } = context;
+						const client = getClient({ apiVersion: "2025-01-01" });
+						const id = document?._id.replace(/^drafts\./, "");
+						const params = {
+							draft: `drafts.${id}`,
+							published: id,
+							slug,
+						};
+						const query =
+							"!defined(*[!(_id in [$draft, $published]) && slug.current == $slug][0]._id)";
+						const result = await client.fetch(query, params);
+						return result;
+					},
+				},
+				fieldDefinition?.options,
+			),
+		}),
+		fieldDefinition,
+	);
+}

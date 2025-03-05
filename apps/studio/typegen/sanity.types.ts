@@ -55,7 +55,7 @@ export type ArticleTextModule = {
 			_type: "span";
 			_key: string;
 		}>;
-		style?: "normal" | "h2" | "h3";
+		style?: "normal" | "h2";
 		listItem?: "bullet" | "number";
 		markDefs?: Array<{
 			href?: string;
@@ -100,7 +100,7 @@ export type ArticleGalleryModule = {
 	caption?: string;
 	description?: string;
 	buttonText?: string;
-	link?: string;
+	link?: Link;
 	images?: Array<{
 		asset?: {
 			_ref: string;
@@ -148,11 +148,100 @@ export type CaseHighlightsModule = {
 
 export type SideBySideModule = {
 	_type: "sideBySideModule";
-	caption?: string;
-	title?: string;
-	description?: string;
-	buttonText?: string;
-	link?: string;
+	left?: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: "span";
+					_key: string;
+				}>;
+				style?: "normal" | "h2";
+				listItem?: never;
+				markDefs?: Array<
+					{
+						_key: string;
+					} & Link
+				>;
+				level?: number;
+				_type: "block";
+				_key: string;
+		  }
+		| ({
+				_key: string;
+		  } & Button)
+		| {
+				asset?: {
+					_ref: string;
+					_type: "reference";
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+				};
+				callToAction?: string;
+				thumbnail?: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					alt?: string;
+					caption?: string;
+					_type: "imageCombo";
+				};
+				_type: "video";
+				_key: string;
+		  }
+	>;
+	right?: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: "span";
+					_key: string;
+				}>;
+				style?: "normal" | "h2";
+				listItem?: never;
+				markDefs?: Array<
+					{
+						_key: string;
+					} & Link
+				>;
+				level?: number;
+				_type: "block";
+				_key: string;
+		  }
+		| ({
+				_key: string;
+		  } & Button)
+		| {
+				asset?: {
+					_ref: string;
+					_type: "reference";
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+				};
+				callToAction?: string;
+				thumbnail?: {
+					asset?: {
+						_ref: string;
+						_type: "reference";
+						_weak?: boolean;
+						[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+					};
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					alt?: string;
+					caption?: string;
+					_type: "imageCombo";
+				};
+				_type: "video";
+				_key: string;
+		  }
+	>;
 };
 
 export type NewsModule = {
@@ -204,12 +293,7 @@ export type HighlightsModule = {
 			caption?: string;
 			_type: "imageCombo";
 		};
-		link?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "page";
-		};
+		link?: Link;
 		_key: string;
 	}>;
 };
@@ -229,6 +313,45 @@ export type AtAGlanceModule = {
 		};
 		_key: string;
 	}>;
+};
+
+export type Icon =
+	| "arrow_back"
+	| "arrow_forward"
+	| "arrow_outward"
+	| "close"
+	| "download"
+	| "logo"
+	| "play_arrow";
+
+export type Button = {
+	_type: "button";
+	icon?: Icon;
+	link?: Link;
+};
+
+export type Video = {
+	_type: "video";
+	asset?: {
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+	};
+	callToAction?: string;
+	thumbnail?: {
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		caption?: string;
+		_type: "imageCombo";
+	};
 };
 
 export type Case = {
@@ -334,24 +457,26 @@ export type GlobalSettings = {
 	_updatedAt: string;
 	_rev: string;
 	globalTitle?: string;
-	logo?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-		};
-		_type: "file";
-	};
 	homePage?: {
 		_ref: string;
 		_type: "reference";
 		_weak?: boolean;
 		[internalGroqTypeReferenceTo]?: "page";
 	};
-	loadingScreenTitle?: string;
-	loadingScreenDescription?: string;
-	loadingScreenButtonText?: string;
+	header?: {
+		subtitle?: string;
+		subtitleLine2?: string;
+		callToAction?: Link;
+	};
+	footer?: {
+		copyright?: string;
+		backlink?: Link;
+		links?: Array<
+			{
+				_key: string;
+			} & Link
+		>;
+	};
 };
 
 export type Page = {
@@ -381,6 +506,27 @@ export type Page = {
 	>;
 };
 
+export type Link = {
+	_type: "link";
+	text?: string;
+	page?:
+		| {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "page";
+		  }
+		| {
+				_ref: string;
+				_type: "reference";
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: "case";
+		  };
+	external?: string;
+	mailto?: string;
+	tel?: string;
+};
+
 export type ImageCombo = {
 	_type: "imageCombo";
 	asset?: {
@@ -393,12 +539,6 @@ export type ImageCombo = {
 	crop?: SanityImageCrop;
 	alt?: string;
 	caption?: string;
-};
-
-export type Slug = {
-	_type: "slug";
-	current?: string;
-	source?: string;
 };
 
 export type SanityFileAsset = {
@@ -430,6 +570,12 @@ export type SanityAssetSourceData = {
 	url?: string;
 };
 
+export type Slug = {
+	_type: "slug";
+	current?: string;
+	source?: string;
+};
+
 export type AllSanitySchemaTypes =
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
@@ -445,6 +591,9 @@ export type AllSanitySchemaTypes =
 	| NewsModule
 	| HighlightsModule
 	| AtAGlanceModule
+	| Icon
+	| Button
+	| Video
 	| Case
 	| SanityImageCrop
 	| SanityImageHotspot
@@ -452,8 +601,9 @@ export type AllSanitySchemaTypes =
 	| SanityImageMetadata
 	| GlobalSettings
 	| Page
+	| Link
 	| ImageCombo
-	| Slug
 	| SanityFileAsset
-	| SanityAssetSourceData;
+	| SanityAssetSourceData
+	| Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

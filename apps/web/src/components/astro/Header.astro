@@ -1,11 +1,12 @@
 ---
-import PrimaryButton from "@/components/astro/PrimaryButton.astro";
+import Button from "@/components/astro/Button.astro";
+import Icon from "@/components/astro/Icon.astro";
 import { generateGradient } from "@/scripts/linear-gradient";
 import type { GlobalSettings } from "@/scripts/queries";
 
 type Props = GlobalSettings;
 
-const { globalTitle } = Astro.props;
+const { header } = Astro.props;
 
 const blurs = [
 	"backdrop-blur-[0.0625rem]",
@@ -32,53 +33,35 @@ const maskGradient = generateGradient({
 });
 ---
 
-<header class="w-full py-[1rem] mb-[6rem] sticky top-0 z-1">
+<header class="sticky top-0 z-1 mb-[6rem] w-full py-[1rem]">
 	<nav
-		class="max-w-[100rem] flex justify-between items-start mx-auto px-[1.5rem] md:px-[3rem] text-novo-blue"
+		class="site-grid text-novo-blue mx-auto max-w-[100rem] px-[1.5rem] md:px-[3rem]"
 	>
-		<p class="text-[1.125rem] leading-[90%]">
-			{globalTitle}<br /><span class="font-bold">holdings</span>
-		</p>
-		<PrimaryButton buttonText="Download Report" link="/" icon="download" />
+		<Icon icon="logo" class="col-span-2 aspect-[257/122] h-8.5" />
+		<div class="col-span-2 hidden text-lg leading-[0.9] md:block">
+			<p>{header?.subtitle}</p>
+			<p>{header?.subtitleLine2}</p>
+		</div>
+		<div class="col-span-2 flex justify-end whitespace-nowrap md:col-span-8">
+			<Button link={header?.callToAction} icon="download" />
+		</div>
 	</nav>
-	<div class="blurs-parent absolute inset-0 h-[100%] -z-2 pointer-events-none">
+	<div
+		class="blurs-parent pointer-events-none absolute inset-0 -z-2 h-[100%]"
+		style={{
+			background: linearGradient,
+			"--maskGradient": maskGradient,
+		}}
+	>
 		{
 			blurs.map((blur) => (
 				<div
-					class:list={["header-backdrop absolute inset-0 -z-1 h-[250%]", blur]}
-					style={{
-						maskImage: maskGradient,
-					}}
+					class:list={[
+						"header-backdrop absolute inset-0 -z-1 h-[250%] [mask-image:var(--maskGradient)]",
+						blur,
+					]}
 				/>
 			))
 		}
 	</div>
 </header>
-
-<style is:global define:vars={{ linearGradient }}>
-	.blurs-parent {
-		background: var(--linearGradient);
-	}
-
-	.header-backdrop {
-		mask-image: linear-gradient(
-			to bottom,
-			hsl(0, 0%, 0%) 0%,
-			hsla(0, 0%, 0%, 0.987) 11%,
-			hsla(0, 0%, 0%, 0.951) 20.1%,
-			hsla(0, 0%, 0%, 0.896) 27.7%,
-			hsla(0, 0%, 0%, 0.825) 34%,
-			hsla(0, 0%, 0%, 0.741) 39.3%,
-			hsla(0, 0%, 0%, 0.648) 43.8%,
-			hsla(0, 0%, 0%, 0.55) 48%,
-			hsla(0, 0%, 0%, 0.45) 52%,
-			hsla(0, 0%, 0%, 0.352) 56.2%,
-			hsla(0, 0%, 0%, 0.259) 60.7%,
-			hsla(0, 0%, 0%, 0.175) 66%,
-			hsla(0, 0%, 0%, 0.104) 72.3%,
-			hsla(0, 0%, 0%, 0.049) 79.9%,
-			hsla(0, 0%, 0%, 0.013) 89%,
-			hsla(0, 0%, 0%, 0) 100%
-		);
-	}
-</style>

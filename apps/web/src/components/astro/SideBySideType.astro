@@ -1,0 +1,19 @@
+---
+import Button from "@/components/astro/Button.astro";
+import Video from "@/components/astro/Video.astro";
+import { usePortableText } from "astro-portabletext";
+
+// type Props = {
+// 	node: NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number];
+// };
+
+const { node } = Astro.props;
+const { getUnknownComponent } = usePortableText(node);
+
+const Component =
+	node._type === "video" ? Video
+	: node._type === "button" ? Button
+	: getUnknownComponent();
+---
+
+<Component {...node} />

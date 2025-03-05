@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineSlugField } from "../lib";
 import atAGlance from "./modules/at-a-glance";
 import caseHighlights from "./modules/case-highlights";
 import highlights from "./modules/highlights";
@@ -17,15 +18,9 @@ export default defineType({
 			description: "The title of the page.",
 			validation: (rule) => rule.required(),
 		}),
-		defineField({
+		defineSlugField({
 			name: "slug",
 			type: "slug",
-			title: "Slug",
-			description: "The URL path for this page",
-			options: {
-				source: "title",
-			},
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: "modules",
