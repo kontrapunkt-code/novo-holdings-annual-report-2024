@@ -1,9 +1,9 @@
 ---
 import SanityImage from "@/components/astro/SanityImage.astro";
 import CaseLayout from "@/layouts/CaseLayout.astro";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = CaseModuleProps<"articleQuoteModule">;
+type Props = PageModuleProps<"articleQuoteModule">;
 
 const { quote, author, jobTitle, image } = Astro.props;
 ---
@@ -15,8 +15,9 @@ const { quote, author, jobTitle, image } = Astro.props;
 	{
 		author && (
 			<div class="grid grid-cols-4 gap-4">
-				<div class="col-span-1">
-					{image && (
+				{image && (
+					<div class="col-span-1">
+						(
 						<SanityImage
 							{...image}
 							alt={author ?? ""}
@@ -24,8 +25,9 @@ const { quote, author, jobTitle, image } = Astro.props;
 							class="h-full w-full rounded-lg object-cover"
 							sizes="(min-width: 1280px) 1200px, 100vw"
 						/>
-					)}
-				</div>
+						)
+					</div>
+				)}
 				<div class="paragraph-secondary col-span-3">
 					<span class="font-bold">{author}</span>
 					{jobTitle && <p>{jobTitle}</p>}

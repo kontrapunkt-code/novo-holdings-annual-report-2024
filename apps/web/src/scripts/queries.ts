@@ -89,11 +89,8 @@ const caseHighlightsModule = q
 			.deref()
 			.project(() => ({
 				title: true,
-				startDate: true,
-				endDate: true,
-				heroImage: true,
-				project: true,
 				slug: "slug.current",
+				case: true,
 			})),
 	}));
 
@@ -103,17 +100,6 @@ const highlightsModule = q
 		highlights: true,
 		title: true,
 	}));
-
-const newsModule = q.fragmentForType<"newsModule">().project((module) => ({
-	title: true,
-	caption: true,
-	description: true,
-	video: module.field("video").project((video) => ({
-		callToAction: true,
-		thumbnail: true,
-		src: video.field("asset").deref().field("url"),
-	})),
-}));
 
 const sideBySideModule = q
 	.fragmentForType<"sideBySideModule">()
@@ -143,12 +129,7 @@ const sideBySideModule = q
 const pageModuleMap = {
 	atAGlanceModule,
 	highlightsModule,
-	newsModule,
 	sideBySideModule,
-	caseHighlightsModule,
-};
-
-const caseModuleMap = {
 	articleFigureModule,
 	articleGalleryModule,
 	articleQuoteModule,
@@ -163,17 +144,12 @@ export const pagesQuery = q.star.filterByType("page").project((page) => ({
 	modules: page.field("modules[]").project((modules) => ({
 		...modules.conditionalByType(pageModuleMap),
 	})),
-}));
-
-export const caseQuery = q.star.filterByType("case").project((page) => ({
-	title: true,
-	slug: "slug.current",
-	startDate: true,
-	endDate: true,
-	heroImage: true,
-	project: true,
-	modules: page.field("modules[]").project((modules) => ({
-		...modules.conditionalByType(caseModuleMap),
+	case: page.field("case").project(() => ({
+		startDate: true,
+		endDate: true,
+		heroImage: true,
+		project: true,
+		subTitle: true,
 	})),
 }));
 
@@ -197,25 +173,14 @@ export const globalSettingsQuery = q.star
 		})),
 	}));
 
-export const pagesResult = runQuery(pagesQuery);
-export const casesResult = runQuery(caseQuery);
 export const globalSettingsResult = runQuery(globalSettingsQuery);
-
 export type GlobalSettings = Awaited<typeof globalSettingsResult>[number];
+
+export const pagesResult = runQuery(pagesQuery);
 export type Page = Awaited<typeof pagesResult>[number];
-export type Case = Awaited<typeof casesResult>[number];
-
 export type PageModules = Page["modules"];
-export type CaseModules = Case["modules"];
-
 export type PageModule = NonNullable<PageModules>[number];
-export type CaseModule = NonNullable<CaseModules>[number];
-
 export type PageModuleProps<T extends PageModule["_type"]> = Extract<
 	PageModule,
-	{ _type: T }
->;
-export type CaseModuleProps<T extends CaseModule["_type"]> = Extract<
-	CaseModule,
 	{ _type: T }
 >;

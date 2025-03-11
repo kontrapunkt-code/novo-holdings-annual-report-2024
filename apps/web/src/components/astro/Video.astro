@@ -1,9 +1,14 @@
 ---
+import { VideoPlayer } from "@/components/solid/video-player";
 import { buildSanityImage } from "@/scripts/image-url-builder";
 import type { PageModuleProps } from "@/scripts/queries";
-import { VideoPlayer } from "../solid/video-player";
 
-type Props = Partial<PageModuleProps<"newsModule">["video"]>;
+type Props = Partial<
+	Extract<
+		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
+		{ _type: "video" }
+	>
+>;
 
 const { src, thumbnail, callToAction } = Astro.props ?? {};
 

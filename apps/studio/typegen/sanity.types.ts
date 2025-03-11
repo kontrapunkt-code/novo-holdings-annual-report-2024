@@ -46,106 +46,6 @@ export type Geopoint = {
 	alt?: number;
 };
 
-export type ArticleTextModule = {
-	_type: "articleTextModule";
-	content?: Array<{
-		children?: Array<{
-			marks?: Array<string>;
-			text?: string;
-			_type: "span";
-			_key: string;
-		}>;
-		style?: "normal" | "h2";
-		listItem?: "bullet" | "number";
-		markDefs?: Array<{
-			href?: string;
-			_type: "link";
-			_key: string;
-		}>;
-		level?: number;
-		_type: "block";
-		_key: string;
-	}>;
-};
-
-export type ArticleStatsModule = {
-	_type: "articleStatsModule";
-	project?: string;
-	title?: string;
-	stats?: Array<string>;
-};
-
-export type ArticleQuoteModule = {
-	_type: "articleQuoteModule";
-	quote?: string;
-	author?: string;
-	jobTitle?: string;
-	image?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		alt?: string;
-		caption?: string;
-		_type: "imageCombo";
-	};
-};
-
-export type ArticleGalleryModule = {
-	_type: "articleGalleryModule";
-	caption?: string;
-	description?: string;
-	buttonText?: string;
-	link?: Link;
-	images?: Array<{
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		alt?: string;
-		caption?: string;
-		_type: "imageCombo";
-		_key: string;
-	}>;
-};
-
-export type ArticleFigureModule = {
-	_type: "articleFigureModule";
-	image?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		alt?: string;
-		caption?: string;
-		_type: "imageCombo";
-	};
-};
-
-export type CaseHighlightsModule = {
-	_type: "caseHighlightsModule";
-	title?: string;
-	cases?: Array<{
-		_ref: string;
-		_type: "reference";
-		_weak?: boolean;
-		_key: string;
-		[internalGroqTypeReferenceTo]?: "case";
-	}>;
-};
-
 export type SideBySideModule = {
 	_type: "sideBySideModule";
 	left?: Array<
@@ -244,36 +144,6 @@ export type SideBySideModule = {
 	>;
 };
 
-export type NewsModule = {
-	_type: "newsModule";
-	caption?: string;
-	title?: string;
-	description?: string;
-	video?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-		};
-		callToAction?: string;
-		thumbnail?: {
-			asset?: {
-				_ref: string;
-				_type: "reference";
-				_weak?: boolean;
-				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-			};
-			hotspot?: SanityImageHotspot;
-			crop?: SanityImageCrop;
-			alt?: string;
-			caption?: string;
-			_type: "imageCombo";
-		};
-		_type: "file";
-	};
-};
-
 export type HighlightsModule = {
 	_type: "highlightsModule";
 	title?: string;
@@ -298,6 +168,18 @@ export type HighlightsModule = {
 	}>;
 };
 
+export type CaseHighlightsModule = {
+	_type: "caseHighlightsModule";
+	title?: string;
+	cases?: Array<{
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		_key: string;
+		[internalGroqTypeReferenceTo]?: "page";
+	}>;
+};
+
 export type AtAGlanceModule = {
 	_type: "atAGlanceModule";
 	title?: string;
@@ -315,19 +197,92 @@ export type AtAGlanceModule = {
 	}>;
 };
 
-export type Icon =
-	| "arrow_back"
-	| "arrow_forward"
-	| "arrow_outward"
-	| "close"
-	| "download"
-	| "logo"
-	| "play_arrow";
+export type ArticleTextModule = {
+	_type: "articleTextModule";
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: "span";
+			_key: string;
+		}>;
+		style?: "normal" | "h2";
+		listItem?: "bullet" | "number";
+		markDefs?: Array<{
+			href?: string;
+			_type: "link";
+			_key: string;
+		}>;
+		level?: number;
+		_type: "block";
+		_key: string;
+	}>;
+};
 
-export type Button = {
-	_type: "button";
-	icon?: Icon;
+export type ArticleStatsModule = {
+	_type: "articleStatsModule";
+	project?: string;
+	title?: string;
+	stats?: Array<string>;
+};
+
+export type ArticleQuoteModule = {
+	_type: "articleQuoteModule";
+	quote?: string;
+	author?: string;
+	jobTitle?: string;
+	image?: {
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		caption?: string;
+		_type: "imageCombo";
+	};
+};
+
+export type ArticleGalleryModule = {
+	_type: "articleGalleryModule";
+	caption?: string;
+	description?: string;
+	buttonText?: string;
 	link?: Link;
+	images?: Array<{
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		caption?: string;
+		_type: "imageCombo";
+		_key: string;
+	}>;
+};
+
+export type ArticleFigureModule = {
+	_type: "articleFigureModule";
+	image?: {
+		asset?: {
+			_ref: string;
+			_type: "reference";
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+		};
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		caption?: string;
+		_type: "imageCombo";
+	};
 };
 
 export type Video = {
@@ -352,52 +307,6 @@ export type Video = {
 		caption?: string;
 		_type: "imageCombo";
 	};
-};
-
-export type Case = {
-	_id: string;
-	_type: "case";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	title?: string;
-	slug?: Slug;
-	project?: string;
-	startDate?: string;
-	endDate?: string;
-	heroImage?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		alt?: string;
-		caption?: string;
-		_type: "imageCombo";
-	};
-	modules?: Array<
-		| ({
-				_key: string;
-		  } & ArticleTextModule)
-		| ({
-				_key: string;
-		  } & ArticleQuoteModule)
-		| ({
-				_key: string;
-		  } & ArticleStatsModule)
-		| ({
-				_key: string;
-		  } & ArticleGalleryModule)
-		| ({
-				_key: string;
-		  } & ArticleFigureModule)
-		| ({
-				_key: string;
-		  } & CaseHighlightsModule)
-	>;
 };
 
 export type SanityImageCrop = {
@@ -450,6 +359,15 @@ export type SanityImageMetadata = {
 	isOpaque?: boolean;
 };
 
+export type Icon =
+	| "arrow_back"
+	| "arrow_forward"
+	| "arrow_outward"
+	| "close"
+	| "download"
+	| "logo"
+	| "play_arrow";
+
 export type GlobalSettings = {
 	_id: string;
 	_type: "globalSettings";
@@ -490,41 +408,51 @@ export type Page = {
 	modules?: Array<
 		| ({
 				_key: string;
+		  } & ArticleFigureModule)
+		| ({
+				_key: string;
+		  } & ArticleGalleryModule)
+		| ({
+				_key: string;
+		  } & ArticleQuoteModule)
+		| ({
+				_key: string;
+		  } & ArticleStatsModule)
+		| ({
+				_key: string;
+		  } & ArticleTextModule)
+		| ({
+				_key: string;
 		  } & AtAGlanceModule)
+		| ({
+				_key: string;
+		  } & CaseHighlightsModule)
 		| ({
 				_key: string;
 		  } & HighlightsModule)
 		| ({
 				_key: string;
-		  } & NewsModule)
-		| ({
-				_key: string;
 		  } & SideBySideModule)
-		| ({
-				_key: string;
-		  } & CaseHighlightsModule)
 	>;
-};
-
-export type Link = {
-	_type: "link";
-	text?: string;
-	page?:
-		| {
+	case?: {
+		project?: string;
+		subTitle?: string;
+		startDate?: string;
+		endDate?: string;
+		heroImage?: {
+			asset?: {
 				_ref: string;
 				_type: "reference";
 				_weak?: boolean;
-				[internalGroqTypeReferenceTo]?: "page";
-		  }
-		| {
-				_ref: string;
-				_type: "reference";
-				_weak?: boolean;
-				[internalGroqTypeReferenceTo]?: "case";
-		  };
-	external?: string;
-	mailto?: string;
-	tel?: string;
+				[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+			};
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			caption?: string;
+			_type: "imageCombo";
+		};
+	};
 };
 
 export type ImageCombo = {
@@ -570,6 +498,35 @@ export type SanityAssetSourceData = {
 	url?: string;
 };
 
+export type Button = {
+	_type: "button";
+	icon?: Icon;
+	link?: Link;
+};
+
+export type Link = {
+	_type: "link";
+	text?: string;
+	page?: {
+		_ref: string;
+		_type: "reference";
+		_weak?: boolean;
+		[internalGroqTypeReferenceTo]?: "page";
+	};
+	external?: string;
+	mailto?: string;
+	tel?: string;
+};
+
+export type MediaTag = {
+	_id: string;
+	_type: "media.tag";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	name?: Slug;
+};
+
 export type Slug = {
 	_type: "slug";
 	current?: string;
@@ -581,29 +538,28 @@ export type AllSanitySchemaTypes =
 	| SanityImagePalette
 	| SanityImageDimensions
 	| Geopoint
+	| SideBySideModule
+	| HighlightsModule
+	| CaseHighlightsModule
+	| AtAGlanceModule
 	| ArticleTextModule
 	| ArticleStatsModule
 	| ArticleQuoteModule
 	| ArticleGalleryModule
 	| ArticleFigureModule
-	| CaseHighlightsModule
-	| SideBySideModule
-	| NewsModule
-	| HighlightsModule
-	| AtAGlanceModule
-	| Icon
-	| Button
 	| Video
-	| Case
 	| SanityImageCrop
 	| SanityImageHotspot
 	| SanityImageAsset
 	| SanityImageMetadata
+	| Icon
 	| GlobalSettings
 	| Page
-	| Link
 	| ImageCombo
 	| SanityFileAsset
 	| SanityAssetSourceData
+	| Button
+	| Link
+	| MediaTag
 	| Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;

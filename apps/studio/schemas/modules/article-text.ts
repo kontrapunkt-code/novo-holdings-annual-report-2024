@@ -14,7 +14,8 @@ export default defineType({
 					type: "block",
 					styles: [
 						{ title: "Paragraph", value: "normal" },
-						{ title: "Headline", value: "h2" },
+						{ title: "H2", value: "h2" },
+						{ title: "H3", value: "h3" },
 					],
 				}),
 			],

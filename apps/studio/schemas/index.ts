@@ -1,5 +1,4 @@
 import button from "./button";
-import case_ from "./case";
 import globalSettings from "./global-settings";
 import icon from "./icon";
 import imageCombo from "./image-combo";
@@ -12,30 +11,27 @@ import articleText from "./modules/article-text";
 import atAGlance from "./modules/at-a-glance";
 import caseHighlights from "./modules/case-highlights";
 import highlights from "./modules/highlights";
-import news from "./modules/news";
 import sideBySide from "./modules/side-by-side";
 import page from "./page";
 import video from "./video";
 
 export const schemas = [
-	globalSettings,
-	page,
-	imageCombo,
-	case_,
-	link,
-	video,
 	button,
+	globalSettings,
 	icon,
+	imageCombo,
+	link,
+	page,
+	video,
 
 	// Modules
-	atAGlance,
-	highlights,
-	news,
-	sideBySide,
-	caseHighlights,
 	articleFigure,
 	articleGallery,
 	articleQuote,
 	articleStats,
 	articleText,
+	atAGlance,
+	caseHighlights,
+	highlights,
+	sideBySide,
 ];

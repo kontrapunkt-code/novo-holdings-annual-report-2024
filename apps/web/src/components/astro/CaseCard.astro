@@ -2,27 +2,29 @@
 import Link from "@/components/astro/Link.astro";
 import SanityImage from "@/components/astro/SanityImage.astro";
 import { formatYear } from "@/scripts/helpers";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 
 type Props = NonNullable<
-	CaseModuleProps<"caseHighlightsModule">["cases"]
+	PageModuleProps<"caseHighlightsModule">["cases"]
 >[number];
 
-const { title, slug, project, startDate, endDate, heroImage } = Astro.props;
-
-if (!heroImage) return null;
+const { title, slug } = Astro.props;
+const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
 ---
 
 <Link link={{ slug }} class="col-span-4 pb-[1rem]">
 	<figure class="col-span-4 pb-[1rem]">
-		<div class="rounded-lg pb-[1.25rem]">
-			<SanityImage
-				{...heroImage}
-				alt={title ?? ""}
-				width={800}
-				class="h-auto w-full rounded-lg"
-				sizes="(min-width: 1280px) 800px, 100vw"
-			/>
+		<div class="mb-[1.25rem] rounded-lg">
+			{
+				heroImage && (
+					<SanityImage
+						{...heroImage}
+						alt={title ?? ""}
+						width={800}
+						class="aspect-[5/4] h-auto w-full rounded-lg object-cover"
+					/>
+				)
+			}
 		</div>
 		<div
 			class="text-novo-blue flex items-center gap-4 pb-[0.5rem] text-[1rem] leading-[120%]"

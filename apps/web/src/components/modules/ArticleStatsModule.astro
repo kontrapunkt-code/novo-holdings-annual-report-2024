@@ -1,8 +1,8 @@
 ---
 import CaseLayout from "@/layouts/CaseLayout.astro";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = CaseModuleProps<"articleStatsModule">;
+type Props = PageModuleProps<"articleStatsModule">;
 
 const { project, title, stats } = Astro.props;
 

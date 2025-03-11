@@ -1,13 +1,11 @@
 ---
 import CaseCard from "@/components/astro/CaseCard.astro";
 import LandingLayout from "@/layouts/LandingLayout.astro";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = CaseModuleProps<"caseHighlightsModule">;
+type Props = PageModuleProps<"caseHighlightsModule">;
 
 const { title, cases } = Astro.props;
-
-if (!cases?.length) return null;
 ---
 
 <LandingLayout>
@@ -15,7 +13,7 @@ if (!cases?.length) return null;
 		{title}
 	</h3>
 	{
-		cases.map((c) => (
+		cases?.map((c) => (
 			<div class={cases.length <= 2 ? "col-span-6" : "col-span-4"}>
 				<CaseCard {...c} />
 			</div>

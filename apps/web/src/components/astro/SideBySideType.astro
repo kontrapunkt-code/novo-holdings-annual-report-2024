@@ -1,14 +1,19 @@
 ---
 import Button from "@/components/astro/Button.astro";
 import Video from "@/components/astro/Video.astro";
+import type { PageModuleProps } from "@/scripts/queries";
 import { usePortableText } from "astro-portabletext";
+import type { TypedObject } from "astro-portabletext/types";
 
-// type Props = {
-// 	node: NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number];
-// };
+type Props = {
+	node: Extract<
+		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
+		{ _type: "video" | "button" }
+	>;
+};
 
 const { node } = Astro.props;
-const { getUnknownComponent } = usePortableText(node);
+const { getUnknownComponent } = usePortableText(node as TypedObject);
 
 const Component =
 	node._type === "video" ? Video
@@ -16,4 +21,7 @@ const Component =
 	: getUnknownComponent();
 ---
 
-<Component {...node} />
+<>
+	{/* @ts-expect-error */}
+	<Component {...node} />
+</>

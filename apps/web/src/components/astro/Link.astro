@@ -6,12 +6,16 @@ interface Props extends HTMLAttributes<"a"> {
 	link?: Partial<NonNullable<GlobalSettings["header"]>["callToAction"]>;
 }
 
-const { link, ...props } = Astro.props;
+const { link, href, ...props } = Astro.props;
 const { mailto, tel, external, slug } = link ?? {};
 ---
 
 {
-	slug ?
+	href ?
+		<a href={href} {...props}>
+			<slot />
+		</a>
+	: slug ?
 		<a href={`/${slug}`} {...props}>
 			<slot />
 		</a>

@@ -22,6 +22,10 @@ export default defineConfig({
 	// adapter: netlify({
 	// 	edgeMiddleware: false,
 	// }),
+	prefetch: {
+		defaultStrategy: "viewport",
+		prefetchAll: true,
+	},
 	image: {
 		domains: ["cdn.sanity.io"],
 	},

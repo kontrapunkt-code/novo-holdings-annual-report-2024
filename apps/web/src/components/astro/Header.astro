@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/astro/Button.astro";
 import Icon from "@/components/astro/Icon.astro";
+import Link from "@/components/astro/Link.astro";
 import { generateGradient } from "@/scripts/linear-gradient";
 import type { GlobalSettings } from "@/scripts/queries";
 
@@ -37,7 +38,9 @@ const maskGradient = generateGradient({
 	<nav
 		class="site-grid text-novo-blue mx-auto max-w-[100rem] px-[1.5rem] md:px-[3rem]"
 	>
-		<Icon icon="logo" class="col-span-2 aspect-[257/122] h-8.5" />
+		<Link href="/" class="col-span-2">
+			<Icon icon="logo" class="aspect-[257/122] h-8.5" />
+		</Link>
 		<div class="col-span-2 hidden text-lg leading-[0.9] md:block">
 			<p>{header?.subtitle}</p>
 			<p>{header?.subtitleLine2}</p>

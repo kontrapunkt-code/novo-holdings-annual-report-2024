@@ -12,12 +12,12 @@ export default defineType({
 		}),
 		defineField({
 			name: "cases",
-			type: "array",
 			title: "Case Studies",
+			type: "array",
 			of: [
 				defineArrayMember({
 					type: "reference",
-					to: [{ type: "case" }],
+					to: [{ type: "page" }],
 				}),
 			],
 			validation: (rule) => rule.max(3),

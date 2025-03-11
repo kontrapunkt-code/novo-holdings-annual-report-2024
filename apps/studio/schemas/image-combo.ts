@@ -10,12 +10,14 @@ export default defineType({
 	fields: [
 		defineField({
 			name: "alt",
-			type: "string",
+			type: "text",
+			rows: 4,
 			title: "Alt Text",
 		}),
 		defineField({
 			name: "caption",
-			type: "string",
+			type: "text",
+			rows: 4,
 			title: "Caption",
 		}),
 	],

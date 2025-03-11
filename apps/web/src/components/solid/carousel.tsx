@@ -1,10 +1,10 @@
 import { Icon } from "@/components/solid/icon";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 import createEmblaCarousel from "embla-carousel-solid";
 import type { ParentComponent } from "solid-js";
 
 export const Carousel: ParentComponent<
-	CaseModuleProps<"articleGalleryModule">
+	PageModuleProps<"articleGalleryModule">
 > = (props) => {
 	const [emblaRef, emblaApi] = createEmblaCarousel(() => ({
 		slides: ".embla__slide",

@@ -1,9 +1,9 @@
 ---
 import CaseLayout from "@/layouts/CaseLayout.astro";
-import type { CaseModuleProps } from "@/scripts/queries";
+import type { PageModuleProps } from "@/scripts/queries";
 import { PortableText } from "astro-portabletext";
 
-type Props = CaseModuleProps<"articleTextModule">;
+type Props = PageModuleProps<"articleTextModule">;
 
 const { content } = Astro.props;
 

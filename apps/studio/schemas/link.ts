@@ -11,7 +11,7 @@ export default defineType({
 		defineField({
 			name: "page",
 			type: "reference",
-			to: [{ type: "page" }, { type: "case" }],
+			to: [{ type: "page" }],
 		}),
 		defineField({
 			name: "external",

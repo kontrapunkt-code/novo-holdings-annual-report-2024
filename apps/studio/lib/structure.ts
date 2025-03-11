@@ -5,34 +5,13 @@ export const structure = (S: StructureBuilder) => {
 	return S.list()
 		.title("Admin")
 		.items([
-			// Pages list
 			S.listItem()
 				.title("Pages")
 				.icon(Document)
 				.child(
-					S.list()
+					S.documentTypeList("page")
 						.title("Pages")
-						.items([
-							// All pages
-							S.listItem()
-								.title("All Pages")
-								.icon(Document)
-								.child(
-									S.documentList()
-										.title("All Pages")
-										.filter('_type == "page"')
-										.defaultOrdering([{ field: "title", direction: "asc" }]),
-								),
-							S.listItem()
-								.title("Cases")
-								.icon(Document)
-								.child(
-									S.documentList()
-										.title("All Cases")
-										.filter('_type == "case"')
-										.defaultOrdering([{ field: "title", direction: "asc" }]),
-								),
-						]),
+						.defaultOrdering([{ field: "title", direction: "asc" }]),
 				),
 
 			S.divider(),

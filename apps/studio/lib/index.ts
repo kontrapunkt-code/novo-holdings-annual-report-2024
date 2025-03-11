@@ -40,7 +40,7 @@ export const actions = (
 
 export function defineSlugField(
 	fieldDefinition: { prefix?: string } & FieldDefinition<"slug">,
-) {
+): ReturnType<typeof defineField> {
 	return Object.assign(
 		defineField({
 			name: "slug",
