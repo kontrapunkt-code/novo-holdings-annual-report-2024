@@ -36,17 +36,16 @@ const animations = await Promise.all(
 <style is:global>
 	.at-a-glance-grid > * {
 		border: 0.0625rem solid transparent;
-		border-radius: 0.5rem;
 		background:
 			linear-gradient(
 				to bottom,
-				hsl(from #b2b7cd h s calc(l + 2%)) 0%,
-				hsl(from #b2b7cd h s calc(l - 2%)) 100%
+				oklch(from #b2b7cd calc(l - 8%) calc(c + 0.02) h / 0.3) 0%,
+				oklch(from #b2b7cd calc(l - 12%) calc(c + 0.02) h / 0.3) 100%
 			),
 			linear-gradient(
 				to bottom,
-				hsl(from #b2b7cd h s l) 0%,
-				hsl(from #b2b7cd h s calc(l - 6%)) 100%
+				oklch(from #b2b7cd l c h / 0.3) 0%,
+				oklch(from #b2b7cd calc(l - 6%) c h / 0.3) 100%
 			);
 		background-clip: padding-box, border-box;
 		background-origin: padding-box, border-box;

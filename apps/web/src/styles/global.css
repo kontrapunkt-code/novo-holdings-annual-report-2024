@@ -116,6 +116,10 @@
 	--color-light-blue: #b2b7cd;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 @keyframes slide-up {
 	0% {
 		transform: translateY(10vh);
