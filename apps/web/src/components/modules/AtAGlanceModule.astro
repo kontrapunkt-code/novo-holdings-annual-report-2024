@@ -39,15 +39,16 @@ const animations = await Promise.all(
 		background:
 			linear-gradient(
 				to bottom,
-				oklch(from #b2b7cd calc(l - 8%) calc(c + 0.02) h / 0.3) 0%,
-				oklch(from #b2b7cd calc(l - 12%) calc(c + 0.02) h / 0.3) 100%
+				oklch(from #ffffff l c h / 0.1) 0%,
+				oklch(from #ffffff l c h / 0.1) 100%
 			),
 			linear-gradient(
 				to bottom,
-				oklch(from #b2b7cd l c h / 0.3) 0%,
-				oklch(from #b2b7cd calc(l - 6%) c h / 0.3) 100%
+				oklch(from #b2b7cd calc(l - 16%) calc(c + 0.04) h / 0.5) 0%,
+				oklch(from #b2b7cd calc(l - 24%) calc(c + 0.04) h / 0.5) 100%
 			);
 		background-clip: padding-box, border-box;
 		background-origin: padding-box, border-box;
+		background-blend-mode: normal, normal;
 	}
 </style>

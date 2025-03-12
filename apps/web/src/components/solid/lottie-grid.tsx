@@ -1,6 +1,7 @@
 import { EASE_IN_OUT_QUART } from "@/scripts/ease";
-import { animate, frame, hover, stagger } from "motion";
-import { For, type VoidComponent, createSignal, onMount } from "solid-js";
+import { createMagneticHover } from "@/scripts/magnetic-hover";
+import { animate, hover, stagger } from "motion";
+import { For, type VoidComponent, onMount } from "solid-js";
 
 export interface Props {
 	animations: {
@@ -12,13 +13,7 @@ export interface Props {
 export const LottieGrid: VoidComponent<Props> = (props) => {
 	let grid: HTMLDivElement | undefined;
 
-	const [mouse, setMouse] = createSignal<[number, number]>([0, 0]);
-
 	onMount(async () => {
-		window.addEventListener("mousemove", (event) => {
-			setMouse([event.clientX, event.clientY]);
-		});
-
 		if (!grid) return;
 
 		const { default: LottieWeb } = await import("@lottielab/lottie-player/web");
@@ -27,7 +22,40 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			grid.querySelectorAll(".lottie-wrapper");
 
 		for (const wrapper of wrappers) {
-			hover(wrapper, onHover);
+			createMagneticHover(wrapper, {
+				moveStrength: 10,
+				rotationStrength: 0.05,
+			});
+
+			hover(wrapper, (element) => {
+				animate(
+					element,
+					{
+						scale: 1.14,
+						zIndex: 1,
+					},
+					{
+						type: "spring",
+						visualDuration: 0.4,
+						bounce: 0.1,
+					},
+				);
+
+				return () => {
+					animate(
+						element,
+						{
+							scale: 1,
+							zIndex: 0,
+						},
+						{
+							type: "spring",
+							visualDuration: 0.3,
+							bounce: 0.1,
+						},
+					);
+				};
+			});
 
 			const lottie = new LottieWeb();
 			const src = wrapper.getAttribute("data-src") ?? "";
@@ -66,96 +94,6 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			});
 		}
 	});
-
-	const onHover = (element: Element) => {
-		const { left, top, width, height } = element.getBoundingClientRect();
-
-		const halfWidth = width / 2;
-		const halfHeight = height / 2;
-		const centerX = left + halfWidth;
-		const centerY = top + halfHeight;
-
-		let isHovering = true;
-
-		const magneticStrength = 15;
-		const magneticRotation = 0.05;
-
-		const pointerMove = () => {
-			frame.postRender(() => {
-				if (!isHovering) {
-					animate(
-						element,
-						{
-							x: 0,
-							y: 0,
-						},
-						{
-							type: "spring",
-							visualDuration: 0.3,
-							bounce: 0.1,
-						},
-					);
-
-					return;
-				}
-
-				const [mouseX, mouseY] = mouse();
-				const x = ((mouseX - centerX) / halfWidth) * magneticStrength;
-				const y = ((mouseY - centerY) / halfHeight) * magneticStrength;
-
-				animate(
-					element,
-					{
-						x,
-						y,
-						rotate: (x + y) * magneticRotation,
-					},
-					{
-						type: "spring",
-						visualDuration: 0.2,
-						bounce: 0,
-					},
-				);
-			});
-		};
-
-		animate(
-			element,
-			{
-				scale: 1.14,
-				zIndex: 1,
-			},
-			{
-				type: "spring",
-				visualDuration: 0.4,
-				bounce: 0.1,
-			},
-		);
-
-		document.addEventListener("pointermove", pointerMove);
-
-		return () => {
-			isHovering = false;
-
-			document.removeEventListener("pointermove", pointerMove);
-
-			animate(
-				element,
-				{
-					scale: 1,
-					zIndex: 0,
-					x: 0,
-					y: 0,
-					rotate: 0,
-				},
-				{
-					type: "spring",
-					visualDuration: 0.3,
-					bounce: 0.1,
-				},
-			);
-		};
-	};
 
 	return (
 		<div
