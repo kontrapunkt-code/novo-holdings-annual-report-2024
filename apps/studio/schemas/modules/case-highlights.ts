@@ -20,7 +20,6 @@ export default defineType({
 					to: [{ type: "page" }],
 				}),
 			],
-			validation: (rule) => rule.max(3),
 		}),
 	],
 });
