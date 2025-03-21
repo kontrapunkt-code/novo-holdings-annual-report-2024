@@ -1,4 +1,6 @@
+import { BlurShadow } from "@/components/solid/blur-shadow";
 import { Icon } from "@/components/solid/icon";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
 import { EASE_OUT_CUBIC } from "@/scripts/ease";
 import { animate } from "motion";
 import {
@@ -90,24 +92,34 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 
 	return (
 		<>
-			<div class="relative">
-				<img
-					src={props.thumbnailSrc}
-					alt={props.thumbnailAlt}
-					onClick={open}
-					onKeyDown={keyDownOpen}
-					class="cursor-pointer rounded-lg"
-				/>
+			<MagneticHover
+				class="group relative grid"
+				moveStrength={{ x: 10, y: 10 }}
+				rotationStrength={0.05}
+				hoverActiveScale={1.02}
+				pressActiveScale={0.98}
+				pressable
+				hoverOpacity={0.95}
+			>
+				<BlurShadow>
+					<img
+						src={props.thumbnailSrc}
+						alt={props.thumbnailAlt}
+						onClick={open}
+						onKeyDown={keyDownOpen}
+						class="z-1 aspect-[5/4] cursor-pointer rounded-lg"
+					/>
+				</BlurShadow>
 				<button
 					type="button"
-					class="bg-opacity-40 absolute bottom-5 left-5 flex cursor-pointer items-center rounded-lg bg-white px-4 py-3.5 text-black backdrop-blur-xl"
+					class="bg-opacity-40 absolute bottom-5 left-5 z-1 flex cursor-pointer items-center rounded-lg bg-white px-4 py-3.5 text-black backdrop-blur-xl"
 					onClick={open}
 					onKeyDown={keyDownOpen}
 				>
 					<Icon icon="play_arrow" class="h-6 w-6" />
 					<span class="px-2">{props.callToAction}</span>
 				</button>
-			</div>
+			</MagneticHover>
 			<Show when={isOpen()}>
 				<Portal
 					mount={

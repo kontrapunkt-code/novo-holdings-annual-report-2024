@@ -1,6 +1,6 @@
+import { createMagneticHover } from "@/components/solid/magnetic-hover";
 import { EASE_IN_OUT_QUART } from "@/scripts/ease";
-import { createMagneticHover } from "@/scripts/magnetic-hover";
-import { animate, hover, stagger } from "motion";
+import { animate, stagger } from "motion";
 import { For, type VoidComponent, onMount } from "solid-js";
 
 export interface Props {
@@ -23,38 +23,14 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 		for (const wrapper of wrappers) {
 			createMagneticHover(wrapper, {
-				moveStrength: 10,
+				moveStrength: {
+					x: 10,
+					y: 10,
+				},
 				rotationStrength: 0.05,
-			});
-
-			hover(wrapper, (element) => {
-				animate(
-					element,
-					{
-						scale: 1.14,
-						zIndex: 1,
-					},
-					{
-						type: "spring",
-						visualDuration: 0.4,
-						bounce: 0.1,
-					},
-				);
-
-				return () => {
-					animate(
-						element,
-						{
-							scale: 1,
-							zIndex: 0,
-						},
-						{
-							type: "spring",
-							visualDuration: 0.3,
-							bounce: 0.1,
-						},
-					);
-				};
+				hoverActiveScale: 1.05,
+				hoverIdleScale: 1,
+				zIndex: 1,
 			});
 
 			const lottie = new LottieWeb();

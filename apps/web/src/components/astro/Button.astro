@@ -14,7 +14,7 @@ const { link, icon } = Astro.props;
 ---
 
 <Link class="text-[1.125rem] leading-[140%] font-medium" link={link}>
-	<button type="button" class="flex items-center gap-[0.25rem]">
+	<button type="button" class="flex cursor-pointer items-center gap-[0.25rem]">
 		{icon && <Icon icon={icon} class="flex h-[1.25rem] w-[1.25rem]" />}
 		<span
 			class="decoration-novo-blue-30 underline decoration-1 underline-offset-[25%]"

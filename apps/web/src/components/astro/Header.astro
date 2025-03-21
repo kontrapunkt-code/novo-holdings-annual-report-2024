@@ -2,6 +2,7 @@
 import Button from "@/components/astro/Button.astro";
 import Icon from "@/components/astro/Icon.astro";
 import Link from "@/components/astro/Link.astro";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
 import { generateGradient } from "@/scripts/linear-gradient";
 import type { GlobalSettings } from "@/scripts/queries";
 
@@ -46,7 +47,14 @@ const maskGradient = generateGradient({
 			<p>{header?.subtitleLine2}</p>
 		</div>
 		<div class="col-span-2 flex justify-end whitespace-nowrap md:col-span-8">
-			<Button link={header?.callToAction} icon="download" />
+			<MagneticHover
+				client:load
+				pressable
+				hoverActiveScale={1.05}
+				moveStrength={{ x: 10, y: 5 }}
+			>
+				<Button link={header?.callToAction} icon="download" />
+			</MagneticHover>
 		</div>
 	</nav>
 	<div

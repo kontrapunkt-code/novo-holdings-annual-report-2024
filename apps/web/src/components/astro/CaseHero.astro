@@ -7,8 +7,7 @@ import type { Page } from "@/scripts/queries";
 type Props = Page;
 
 const { title } = Astro.props ?? {};
-const { heroImage, project, startDate, endDate, subTitle } =
-	Astro.props?.case ?? {};
+const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
 ---
 
 <MainLayout>
@@ -21,7 +20,7 @@ const { heroImage, project, startDate, endDate, subTitle } =
 				{formatYear(startDate ?? undefined)}-{formatYear(endDate ?? undefined)}
 			</span>
 		</p>
-		<h1 class="headline-article mb-8 md:mb-12">{title}</h1>
+		<h1 class="headline-article mb-8 text-balance md:mb-12">{title}</h1>
 		<figure class="mb-[2rem] overflow-hidden md:mb-[3rem]">
 			{
 				heroImage && (

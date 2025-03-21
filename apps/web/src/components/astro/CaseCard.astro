@@ -1,41 +1,55 @@
 ---
+import BlurShadow from "@/components/astro/BlurShadow.astro";
 import Link from "@/components/astro/Link.astro";
 import SanityImage from "@/components/astro/SanityImage.astro";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
 import { formatYear } from "@/scripts/helpers";
 import type { PageModuleProps } from "@/scripts/queries";
+import type { HTMLAttributes } from "astro/types";
 
 type Props = NonNullable<
 	PageModuleProps<"caseHighlightsModule">["cases"]
->[number];
+>[number]
+	& HTMLAttributes<"div">;
 
-const { title, slug } = Astro.props;
+const { title, slug, class: classList } = Astro.props;
 const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
 ---
 
-<Link link={{ slug }} class="col-span-4 pb-[1rem]">
-	<figure class="col-span-4 pb-[1rem]">
-		<div class="mb-[1.25rem] rounded-lg">
-			{
-				heroImage && (
-					<SanityImage
-						{...heroImage}
-						alt={title ?? ""}
-						width={800}
-						class="aspect-[5/4] h-auto w-full rounded-lg object-cover"
-					/>
-				)
-			}
-		</div>
-		<div
-			class="text-novo-blue flex items-center gap-4 pb-[0.5rem] text-[1rem] leading-[120%]"
-		>
-			<p>{project}</p>
-			<p>
-				{formatYear(startDate ?? undefined)}-{formatYear(endDate ?? undefined)}
-			</p>
-		</div>
-		<figcaption class="headline-card">
-			{title}
-		</figcaption>
-	</figure>
-</Link>
+<div class={classList}>
+	<MagneticHover
+		client:load
+		pressable
+		hoverActiveScale={1.02}
+		moveStrength={{ x: 8, y: 8 }}
+		hoverOpacity={0.95}
+		class="group"
+	>
+		<Link link={{ slug }}>
+			<div class="mb-[1.25rem] grid rounded-lg">
+				<BlurShadow>
+					{
+						heroImage && (
+							<SanityImage
+								{...heroImage}
+								alt={title ?? ""}
+								width={800}
+								class="z-1 aspect-[5/4] h-auto w-full rounded-lg object-cover"
+							/>
+						)
+					}
+				</BlurShadow>
+			</div>
+			<div
+				class="text-novo-blue flex items-center gap-4 pb-[0.5rem] text-[1rem] leading-[120%]"
+			>
+				<p>{project}</p>
+				<p>
+					{formatYear(startDate ?? undefined)}-
+					{formatYear(endDate ?? undefined)}
+				</p>
+			</div>
+			<h2 class="headline-card pr-4">{title}</h2>
+		</Link>
+	</MagneticHover>
+</div>
