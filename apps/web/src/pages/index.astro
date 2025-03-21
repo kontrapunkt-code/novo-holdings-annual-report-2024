@@ -1,7 +1,7 @@
 ---
 import { globalSettingsResult } from "@/scripts/queries";
 
-const [globalSettings] = await globalSettingsResult;
+const globalSettings = await globalSettingsResult;
 
 // Ensure homepage has a valid slug
 if (!globalSettings?.homePageSlug) {

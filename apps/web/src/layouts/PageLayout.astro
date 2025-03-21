@@ -3,6 +3,7 @@ import Footer from "@/components/astro/Footer.astro";
 import Header from "@/components/astro/Header.astro";
 import Router from "@/components/astro/Router.astro";
 import { globalSettingsResult } from "@/scripts/queries";
+import { SEO } from "astro-seo";
 import "@/styles/global.css";
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 
 const { title } = Astro.props;
 
-const [globalSettings] = await globalSettingsResult;
+const globalSettings = await globalSettingsResult;
 
 if (!globalSettings) {
 	throw new Error("Global settings not found");
@@ -26,11 +27,33 @@ const pageTitle = title ? `${title} | ${globalTitle}` : globalTitle;
 <html lang="en" transition:animate="none">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Novo Holdings Annual Report 2024" />
+
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+
 		<Router />
+
+		<SEO
+			title={Astro.props.title ? `${Astro.props.title} | ${title}` : title}
+			description="Novo Holdings Annual Report 2024"
+			canonical={Astro.url.href}
+			openGraph={{
+				basic: {
+					url: Astro.url.href,
+					title: pageTitle ?? "",
+					type: "website",
+					image: `${Astro.url.origin}/og-image.png`,
+				},
+				image: {
+					alt: "Novo Holdings Annual Report 2024",
+					height: 630,
+					url: `${Astro.url.origin}/og-image.png`,
+					width: 1200,
+				},
+			}}
+		/>
+
 		<title>{pageTitle}</title>
 	</head>
 	<body class="min-h-screen bg-white">

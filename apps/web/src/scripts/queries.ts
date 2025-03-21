@@ -171,10 +171,11 @@ export const globalSettingsQuery = q.star
 			backlink: footer.field("backlink").project(linkFragment),
 			links: footer.field("links[]").project(linkFragment),
 		})),
-	}));
+	}))
+	.slice(0);
 
 export const globalSettingsResult = runQuery(globalSettingsQuery);
-export type GlobalSettings = Awaited<typeof globalSettingsResult>[number];
+export type GlobalSettings = NonNullable<Awaited<typeof globalSettingsResult>>;
 
 export const pagesResult = runQuery(pagesQuery);
 export type Page = Awaited<typeof pagesResult>[number];
