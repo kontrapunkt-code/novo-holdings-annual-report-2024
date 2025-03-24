@@ -1,0 +1,28 @@
+---
+import Button from "@/components/astro/Button.astro";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
+import type { PageModuleProps } from "@/scripts/queries";
+
+type Props = {
+	node: Extract<
+		NonNullable<PageModuleProps<"articleTextModule">["content"]>[number],
+		{ _type: "link" }
+	>;
+};
+
+const { node } = Astro.props;
+---
+
+<div class="w-fit not-last:mb-3">
+	<MagneticHover
+		client:load
+		pressable
+		hoverActiveScale={1.05}
+		moveStrength={{ x: 8, y: 4 }}
+		hoverOpacity={0.6}
+		pressOpacity={0.4}
+		rotationStrength={0.02}
+	>
+		<Button icon="arrow_outward" link={node} />
+	</MagneticHover>
+</div>

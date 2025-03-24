@@ -17,6 +17,15 @@ export default defineType({
 						{ title: "H2", value: "h2" },
 						{ title: "H3", value: "h3" },
 					],
+					marks: {
+						decorators: [
+							{ title: "Emphasis", value: "em" },
+							{ title: "Strong", value: "strong" },
+						],
+					},
+				}),
+				defineArrayMember({
+					type: "link",
 				}),
 			],
 		}),

@@ -31,7 +31,7 @@ const imageFragment = q.fragmentForType<"imageCombo">().project((image) => ({
 }));
 
 const buttonFragment = q.fragmentForType<"button">().project((button) => ({
-	icon: button.field("icon"),
+	icon: true,
 	link: button.field("link").project(linkFragment),
 }));
 
@@ -77,8 +77,15 @@ const articleStatsModule = q
 
 const articleTextModule = q
 	.fragmentForType<"articleTextModule">()
-	.project(() => ({
-		content: true,
+	.project((module) => ({
+		content: module.field("content[]").project((content) => ({
+			...content.conditionalByType({
+				block: {
+					"...": true,
+				},
+				link: linkFragment,
+			}),
+		})),
 	}));
 
 const atAGlanceModule = q

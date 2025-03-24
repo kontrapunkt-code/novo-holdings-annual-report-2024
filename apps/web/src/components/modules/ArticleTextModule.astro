@@ -1,4 +1,5 @@
 ---
+import ArticleType from "@/components/astro/ArticleType.astro";
 import CaseLayout from "@/layouts/CaseLayout.astro";
 import type { PageModuleProps } from "@/scripts/queries";
 import { PortableText } from "astro-portabletext";
@@ -12,6 +13,11 @@ if (!content?.length) return null;
 
 <CaseLayout>
 	<div class="article-text">
-		<PortableText value={content} />
+		<PortableText
+			value={content}
+			components={{
+				type: ArticleType,
+			}}
+		/>
 	</div>
 </CaseLayout>

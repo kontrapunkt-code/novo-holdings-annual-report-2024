@@ -1,5 +1,6 @@
 ---
 import CaseHero from "@/components/astro/CaseHero.astro";
+import OverviewButton from "@/components/astro/OverviewButton.astro";
 import PageModules from "@/components/astro/PageModules.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import { pagesResult } from "@/scripts/queries";
@@ -27,4 +28,5 @@ const { page } = Astro.props;
 <PageLayout title={page.title ?? undefined}>
 	{page.case && <CaseHero {...page} />}
 	<PageModules modules={page.modules} />
+	{page.case && <OverviewButton />}
 </PageLayout>

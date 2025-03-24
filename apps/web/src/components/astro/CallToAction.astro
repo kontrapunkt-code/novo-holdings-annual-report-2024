@@ -4,14 +4,15 @@ import Link from "@/components/astro/Link.astro";
 import type { PageModuleProps } from "@/scripts/queries";
 import { MagneticHover } from "../solid/magnetic-hover";
 
-type Props = Partial<
-	Extract<
+type Props = {
+	node: Extract<
 		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
 		{ _type: "button" }
-	>
->;
+	>;
+};
 
-const { link, icon } = Astro.props;
+const { node } = Astro.props;
+const { link, icon } = node ?? {};
 ---
 
 <MagneticHover

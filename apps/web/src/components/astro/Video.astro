@@ -3,14 +3,15 @@ import { VideoPlayer } from "@/components/solid/video-player";
 import { buildSanityImage } from "@/scripts/image-url-builder";
 import type { PageModuleProps } from "@/scripts/queries";
 
-type Props = Partial<
-	Extract<
+type Props = {
+	node: Extract<
 		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
 		{ _type: "video" }
-	>
->;
+	>;
+};
 
-const { src, thumbnail, callToAction } = Astro.props ?? {};
+const { node } = Astro.props;
+const { src, thumbnail, callToAction } = node ?? {};
 
 const thumbnailSrc =
 	thumbnail?.asset ? buildSanityImage(thumbnail.asset, { width: 744 }) : null;

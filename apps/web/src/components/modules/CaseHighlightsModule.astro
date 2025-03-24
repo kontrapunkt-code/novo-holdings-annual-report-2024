@@ -12,15 +12,5 @@ const { title, cases } = Astro.props;
 	<h3 class="headline-extralight col-span-full mb-[0.5rem] md:mb-[1.5rem]">
 		{title}
 	</h3>
-	{
-		cases?.map((card) => (
-			<CaseCard
-				{...card}
-				class:list={[
-					cases.length <= 2 ? "col-span-6" : "col-span-4",
-					"z-10 mb-8",
-				]}
-			/>
-		))
-	}
+	{cases?.map((card) => <CaseCard {...card} class="z-10 col-span-6 mb-8" />)}
 </LandingLayout>

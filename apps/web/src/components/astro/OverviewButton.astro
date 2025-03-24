@@ -1,0 +1,29 @@
+---
+import Button from "@/components/astro/Button.astro";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout>
+	<MagneticHover
+		client:load
+		pressable
+		hoverActiveScale={1.05}
+		moveStrength={{ x: 8, y: 4 }}
+		hoverOpacity={0.6}
+		pressOpacity={0.4}
+		rotationStrength={0.02}
+		class="col-span-full mt-12 mb-4 w-fit"
+	>
+		<Button
+			icon="arrow_back"
+			link={{
+				slug: " ",
+				text: "Back to overview",
+				external: null,
+				mailto: null,
+				tel: null,
+			}}
+		/>
+	</MagneticHover>
+</MainLayout>

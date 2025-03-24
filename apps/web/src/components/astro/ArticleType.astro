@@ -1,6 +1,5 @@
 ---
-import CallToAction from "@/components/astro/CallToAction.astro";
-import Video from "@/components/astro/Video.astro";
+import ArticleLink from "@/components/astro/ArticleLink.astro";
 import type { PageModuleProps } from "@/scripts/queries";
 import { usePortableText } from "astro-portabletext";
 import type { TypedObject } from "astro-portabletext/types";
@@ -9,8 +8,8 @@ type Props = {
 	index: number;
 	isInline: boolean;
 	node: Extract<
-		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
-		{ _type: "video" | "button" }
+		NonNullable<PageModuleProps<"articleTextModule">["content"]>[number],
+		{ _type: "link" }
 	>;
 };
 
@@ -21,7 +20,7 @@ const UnknownComponent = getUnknownComponent();
 ---
 
 {
-	node._type === "video" ? <Video {node} />
-	: node._type === "button" ? <CallToAction {node} />
-	: <UnknownComponent {...Astro.props} />
+	node._type === "link" ?
+		<ArticleLink {node} />
+	:	<UnknownComponent {...Astro.props} />
 }

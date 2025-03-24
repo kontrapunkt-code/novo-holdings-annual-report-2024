@@ -16,7 +16,7 @@ const { mailto, tel, external, slug } = link ?? {};
 			<slot />
 		</a>
 	: slug ?
-		<a href={`/${slug}`} {...props}>
+		<a href={`/${slug.trim()}`} {...props}>
 			<slot />
 		</a>
 	: external ?

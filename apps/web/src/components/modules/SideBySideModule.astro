@@ -7,17 +7,20 @@ import { PortableText } from "astro-portabletext";
 type Props = PageModuleProps<"sideBySideModule">;
 
 const { left, right } = Astro.props;
-
-const components = {
-	type: SideBySideType,
-};
 ---
 
 <LandingLayout>
 	{
 		[left, right].map((block) => (
 			<div class="side-by-side-module col-span-4 md:col-span-6">
-				{block && <PortableText value={block} components={components} />}
+				{block && (
+					<PortableText
+						value={block}
+						components={{
+							type: SideBySideType,
+						}}
+					/>
+				)}
 			</div>
 		))
 	}

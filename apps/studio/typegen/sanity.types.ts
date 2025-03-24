@@ -199,24 +199,29 @@ export type AtAGlanceModule = {
 
 export type ArticleTextModule = {
 	_type: "articleTextModule";
-	content?: Array<{
-		children?: Array<{
-			marks?: Array<string>;
-			text?: string;
-			_type: "span";
-			_key: string;
-		}>;
-		style?: "normal" | "h2" | "h3";
-		listItem?: "bullet" | "number";
-		markDefs?: Array<{
-			href?: string;
-			_type: "link";
-			_key: string;
-		}>;
-		level?: number;
-		_type: "block";
-		_key: string;
-	}>;
+	content?: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: "span";
+					_key: string;
+				}>;
+				style?: "normal" | "h2" | "h3";
+				listItem?: "bullet" | "number";
+				markDefs?: Array<{
+					href?: string;
+					_type: "link";
+					_key: string;
+				}>;
+				level?: number;
+				_type: "block";
+				_key: string;
+		  }
+		| ({
+				_key: string;
+		  } & Link)
+	>;
 };
 
 export type ArticleStatsModule = {
