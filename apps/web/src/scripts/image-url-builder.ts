@@ -19,6 +19,7 @@ export function buildSanityImage(
 		format = "webp",
 		quality = 80,
 		fit = "crop",
+		dpr = 2,
 	} = options;
 
 	let urlBuilder = builder.image(image);
@@ -32,5 +33,5 @@ export function buildSanityImage(
 			.focalPoint(image.hotspot.x, image.hotspot.y);
 	}
 
-	return urlBuilder.format(format).quality(quality).url();
+	return urlBuilder.dpr(dpr).format(format).quality(quality).url();
 }

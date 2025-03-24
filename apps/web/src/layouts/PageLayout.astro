@@ -20,7 +20,7 @@ if (!globalSettings) {
 
 const { globalTitle } = globalSettings;
 
-const pageTitle = title ? `${title} | ${globalTitle}` : globalTitle;
+const pageTitle = title ? `${globalTitle} · ${title}` : globalTitle;
 ---
 
 <!doctype html>
@@ -35,7 +35,6 @@ const pageTitle = title ? `${title} | ${globalTitle}` : globalTitle;
 		<Router />
 
 		<SEO
-			title={Astro.props.title ? `${Astro.props.title} | ${title}` : title}
 			description="Novo Holdings Annual Report 2024"
 			canonical={Astro.url.href}
 			openGraph={{

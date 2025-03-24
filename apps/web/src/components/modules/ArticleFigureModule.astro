@@ -5,18 +5,18 @@ import type { PageModuleProps } from "@/scripts/queries";
 
 type Props = PageModuleProps<"articleFigureModule">;
 
-const { image } = Astro.props;
+const { image, fullWidth } = Astro.props;
 if (!image) return null;
 ---
 
-<CaseLayout>
+<CaseLayout fullWidth={!!fullWidth}>
 	<div class="overflow-hidden">
 		<SanityImage
 			{...image}
 			alt=""
-			width={1200}
+			width={fullWidth ? 1504 : 1200}
 			class="h-full w-full rounded-lg object-cover"
-			sizes="(min-width: 1280px) 1200px, 100vw"
+			sizes="(min-width: 700px) 1504px, 100vw"
 		/>
 	</div>
 </CaseLayout>

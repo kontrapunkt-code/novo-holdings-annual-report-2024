@@ -16,7 +16,10 @@ const { title, cases } = Astro.props;
 		cases?.map((card) => (
 			<CaseCard
 				{...card}
-				class:list={[cases.length <= 2 ? "col-span-6" : "col-span-4", "z-10"]}
+				class:list={[
+					cases.length <= 2 ? "col-span-6" : "col-span-4",
+					"z-10 mb-8",
+				]}
 			/>
 		))
 	}

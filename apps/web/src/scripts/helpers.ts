@@ -16,7 +16,7 @@ export function vh() {
 		:	0;
 }
 
-export const formatYear = (date: string | undefined): string => {
+export const formatYear = (date?: string | null): string => {
 	if (!date) return "Present";
 	return new Date(date).getFullYear().toString();
 };

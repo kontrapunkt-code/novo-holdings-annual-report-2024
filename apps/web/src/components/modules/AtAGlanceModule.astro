@@ -32,23 +32,3 @@ const animations = await Promise.all(
 		<LottieGrid {animations} client:load />
 	</section>
 </LandingLayout>
-
-<style is:global>
-	.at-a-glance-grid > * {
-		border: 0.0625rem solid transparent;
-		background:
-			linear-gradient(
-				to bottom,
-				oklch(from #ffffff l c h / 0.1) 0%,
-				oklch(from #ffffff l c h / 0.1) 100%
-			),
-			linear-gradient(
-				to bottom,
-				oklch(from #b2b7cd calc(l - 16%) calc(c + 0.04) h / 0.5) 0%,
-				oklch(from #b2b7cd calc(l - 24%) calc(c + 0.04) h / 0.5) 100%
-			);
-		background-clip: padding-box, border-box;
-		background-origin: padding-box, border-box;
-		background-blend-mode: normal, normal;
-	}
-</style>

@@ -68,7 +68,7 @@ export const defaultOptions = {
  * @returns A function to remove the magnetic hover effect.
  */
 export const createMagneticHover = (
-	element: Element,
+	element: HTMLElement,
 	options?: Partial<typeof defaultOptions>,
 ) => {
 	const {
@@ -120,6 +120,8 @@ export const createMagneticHover = (
 	}
 
 	hover(element, () => {
+		if (element.dataset.paused) return;
+
 		animate(
 			element,
 			{
@@ -134,17 +136,36 @@ export const createMagneticHover = (
 			},
 		);
 
+		let isHovering = true;
+
 		const { left, top, width, height } = element.getBoundingClientRect();
 
 		const halfWidth = width / 2;
 		const halfHeight = height / 2;
 
-		let isHovering = true;
-
 		const pointerMove = ({ clientX, clientY }: MouseEvent) => {
-			frame.postRender(() => {
-				if (!isHovering) return;
+			if (!isHovering || element.dataset.paused) {
+				animate(
+					element,
+					{
+						x: 0,
+						y: 0,
+						rotate: 0,
+						scale: hoverIdleScale,
+						zIndex: 0,
+						opacity: 1,
+					},
+					{
+						type: "spring",
+						visualDuration: 0.3,
+						bounce: 0.1,
+					},
+				);
 
+				return;
+			}
+
+			frame.postRender(() => {
 				const x = ((clientX - left - halfWidth) / halfWidth) * moveStrength.x;
 				const y = ((clientY - top - halfHeight) / halfHeight) * moveStrength.y;
 
@@ -167,37 +188,28 @@ export const createMagneticHover = (
 		document.addEventListener("pointermove", pointerMove);
 
 		return () => {
-			animate(
-				element,
-				{
-					scale: hoverIdleScale,
-					zIndex: 0,
-					opacity: 1,
-				},
-				{
-					type: "spring",
-					visualDuration: 0.3,
-					bounce: 0.1,
-				},
-			);
-
 			isHovering = false;
 
 			document.removeEventListener("pointermove", pointerMove);
 
-			animate(
-				element,
-				{
-					x: 0,
-					y: 0,
-					rotate: 0,
-				},
-				{
-					type: "spring",
-					visualDuration: 0.3,
-					bounce: 0.1,
-				},
-			);
+			frame.postRender(() => {
+				animate(
+					element,
+					{
+						x: 0,
+						y: 0,
+						rotate: 0,
+						scale: hoverIdleScale,
+						zIndex: 0,
+						opacity: 1,
+					},
+					{
+						type: "spring",
+						visualDuration: 0.3,
+						bounce: 0.1,
+					},
+				);
+			});
 		};
 	});
 };

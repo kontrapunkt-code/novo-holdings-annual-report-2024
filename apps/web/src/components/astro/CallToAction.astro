@@ -1,0 +1,38 @@
+---
+import Icon from "@/components/astro/Icon.astro";
+import Link from "@/components/astro/Link.astro";
+import type { PageModuleProps } from "@/scripts/queries";
+import { MagneticHover } from "../solid/magnetic-hover";
+
+type Props = Partial<
+	Extract<
+		NonNullable<PageModuleProps<"sideBySideModule">["left"]>[number],
+		{ _type: "button" }
+	>
+>;
+
+const { link, icon } = Astro.props;
+---
+
+<MagneticHover
+	client:load
+	class="w-fit"
+	hoverOpacity={0.8}
+	hoverActiveScale={1.02}
+	pressable
+>
+	<Link
+		class="flex w-fit text-base leading-[140%] font-medium text-white"
+		link={link}
+	>
+		<button
+			type="button"
+			class="bg-novo-blue flex cursor-pointer items-center rounded-lg px-4 py-3.5"
+		>
+			{icon && <Icon icon={icon} class="h-[1.25rem] w-[1.25rem]" />}
+			<span class="px-2">
+				{link?.text}
+			</span>
+		</button>
+	</Link>
+</MagneticHover>

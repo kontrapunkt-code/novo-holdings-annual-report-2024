@@ -6,6 +6,12 @@ export default defineType({
 	type: "object",
 	fields: [
 		defineField({
+			name: "fullWidth",
+			type: "boolean",
+			title: "Full Width",
+			initialValue: false,
+		}),
+		defineField({
 			name: "image",
 			type: "imageCombo",
 			title: "Image",

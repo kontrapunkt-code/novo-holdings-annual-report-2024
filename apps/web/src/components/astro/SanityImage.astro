@@ -1,33 +1,65 @@
 ---
 import { buildSanityImage } from "@/scripts/image-url-builder";
-import type { ImageCombo } from "@novo-holdings-annual-report-2024/studio/types";
+import type {
+	SanityImageAsset,
+	SanityImageCrop,
+	SanityImageHotspot,
+} from "@novo-holdings-annual-report-2024/studio/types";
 import { Image } from "astro:assets";
 
-interface Props extends ImageCombo {
-	alt: string;
+interface Props {
+	_type: "imageCombo";
+	caption: string | null;
+	asset: SanityImageAsset | null;
+	hotspot: SanityImageHotspot | null;
+	crop: SanityImageCrop | null;
+	alt: string | null;
 	width?: number;
 	height?: number;
 	class?: string;
 	sizes?: string;
+	dpr?: number;
 }
 
-const { alt, width, height, class: className, sizes, asset } = Astro.props;
-const maxWidth = 1504;
-
+const { alt, width, height, class: className, sizes, asset, dpr } = Astro.props;
 if (!asset) return null;
 
+const maxWidth = 1504;
+const maxHeight = 1504;
+const finalWidth = Math.min(width ?? maxWidth, maxWidth);
+const finalHeight =
+	height
+	?? Math.min(
+		Math.round(finalWidth / (asset?.metadata?.dimensions?.aspectRatio ?? 1)),
+		maxHeight,
+	);
+
 const url = buildSanityImage(asset, {
-	width: Math.min(width ?? maxWidth, maxWidth),
-	height,
+	width: finalWidth,
+	height: finalHeight,
+	dpr,
 });
 ---
 
-<Image
-	src={url ?? ""}
-	alt={alt}
-	class={className}
-	width={width}
-	height={height}
-	inferSize
-	sizes={sizes}
-/>
+<div class:list={[className, "relative overflow-hidden"]}>
+	{
+		asset.metadata?.lqip && (
+			<Image
+				src={asset.metadata?.lqip ?? ""}
+				alt={alt ?? ""}
+				class:list={[className, "absolute -z-1 h-full w-full blur-xl"]}
+				width={finalWidth}
+				height={finalHeight}
+				sizes={sizes}
+			/>
+		)
+	}
+	<Image
+		src={url ?? ""}
+		alt={alt ?? ""}
+		class:list={[className]}
+		width={finalWidth}
+		height={finalHeight}
+		sizes={sizes}
+	/>
+</div>

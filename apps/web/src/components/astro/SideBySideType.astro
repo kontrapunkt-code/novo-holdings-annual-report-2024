@@ -1,5 +1,5 @@
 ---
-import Button from "@/components/astro/Button.astro";
+import CallToAction from "@/components/astro/CallToAction.astro";
 import Video from "@/components/astro/Video.astro";
 import type { PageModuleProps } from "@/scripts/queries";
 import { usePortableText } from "astro-portabletext";
@@ -17,7 +17,7 @@ const { getUnknownComponent } = usePortableText(node as TypedObject);
 
 const Component =
 	node._type === "video" ? Video
-	: node._type === "button" ? Button
+	: node._type === "button" ? CallToAction
 	: getUnknownComponent();
 ---
 

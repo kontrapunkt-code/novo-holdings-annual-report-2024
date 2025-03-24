@@ -206,7 +206,7 @@ export type ArticleTextModule = {
 			_type: "span";
 			_key: string;
 		}>;
-		style?: "normal" | "h2";
+		style?: "normal" | "h2" | "h3";
 		listItem?: "bullet" | "number";
 		markDefs?: Array<{
 			href?: string;
@@ -270,6 +270,7 @@ export type ArticleGalleryModule = {
 
 export type ArticleFigureModule = {
 	_type: "articleFigureModule";
+	fullWidth?: boolean;
 	image?: {
 		asset?: {
 			_ref: string;

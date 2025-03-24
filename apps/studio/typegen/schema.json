@@ -1161,6 +1161,10 @@
                       {
                         "type": "string",
                         "value": "h2"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h3"
                       }
                     ]
                   },
@@ -1553,6 +1557,13 @@
             "type": "string",
             "value": "articleFigureModule"
           }
+        },
+        "fullWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",

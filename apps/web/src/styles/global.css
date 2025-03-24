@@ -162,28 +162,44 @@ body {
 
 .headline-sub,
 .article-text h2 {
-	@apply pb-[2rem] font-sans text-[1.5rem] leading-[120%] font-extralight md:pb-[3rem] md:text-[2.25rem];
+	@apply pb-[2rem] font-sans text-2xl leading-[120%] font-extralight md:pb-[3rem] md:text-[2.25rem];
 }
 
 .headline-card {
-	@apply font-sans text-[1.25rem] leading-[120%] md:text-[1.75rem] md:leading-[110%];
+	@apply font-sans text-xl leading-[120%] md:text-[1.75rem] md:leading-[110%];
+}
+
+.side-by-side-module p {
+	@apply mb-[1lh] font-sans text-lg leading-[140%] last:mb-0 md:text-xl;
 }
 
 .paragraph-article,
-.article-text p {
-	@apply pb-[1lh] font-sans text-[1rem] leading-[140%] last:pb-[0] md:text-[1.25rem];
+.article-text :is(p, li) {
+	@apply font-sans text-base leading-[140%] not-[li,:has(+_:is(ol,ul))]:mb-[1lh] last:mb-0 md:text-xl;
+}
+
+.article-text ol {
+	@apply mb-[1lh] list-decimal pl-6 md:pl-8;
+}
+
+.article-text ul {
+	@apply mb-[1lh] list-disc pl-6 md:pl-8;
+}
+
+.article-text li {
+	@apply mb-0;
 }
 
 .article-text h3 {
-	@apply font-sans text-[1rem] leading-[140%] font-bold md:text-[1.25rem];
+	@apply font-sans text-base leading-[140%] font-bold md:text-xl;
 }
 
 .paragraph-secondary {
-	@apply font-sans text-[1rem] leading-[140%] md:text-[1.125rem];
+	@apply font-sans text-base leading-[140%] md:text-lg;
 }
 
 .quote {
-	@apply text-novo-blue font-sans text-[1.5rem] leading-[120%] font-extralight italic md:text-[2.25rem];
+	@apply text-novo-blue font-sans text-2xl leading-[120%] font-extralight italic md:text-[2.25rem];
 }
 
 .side-by-side-module h2 {
@@ -192,4 +208,22 @@ body {
 
 .side-by-side-module strong {
 	@apply font-bold;
+}
+
+.lottie-wrapper {
+	@apply border-1 border-transparent transition-shadow duration-400 ease-out hover:shadow-[0_0_0.75rem_oklch(from_#b2b7cd_l_c_h_/0.0),0_0_1.5rem_oklch(from_#b2b7cd_l_c_h_/0.0)];
+	background:
+		linear-gradient(
+			to bottom,
+			oklch(from #ffffff l c h / 0.1) 0%,
+			oklch(from #ffffff l c h / 0.1) 100%
+		),
+		linear-gradient(
+			to bottom,
+			oklch(from #b2b7cd calc(l - 16%) calc(c + 0.04) h / 0.5) 0%,
+			oklch(from #b2b7cd calc(l - 24%) calc(c + 0.04) h / 0.5) 100%
+		);
+	background-clip: padding-box, border-box;
+	background-origin: padding-box, border-box;
+	background-blend-mode: normal, normal;
 }

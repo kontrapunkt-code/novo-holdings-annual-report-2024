@@ -21,6 +21,15 @@ const linkFragment = q.fragmentForType<"link">().project((link) => ({
 	slug: link.field("page").deref().field("slug.current"),
 }));
 
+const imageFragment = q.fragmentForType<"imageCombo">().project((image) => ({
+	_type: true,
+	alt: true,
+	caption: true,
+	crop: true,
+	hotspot: true,
+	asset: image.field("asset").deref(),
+}));
+
 const buttonFragment = q.fragmentForType<"button">().project((button) => ({
 	icon: button.field("icon"),
 	link: button.field("link").project(linkFragment),
@@ -28,14 +37,15 @@ const buttonFragment = q.fragmentForType<"button">().project((button) => ({
 
 const videoFragment = q.fragmentForType<"video">().project((video) => ({
 	callToAction: true,
-	thumbnail: true,
+	thumbnail: video.field("thumbnail").project(imageFragment),
 	src: video.field("asset").deref().field("url"),
 }));
 
 const articleFigureModule = q
 	.fragmentForType<"articleFigureModule">()
-	.project(() => ({
-		image: true,
+	.project((module) => ({
+		fullWidth: true,
+		image: module.field("image").project(imageFragment),
 	}));
 
 const articleGalleryModule = q
@@ -45,15 +55,15 @@ const articleGalleryModule = q
 		caption: true,
 		description: true,
 		link: module.field("link").project(linkFragment),
-		images: true,
+		images: module.field("images[]").project(imageFragment),
 	}));
 
 const articleQuoteModule = q
 	.fragmentForType<"articleQuoteModule">()
-	.project(() => ({
+	.project((module) => ({
 		quote: true,
 		author: true,
-		image: true,
+		image: module.field("image").project(imageFragment),
 		jobTitle: true,
 	}));
 
@@ -87,17 +97,26 @@ const caseHighlightsModule = q
 		cases: module
 			.field("cases[]")
 			.deref()
-			.project(() => ({
+			.project((caseData) => ({
 				title: true,
 				slug: "slug.current",
-				case: true,
+				case: caseData.field("case").project((caseData) => ({
+					endDate: true,
+					startDate: true,
+					heroImage: caseData.field("heroImage").project(imageFragment),
+					project: true,
+					subTitle: true,
+				})),
 			})),
 	}));
 
 const highlightsModule = q
 	.fragmentForType<"highlightsModule">()
-	.project(() => ({
-		highlights: true,
+	.project((module) => ({
+		highlights: module.field("highlights[]").project((highlight) => ({
+			title: true,
+			image: highlight.field("image").project(imageFragment),
+		})),
 		title: true,
 	}));
 
@@ -144,10 +163,10 @@ export const pagesQuery = q.star.filterByType("page").project((page) => ({
 	modules: page.field("modules[]").project((modules) => ({
 		...modules.conditionalByType(pageModuleMap),
 	})),
-	case: page.field("case").project(() => ({
+	case: page.field("case").project((caseData) => ({
 		startDate: true,
 		endDate: true,
-		heroImage: true,
+		heroImage: caseData.field("heroImage").project(imageFragment),
 		project: true,
 		subTitle: true,
 	})),

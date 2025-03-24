@@ -12,14 +12,15 @@ type Props = Partial<
 
 const { src, thumbnail, callToAction } = Astro.props ?? {};
 
-const thumbnailSrc = buildSanityImage(thumbnail?.asset);
+const thumbnailSrc =
+	thumbnail?.asset ? buildSanityImage(thumbnail.asset, { width: 744 }) : null;
 ---
 
 <VideoPlayer
 	client:load
 	src={src ?? ""}
 	alt={callToAction ?? ""}
-	thumbnailSrc={thumbnailSrc}
+	thumbnailSrc={thumbnailSrc ?? undefined}
 	thumbnailAlt={thumbnail?.alt ?? ""}
 	callToAction={callToAction}
 />
