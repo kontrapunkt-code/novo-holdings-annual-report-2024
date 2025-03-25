@@ -11,6 +11,8 @@
 		"@sanity/astro": "^3.2.6",
 		"@sanity/client": "6.28.3",
 		"@sanity/types": "^3.80.1",
+		"@solid-primitives/intersection-observer": "^2.2.0",
+		"@solid-primitives/media": "^2.3.0",
 		"@tailwindcss/vite": "^4.0.15",
 		"@types/svg-sprite": "^0.0.39",
 		"astro": "5.5.3",

@@ -1,6 +1,7 @@
 import { createMagneticHover } from "@/components/solid/magnetic-hover";
-import { EASE_IN_OUT_QUART } from "@/scripts/ease";
 import { vh, vw } from "@/scripts/helpers";
+import { createIntersectionObserver } from "@solid-primitives/intersection-observer";
+import { createMediaQuery } from "@solid-primitives/media";
 import type Lenis from "lenis";
 import { animate, stagger } from "motion";
 import { For, type VoidComponent, createSignal, onMount } from "solid-js";
@@ -17,6 +18,45 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 	let overlay: HTMLDivElement | undefined;
 
 	const [activeButton, setActiveButton] = createSignal<HTMLButtonElement>();
+	const [targets, setTargets] = createSignal<Element[]>([]);
+	const isDesktop = createMediaQuery("(width >= 48rem)");
+
+	createIntersectionObserver(targets, async (entries) => {
+		if (isDesktop()) return;
+
+		const { default: LottieWeb } = await import("@lottielab/lottie-player/web");
+
+		for (const entry of entries) {
+			const fromBottom = entry.boundingClientRect.y > 0;
+			const isEntering = fromBottom && entry.isIntersecting;
+
+			if (isEntering) {
+				const lottie = entry.target.querySelector("lottie-player");
+				if (lottie instanceof LottieWeb) {
+					lottie.seek(0);
+					lottie.pause();
+
+					setTimeout(() => {
+						lottie.play();
+					}, 300);
+
+					animate(
+						entry.target,
+						{
+							opacity: [0, 1],
+							y: ["2rem", "0rem"],
+							filter: ["blur(0.25rem)", "blur(0rem)"],
+						},
+						{
+							type: "spring",
+							visualDuration: 0.6,
+							bounce: 0.3,
+						},
+					);
+				}
+			}
+		}
+	});
 
 	onMount(async () => {
 		if (!grid) return;
@@ -35,6 +75,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 			lottie.setAttribute("src", src);
 			lottie.classList.add("w-full", "h-full");
+			lottie.loop = false;
 			wrapper.append(lottie);
 
 			Promise.all([
@@ -53,24 +94,24 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 					pressable: true,
 				});
 
-				lottie.loop = false;
 				lottie.seek(0);
 				lottie.pause();
 
 				setTimeout(() => {
 					lottie.play();
-				}, 300);
+				}, 100);
 
 				animate(
 					wrapper,
 					{
-						opacity: 1,
+						opacity: [0, 1],
 						y: ["2rem", "0rem"],
-						filter: ["blur(0.25rem)", "blur(0px)"],
+						filter: ["blur(0.25rem)", "blur(0rem)"],
 					},
 					{
-						duration: 0.8,
-						ease: EASE_IN_OUT_QUART,
+						type: "spring",
+						visualDuration: 0.6,
+						bounce: 0.3,
 					},
 				);
 			});
@@ -120,12 +161,12 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 		await new Promise((resolve) => setTimeout(resolve, 0));
 
-		const lottie = button.querySelector(".lottie-wrapper");
-		if (lottie instanceof HTMLElement) {
-			lottie.dataset.paused = "true";
+		const lottieWrapper = button.querySelector(".lottie-wrapper");
+		if (lottieWrapper instanceof HTMLElement) {
+			lottieWrapper.dataset.paused = "true";
 
 			animate(
-				lottie,
+				lottieWrapper,
 				{
 					x: 0,
 					y: 0,
@@ -162,6 +203,13 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 		const { lenis } = await import("@/scripts/lenis");
 		lenis.on("scroll", handleClose);
+
+		const { default: LottieWeb } = await import("@lottielab/lottie-player/web");
+		const lottie = button.querySelector("lottie-player");
+		if (lottie instanceof LottieWeb) {
+			lottie.seek(0);
+			lottie.play();
+		}
 	};
 
 	const handleClose = async (event: MouseEvent | KeyboardEvent | Lenis) => {
@@ -241,6 +289,8 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 						<div
 							class="lottie-wrapper relative z-0 w-full overflow-hidden rounded-lg opacity-0 backdrop-blur-sm"
 							data-src={animation.src}
+							tabIndex={-1}
+							ref={(next) => setTargets((existing) => [...existing, next])}
 						/>
 					</button>
 				)}

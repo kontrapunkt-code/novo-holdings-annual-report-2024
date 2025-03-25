@@ -9,7 +9,10 @@ const { title, cases } = Astro.props;
 ---
 
 <LandingLayout>
-	<h3 class="headline-extralight col-span-full mb-[0.5rem] md:mb-[1.5rem]">
+	<h3
+		class="headline-extralight col-span-full mb-[0.5rem] scroll-p-24 md:mb-[1.5rem]"
+		id="case-highlights"
+	>
 		{title}
 	</h3>
 	{cases?.map((card) => <CaseCard {...card} class="z-10 col-span-6 mb-8" />)}
