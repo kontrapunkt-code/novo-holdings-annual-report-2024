@@ -9,7 +9,7 @@ import { For, type VoidComponent, createSignal, onMount } from "solid-js";
 export interface Props {
 	animations: {
 		src: string;
-		aspectRatio: string;
+		aspectRatio: number;
 	}[];
 }
 
@@ -122,6 +122,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 		const button = event.currentTarget as HTMLButtonElement | null;
 		if (!button || !overlay || activeButton()) return;
 
+		button.dataset.active = "true";
 		setActiveButton(button);
 
 		const { width, height, x, y } = button.getBoundingClientRect();
@@ -137,16 +138,6 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 		const targetY = vh() * 0.5 - y - height * 0.5;
 
 		animate(
-			".lottie-button",
-			{
-				zIndex: 0,
-			},
-			{
-				duration: 0,
-			},
-		);
-
-		animate(
 			overlay,
 			{
 				opacity: 1,
@@ -158,8 +149,6 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 				bounce: 0.17,
 			},
 		);
-
-		await new Promise((resolve) => setTimeout(resolve, 0));
 
 		const lottieWrapper = button.querySelector(".lottie-wrapper");
 		if (lottieWrapper instanceof HTMLElement) {
@@ -184,6 +173,16 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 		}
 
 		animate(
+			".lottie-button:not([data-active='true'])",
+			{
+				zIndex: 0,
+			},
+			{
+				duration: 0,
+			},
+		);
+
+		animate(
 			button,
 			{
 				scale,
@@ -198,11 +197,13 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			},
 		);
 
-		window.addEventListener("click", handleClose);
-		window.addEventListener("keydown", handleClose);
+		setTimeout(async () => {
+			window.addEventListener("click", handleClose);
+			window.addEventListener("keydown", handleClose);
 
-		const { lenis } = await import("@/scripts/lenis");
-		lenis.on("scroll", handleClose);
+			const { lenis } = await import("@/scripts/lenis");
+			lenis.on("scroll", handleClose);
+		}, 100);
 
 		const { default: LottieWeb } = await import("@lottielab/lottie-player/web");
 		const lottie = button.querySelector("lottie-player");
@@ -225,6 +226,8 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 		setActiveButton(undefined);
 
 		if (!button || !overlay) return;
+
+		button.removeAttribute("data-active");
 
 		animate(
 			overlay,

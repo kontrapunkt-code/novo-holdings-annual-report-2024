@@ -13,12 +13,12 @@ const animations = await Promise.all(
 		const [aspectRatio] = await tryCatch(async () => {
 			const response = await fetch(animation?.src ?? "");
 			const { w, h } = await response.json();
-			return `${w}/${h}`;
+			return Number(w) / Number(h);
 		});
 
 		return {
 			src: animation.src ?? "",
-			aspectRatio: aspectRatio ?? "1/1",
+			aspectRatio: aspectRatio ?? 1,
 		};
 	}) ?? [],
 );
