@@ -2,6 +2,7 @@
 import Button from "@/components/astro/Button.astro";
 import Icon from "@/components/astro/Icon.astro";
 import Link from "@/components/astro/Link.astro";
+import { MagneticHover } from "@/components/solid/magnetic-hover";
 import type { GlobalSettings } from "@/scripts/queries";
 
 type Props = GlobalSettings;
@@ -17,7 +18,14 @@ const { footer } = Astro.props;
 			<div class="text-[2rem] leading-[90%] md:text-[4rem]">
 				<Icon icon="logo" class="aspect-[257/122] h-28" />
 			</div>
-			<Button link={footer?.backlink} icon="arrow_outward" />
+			<MagneticHover
+				client:load
+				pressable
+				hoverActiveScale={1.05}
+				moveStrength={{ x: 10, y: 5 }}
+			>
+				<Button link={footer?.backlink} icon="arrow_outward" />
+			</MagneticHover>
 		</div>
 		<nav>
 			<ul
