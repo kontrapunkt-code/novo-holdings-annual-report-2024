@@ -1,3 +1,4 @@
+import "@/scripts/console";
 import Lenis from "lenis";
 
 export const lenis = new Lenis({

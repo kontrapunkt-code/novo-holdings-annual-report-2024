@@ -20,7 +20,6 @@ export const HighlightCards: VoidComponent<Props> = (props) => {
 
 	const handleClick = async (event: MouseEvent) => {
 		const button = event.currentTarget;
-		console.log(button);
 		if (!(button instanceof HTMLButtonElement) || !overlay || activeButton()) {
 			return;
 		}

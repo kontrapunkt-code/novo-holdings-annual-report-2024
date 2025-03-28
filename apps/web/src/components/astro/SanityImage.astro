@@ -47,7 +47,10 @@ const url = buildSanityImage(asset, {
 			<Image
 				src={asset.metadata?.lqip ?? ""}
 				alt={alt ?? ""}
-				class:list={[className, "absolute -z-1 h-full w-full blur-xl"]}
+				class:list={[
+					className,
+					"absolute -z-1 h-full w-full object-cover blur-xl",
+				]}
 				width={finalWidth}
 				height={finalHeight}
 				sizes={sizes}

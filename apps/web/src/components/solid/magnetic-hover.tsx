@@ -213,9 +213,9 @@ export const createMagneticHover = (
 		};
 	});
 
-	onCleanup(() => {
+	return () => {
 		cancelHover();
-	});
+	};
 };
 
 interface Props extends Partial<typeof defaultOptions> {
@@ -232,7 +232,11 @@ export const MagneticHover: ParentComponent<Props> = (props) => {
 		const element = props.refSignal?.[0]() ?? elementRef();
 		if (!element) return;
 
-		createMagneticHover(element, props);
+		const cancel = createMagneticHover(element, props);
+
+		onCleanup(() => {
+			cancel();
+		});
 	});
 
 	return (

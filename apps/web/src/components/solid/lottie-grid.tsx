@@ -51,8 +51,8 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 						},
 						{
 							type: "spring",
-							visualDuration: 0.6,
-							bounce: 0.3,
+							visualDuration: 0.4,
+							bounce: 0,
 						},
 					);
 				}
@@ -101,6 +101,21 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 				setTimeout(() => {
 					lottie.play();
+
+					setTimeout(() => {
+						const ariaGroups =
+							lottie.shadowRoot?.querySelectorAll("g[aria-label]") ?? [];
+
+						const ariaString = [...ariaGroups]
+							.map((ariaGroup) => ariaGroup.getAttribute("aria-label"))
+							.join(" ");
+
+						wrapper.parentElement?.setAttribute("aria-label", ariaString);
+
+						for (const ariaGroup of ariaGroups) {
+							ariaGroup.removeAttribute("aria-label");
+						}
+					}, 2000);
 				}, 100);
 
 				animate(
@@ -112,8 +127,8 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 					},
 					{
 						type: "spring",
-						visualDuration: 0.6,
-						bounce: 0.3,
+						visualDuration: 0.4,
+						bounce: 0,
 					},
 				);
 			});
@@ -301,6 +316,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 						onClick={handleClick}
 						class="lottie-button focus-visible:outline-blue-grey pointer-events-none relative mb-4 w-full cursor-pointer rounded-lg md:pointer-events-auto"
 						style={{ "aspect-ratio": animation.aspectRatio }}
+						aria-label={animation.src}
 					>
 						<div
 							class="lottie-wrapper relative z-0 w-full overflow-hidden rounded-lg opacity-0 backdrop-blur-sm"

@@ -58,7 +58,7 @@ export const SanityImage: VoidComponent<Props> = (props) => {
 				<img
 					src={merged.asset.metadata?.lqip ?? ""}
 					alt={merged.alt ?? ""}
-					class={`${merged.class || ""} absolute -z-1 h-full w-full blur-xl`}
+					class={`${merged.class || ""} absolute -z-1 h-full w-full object-cover blur-xl`}
 					width={finalWidth}
 					height={finalHeight}
 					sizes={merged.sizes}
