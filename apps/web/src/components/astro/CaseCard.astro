@@ -14,6 +14,11 @@ type Props = NonNullable<
 
 const { title, slug, class: classList } = Astro.props;
 const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
+
+const period =
+	startDate && endDate ? `${formatYear(startDate)}–${formatYear(endDate)}`
+	: startDate ? formatYear(startDate)
+	: null;
 ---
 
 <div class={classList}>
@@ -45,10 +50,7 @@ const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
 				class="text-novo-blue flex items-center gap-4 pb-[0.5rem] text-[1rem] leading-[120%]"
 			>
 				<p>{project}</p>
-				<p>
-					{formatYear(startDate ?? undefined)}-
-					{formatYear(endDate ?? undefined)}
-				</p>
+				{period && <span>{period}</span>}
 			</div>
 			<h2 class="headline-card pe-4">{title}</h2>
 		</Link>
