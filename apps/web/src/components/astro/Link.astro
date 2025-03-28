@@ -6,29 +6,38 @@ interface Props extends HTMLAttributes<"a"> {
 	link?: Partial<NonNullable<GlobalSettings["header"]>["callToAction"]>;
 }
 
-const { link, href, ...props } = Astro.props;
+const { link, href, class: className, ...props } = Astro.props;
 const { mailto, tel, external, slug } = link ?? {};
+
+const classes =
+	"flex focus-visible:outline-current focus-visible:outline-offset-4 rounded-sm";
 ---
 
 {
 	href ?
-		<a href={href} {...props}>
+		<a href={href} class:list={[className, classes]} {...props}>
 			<slot />
 		</a>
 	: slug ?
-		<a href={`/${slug.trim()}`} {...props}>
+		<a href={`/${slug.trim()}`} class:list={[className, classes]} {...props}>
 			<slot />
 		</a>
 	: external ?
-		<a href={external} target="_blank" rel="noopener noreferrer" {...props}>
+		<a
+			href={external}
+			target="_blank"
+			rel="noopener noreferrer"
+			class:list={[className, classes]}
+			{...props}
+		>
 			<slot />
 		</a>
 	: mailto ?
-		<a href={`mailto:${mailto}`} {...props}>
+		<a href={`mailto:${mailto}`} class:list={[className, classes]} {...props}>
 			<slot />
 		</a>
 	: tel ?
-		<a href={`tel:${tel}`} {...props}>
+		<a href={`tel:${tel}`} class:list={[className, classes]} {...props}>
 			<slot />
 		</a>
 	:	<slot />

@@ -20,20 +20,20 @@ const { link, icon } = node ?? {};
 	class="w-fit"
 	hoverOpacity={0.8}
 	hoverActiveScale={1.02}
+	moveStrength={{ x: 8, y: 4 }}
 	pressable
 >
 	<Link
-		class="flex w-fit text-base leading-[140%] font-medium text-white"
+		class="focus-visible:outline-novo-blue flex w-fit text-base leading-[140%] font-medium text-white"
 		link={link}
 	>
-		<button
-			type="button"
+		<div
 			class="bg-novo-blue flex cursor-pointer items-center rounded-lg px-4 py-3.5"
 		>
 			{icon && <Icon icon={icon} class="h-[1.25rem] w-[1.25rem]" />}
 			<span class="px-2">
 				{link?.text}
 			</span>
-		</button>
+		</div>
 	</Link>
 </MagneticHover>

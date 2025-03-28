@@ -286,7 +286,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 					<button
 						type="button"
 						onClick={handleClick}
-						class="lottie-button pointer-events-none relative mb-4 w-full cursor-pointer md:pointer-events-auto"
+						class="lottie-button focus-visible:outline-blue-grey pointer-events-none relative mb-4 w-full cursor-pointer rounded-lg md:pointer-events-auto"
 						style={{ "aspect-ratio": animation.aspectRatio }}
 					>
 						<div

@@ -1,6 +1,6 @@
 import { animate, frame, hover, press } from "motion";
-import type { ParentComponent } from "solid-js";
-import { onMount } from "solid-js";
+import type { ParentComponent, Signal } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 
 /**
  * The default options for the magnetic hover.
@@ -119,7 +119,7 @@ export const createMagneticHover = (
 		});
 	}
 
-	hover(element, () => {
+	const cancelHover = hover(element, () => {
 		if (element.dataset.paused) return;
 
 		animate(
@@ -212,23 +212,35 @@ export const createMagneticHover = (
 			});
 		};
 	});
+
+	onCleanup(() => {
+		cancelHover();
+	});
 };
 
 interface Props extends Partial<typeof defaultOptions> {
 	class?: string;
+	refSignal?: Signal<HTMLDivElement | undefined>;
 }
 
 export const MagneticHover: ParentComponent<Props> = (props) => {
-	let element: HTMLDivElement | undefined;
+	const [elementRef, setElementRef] = createSignal<
+		HTMLDivElement | undefined
+	>();
 
 	onMount(() => {
+		const element = props.refSignal?.[0]() ?? elementRef();
 		if (!element) return;
 
 		createMagneticHover(element, props);
 	});
 
 	return (
-		<div ref={element} class={props.class}>
+		<div
+			class={props.class}
+			tabIndex={-1}
+			ref={props.refSignal?.[1] ?? setElementRef}
+		>
 			{props.children}
 		</div>
 	);

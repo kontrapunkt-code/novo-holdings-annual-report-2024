@@ -8,7 +8,6 @@ const blocks = [
 			{ title: "Normal", value: "normal" },
 			{ title: "Headline", value: "h2" },
 		],
-		lists: [],
 		marks: {
 			decorators: [
 				{ title: "Strong", value: "strong", icon: TextBold },

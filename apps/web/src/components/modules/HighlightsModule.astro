@@ -9,11 +9,6 @@ type Props = PageModuleProps<"highlightsModule">;
 const { title, highlights } = Astro.props;
 
 if (!highlights?.length) return null;
-
-const validHighlights = highlights.filter(
-	(highlight): highlight is NonNullable<typeof highlight> =>
-		highlight?.title != null && highlight?.image != null,
-);
 ---
 
 <LandingLayout>
@@ -21,7 +16,7 @@ const validHighlights = highlights.filter(
 		{title}
 	</h3>
 	{
-		validHighlights.map((highlight) => (
+		highlights.map((highlight) => (
 			<figure class="col-span-4 pb-[1rem] md:col-span-6">
 				<div class="rounded-lg pb-[1.25rem]">
 					{highlight.image && (

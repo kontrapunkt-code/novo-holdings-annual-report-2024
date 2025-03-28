@@ -114,7 +114,6 @@
 	--color-sky-blue: #b5d5e6;
 	--color-seafoam-green: #6dc28d;
 	--color-light-blue: #b2b7cd;
-	--color-grey-blue: #43485c;
 }
 
 body {
@@ -179,15 +178,19 @@ body {
 	@apply font-sans text-base leading-[140%] not-[li,:has(+_:is(ol,ul))]:mb-[1lh] last:mb-0 md:text-xl;
 }
 
-.article-text ol {
+:is(.article-text, .side-by-side-module) ol {
 	@apply mb-[1lh] list-decimal pl-6 md:pl-8;
 }
 
-.article-text ul {
+:is(.article-text, .side-by-side-module) ul {
 	@apply mb-[1lh] list-disc pl-6 md:pl-8;
 }
 
-.article-text li {
+.side-by-side-module :is(ul, ol) {
+	@apply pl-4 md:pl-4;
+}
+
+:is(.article-text, .side-by-side-module) li {
 	@apply mb-0;
 }
 
@@ -227,4 +230,30 @@ body {
 	background-clip: padding-box, border-box;
 	background-origin: padding-box, border-box;
 	background-blend-mode: normal, normal;
+}
+
+@layer utilities {
+	:focus-visible {
+		@apply outline-2 outline-offset-4 outline-current;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: focus-visible 0.5s ease;
+		}
+	}
+}
+
+@keyframes focus-visible {
+	0% {
+		outline-width: 0;
+	}
+
+	30% {
+		outline-width: 0.5rem;
+		animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+	}
+
+	100% {
+		outline-width: 0.125rem;
+		animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+	}
 }

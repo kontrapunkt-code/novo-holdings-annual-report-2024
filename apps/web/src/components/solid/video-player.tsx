@@ -23,9 +23,11 @@ interface VideoPlayerProps {
 export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 	props: VideoPlayerProps,
 ) => {
-	const [videoRef, setVideoRef] = createSignal<HTMLVideoElement>();
-	const [lightboxRef, setLightboxRef] = createSignal<HTMLDivElement>();
-	const [isOpen, setIsOpen] = createSignal<boolean>(false);
+	let videoRef: HTMLVideoElement | undefined;
+	let lightboxRef: HTMLDivElement | undefined;
+
+	const magneticHoverSignal = createSignal<HTMLDivElement | undefined>();
+	const [isOpen, setIsOpen] = createSignal(false);
 
 	createEffect(() => {
 		if (isOpen()) {
@@ -39,25 +41,23 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 
 	const open = async () => {
 		setIsOpen(true);
-		const video = videoRef();
-		const lightbox = lightboxRef();
-		if (!video || !lightbox) return;
+		if (!videoRef || !lightboxRef) return;
 
-		animate(lightbox, { opacity: 1 }, { duration: 0.2, ease: EASE_OUT_CUBIC });
 		animate(
-			video,
+			lightboxRef,
+			{ opacity: 1 },
+			{ duration: 0.2, ease: EASE_OUT_CUBIC },
+		);
+		animate(
+			videoRef,
 			{ scale: [0.8, 1], opacity: 1 },
 			{ duration: 0.2, ease: EASE_OUT_CUBIC, delay: 0.1 },
 		);
 
+		videoRef.focus();
+
 		const { lenis } = await import("@/scripts/lenis");
 		lenis.on("scroll", close);
-	};
-
-	const keyDownOpen = (event: KeyboardEvent) => {
-		if (event.key === "Enter") {
-			open();
-		}
 	};
 
 	const keyDownClose = (event: KeyboardEvent) => {
@@ -66,23 +66,32 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 		}
 	};
 
-	const closeLightbox = (event: MouseEvent) => {
+	const clickLightbox = (event: MouseEvent) => {
 		if (event.target === event.currentTarget) {
 			close();
 		}
 	};
 
 	const close = async () => {
-		const video = videoRef();
-		const lightbox = lightboxRef();
-		if (!video || !lightbox) return;
+		const button = magneticHoverSignal?.[0]()?.querySelector(
+			"button.video-player-button",
+		);
+		if (button instanceof HTMLButtonElement) {
+			button.focus();
+		}
+
+		if (!videoRef || !lightboxRef) return;
 
 		const { lenis } = await import("@/scripts/lenis");
 		lenis.off("scroll", close);
 
-		animate(lightbox, { opacity: 0 }, { duration: 0.2, ease: EASE_OUT_CUBIC });
+		animate(
+			lightboxRef,
+			{ opacity: 0 },
+			{ duration: 0.2, ease: EASE_OUT_CUBIC },
+		);
 		await animate(
-			video,
+			videoRef,
 			{ scale: 0.8, opacity: 0 },
 			{ duration: 0.2, ease: EASE_OUT_CUBIC },
 		);
@@ -100,21 +109,22 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 				pressActiveScale={0.98}
 				pressable
 				hoverOpacity={0.95}
+				refSignal={magneticHoverSignal}
 			>
-				<BlurShadow>
-					<img
-						src={props.thumbnailSrc}
-						alt={props.thumbnailAlt}
-						onClick={open}
-						onKeyDown={keyDownOpen}
-						class="z-1 aspect-[5/4] cursor-pointer rounded-lg"
-					/>
-				</BlurShadow>
+				<button type="button" onClick={open} tabIndex={-1}>
+					<BlurShadow>
+						<img
+							src={props.thumbnailSrc}
+							alt={props.thumbnailAlt}
+							class="z-1 aspect-[5/4] cursor-pointer rounded-lg object-cover"
+						/>
+					</BlurShadow>
+				</button>
 				<button
+					tabIndex={0}
 					type="button"
-					class="bg-opacity-40 absolute bottom-5 left-5 z-1 flex cursor-pointer items-center rounded-lg bg-white px-4 py-3.5 text-black backdrop-blur-xl"
+					class="video-player-button bg-opacity-40 absolute bottom-5 left-5 z-1 flex cursor-pointer items-center rounded-lg bg-white px-4 py-3.5 text-black backdrop-blur-xl focus-visible:outline-white"
 					onClick={open}
-					onKeyDown={keyDownOpen}
 				>
 					<Icon icon="play_arrow" class="h-6 w-6" />
 					<span class="px-2">{props.callToAction}</span>
@@ -131,16 +141,16 @@ export const VideoPlayer: VoidComponent<VideoPlayerProps> = (
 					<div
 						id="video-lightbox"
 						class="fixed inset-0 flex items-center justify-center bg-black/50 p-4 opacity-0 backdrop-blur-sm"
-						onClick={closeLightbox}
+						onClick={clickLightbox}
 						onKeyDown={keyDownClose}
-						ref={setLightboxRef}
+						ref={lightboxRef}
 					>
 						<video
 							src={props.src}
 							controls
 							autoplay
 							class="max-h-full max-w-full rounded-lg bg-black opacity-0"
-							ref={setVideoRef}
+							ref={videoRef}
 						>
 							<track kind="captions" />
 						</video>

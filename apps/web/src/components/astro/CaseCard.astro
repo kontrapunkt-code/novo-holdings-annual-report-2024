@@ -26,7 +26,7 @@ const { heroImage, project, startDate, endDate } = Astro.props?.case ?? {};
 		pressOpacity={0.8}
 		class="group"
 	>
-		<Link link={{ slug }}>
+		<Link link={{ slug }} class="flex flex-col">
 			<div class="mb-[1.25rem] grid rounded-lg">
 				<BlurShadow>
 					{
