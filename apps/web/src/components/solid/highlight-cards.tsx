@@ -29,9 +29,8 @@ export const HighlightCards: VoidComponent<Props> = (props) => {
 		setActiveButton(button);
 
 		const { width, height, x, y } = button.getBoundingClientRect();
-		const padding = 24;
-		const maxWidth = document.documentElement.clientWidth - padding * 2;
-		const maxHeight = vh() - padding * 2;
+		const maxWidth = document.documentElement.clientWidth - 48;
+		const maxHeight = vh() - 144;
 
 		const widthRatio = maxWidth / width;
 		const heightRatio = maxHeight / height;
@@ -172,6 +171,17 @@ export const HighlightCards: VoidComponent<Props> = (props) => {
 				type: "spring",
 				visualDuration: 0.3,
 				bounce: 0.17,
+			},
+		);
+
+		animate(
+			".hightlight-button:not([data-active='true'])",
+			{
+				zIndex: 0,
+			},
+			{
+				duration: 0,
+				delay: 0.3,
 			},
 		);
 	};
