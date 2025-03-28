@@ -5,6 +5,9 @@ import Router from "@/components/astro/Router.astro";
 import { globalSettingsResult } from "@/scripts/queries";
 import { SEO } from "astro-seo";
 import "@/styles/global.css";
+import gtmBody from "@/snippets/gtm-body.txt?raw";
+import gtmHead from "@/snippets/gtm-head.txt?raw";
+import onetrust from "@/snippets/onetrust.txt?raw";
 
 interface Props {
 	title?: string;
@@ -32,6 +35,9 @@ const pageTitle = title ? `${globalTitle} · ${title}` : globalTitle;
 
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 
+		{import.meta.env.PROD && <Fragment set:html={gtmHead} />}
+		{import.meta.env.PROD && <Fragment set:html={onetrust} />}
+
 		<Router />
 
 		<SEO
@@ -58,6 +64,7 @@ const pageTitle = title ? `${globalTitle} · ${title}` : globalTitle;
 	<body
 		class="selection:bg-novo-blue min-h-screen bg-white selection:text-white"
 	>
+		{import.meta.env.PROD && <Fragment set:html={gtmBody} />}
 		<Header {...globalSettings} />
 		<main class="w-full">
 			<div class="mx-auto flex max-w-[100rem] flex-col">
