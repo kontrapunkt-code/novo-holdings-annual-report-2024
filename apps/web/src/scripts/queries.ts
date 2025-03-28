@@ -123,6 +123,7 @@ const highlightsModule = q
 		highlights: module.field("highlights[]").project((highlight) => ({
 			title: true,
 			image: highlight.field("image").project(imageFragment),
+			link: highlight.field("link").project(linkFragment),
 		})),
 		title: true,
 	}));
