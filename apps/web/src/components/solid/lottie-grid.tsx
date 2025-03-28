@@ -1,5 +1,6 @@
+import { Icon } from "@/components/solid/icon";
 import { createMagneticHover } from "@/components/solid/magnetic-hover";
-import { vh, vw } from "@/scripts/helpers";
+import { vh } from "@/scripts/helpers";
 import { createIntersectionObserver } from "@solid-primitives/intersection-observer";
 import { createMediaQuery } from "@solid-primitives/media";
 import type Lenis from "lenis";
@@ -19,6 +20,7 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 
 	const [activeButton, setActiveButton] = createSignal<HTMLButtonElement>();
 	const [targets, setTargets] = createSignal<Element[]>([]);
+
 	const isDesktop = createMediaQuery("(width >= 48rem)");
 
 	createIntersectionObserver(targets, async (entries) => {
@@ -126,15 +128,16 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 		setActiveButton(button);
 
 		const { width, height, x, y } = button.getBoundingClientRect();
-		const padding = 64;
-		const maxWidth = vw() - padding * 2;
+		const padding = 24;
+		const maxWidth = document.documentElement.clientWidth - padding * 2;
 		const maxHeight = vh() - padding * 2;
 
 		const widthRatio = maxWidth / width;
 		const heightRatio = maxHeight / height;
 		const scale = Math.min(widthRatio, heightRatio);
 
-		const targetX = vw() * 0.5 - x - width * 0.5;
+		const targetX =
+			document.documentElement.clientWidth * 0.5 - x - width * 0.5;
 		const targetY = vh() * 0.5 - y - height * 0.5;
 
 		animate(
@@ -299,9 +302,14 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 				)}
 			</For>
 			<div
-				class="pointer-events-none fixed inset-0 z-101 bg-white/80 opacity-0"
+				class="pointer-events-none fixed inset-0 z-101 bg-white/20 opacity-0 backdrop-blur-sm"
 				ref={overlay}
-			/>
+			>
+				<Icon
+					icon="close"
+					class="text-novo-blue absolute top-4 right-4 h-6 w-6 cursor-pointer transition-all duration-300 hover:scale-[1.3] hover:opacity-70"
+				/>
+			</div>
 		</div>
 	);
 };

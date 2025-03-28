@@ -11,14 +11,14 @@ if (!stats?.length) return null;
 
 <CaseLayout>
 	<div
-		class="col-span-4 rounded-lg bg-[hsla(200,50%,83%,0.25)] p-[1.25rem] md:col-span-6 md:col-start-4 md:pl-[1.75rem]"
+		class="col-span-4 rounded-lg bg-[hsla(200,50%,83%,0.25)] p-[1.25rem] md:col-span-6 md:col-start-4 md:ps-[1.75rem]"
 	>
 		<h4
 			class="pb-[4rem] text-[1.5rem] leading-[115%] md:pb-[3rem] md:text-[1.75rem]"
 		>
 			<span class="font-bold">{project}</span>{title}
 		</h4>
-		<ul class="list-disc pl-[1rem]">
+		<ul class="list-disc ps-[1rem]">
 			{stats.map((stat) => <li class="paragraph-secondary">{stat}</li>)}
 		</ul>
 	</div>

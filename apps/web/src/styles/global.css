@@ -179,15 +179,15 @@ body {
 }
 
 :is(.article-text, .side-by-side-module) ol {
-	@apply mb-[1lh] list-decimal pl-6 md:pl-8;
+	@apply mb-[1lh] list-decimal ps-6 md:ps-8;
 }
 
 :is(.article-text, .side-by-side-module) ul {
-	@apply mb-[1lh] list-disc pl-6 md:pl-8;
+	@apply mb-[1lh] list-disc ps-6 md:ps-8;
 }
 
 .side-by-side-module :is(ul, ol) {
-	@apply pl-4 md:pl-4;
+	@apply ps-4 md:ps-4;
 }
 
 :is(.article-text, .side-by-side-module) li {
@@ -207,7 +207,7 @@ body {
 }
 
 .side-by-side-module h2 {
-	@apply mb-6 font-sans text-[1.75rem] leading-[115%] font-extralight -tracking-[1%] md:mb-8 md:pr-8 md:text-[2.625rem];
+	@apply mb-6 font-sans text-[1.75rem] leading-[115%] font-extralight -tracking-[1%] md:mb-8 md:pe-8 md:text-[2.625rem];
 }
 
 .side-by-side-module strong {

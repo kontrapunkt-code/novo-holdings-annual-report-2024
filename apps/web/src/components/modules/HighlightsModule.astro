@@ -1,9 +1,5 @@
 ---
-import BlurShadow from "@/components/astro/BlurShadow.astro";
-import Icon from "@/components/astro/Icon.astro";
-import Link from "@/components/astro/Link.astro";
-import SanityImage from "@/components/astro/SanityImage.astro";
-import { MagneticHover } from "@/components/solid/magnetic-hover";
+import { HighlightCards } from "@/components/solid/highlight-cards";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import type { PageModuleProps } from "@/scripts/queries";
 
@@ -18,41 +14,5 @@ if (!highlights?.length) return null;
 	<h3 class="headline-extralight col-span-full mb-[0.5rem] md:mb-[1.5rem]">
 		{title}
 	</h3>
-	{
-		highlights.map((highlight) => (
-			<MagneticHover
-				client:load
-				class="col-span-4 pb-[1rem] md:col-span-6"
-				hoverActiveScale={1.02}
-				hoverOpacity={0.9}
-				pressActiveScale={1}
-				zIndex={1}
-				pressable
-			>
-				<BlurShadow>
-					<Link link={highlight.link}>
-						<figure class="cursor-pointer">
-							<div class="rounded-lg pb-[1.25rem]">
-								{highlight.image && (
-									<SanityImage
-										{...highlight.image}
-										alt={highlight.title ?? ""}
-										width={1200}
-										class="h-auto w-full rounded-lg"
-										sizes="(min-width: 1280px) 1200px, 100vw"
-									/>
-								)}
-							</div>
-							<figcaption class="headline-card flex items-start gap-[0.5rem]">
-								<span class="flex h-[2.125rem] w-[2.125rem]">
-									<Icon icon="arrow_outward" />
-								</span>
-								{highlight.title}
-							</figcaption>
-						</figure>
-					</Link>
-				</BlurShadow>
-			</MagneticHover>
-		))
-	}
+	<HighlightCards client:load highlights={highlights} />
 </LandingLayout>
