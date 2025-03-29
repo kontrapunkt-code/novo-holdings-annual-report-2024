@@ -1,6 +1,7 @@
 ---
 description: Tailwind CSS
-globs: apps/web/**/*.{tsx,css,astro}
+globs: apps/web/**/*.tsx,apps/web/**/*.css,apps/web/**/*.astro
+alwaysApply: false
 ---
 
 # Tailwind CSS

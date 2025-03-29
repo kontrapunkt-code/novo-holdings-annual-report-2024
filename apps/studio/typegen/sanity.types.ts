@@ -57,7 +57,7 @@ export type SideBySideModule = {
 					_key: string;
 				}>;
 				style?: "normal" | "h2";
-				listItem?: never;
+				listItem?: "bullet" | "number";
 				markDefs?: Array<
 					{
 						_key: string;
@@ -104,7 +104,7 @@ export type SideBySideModule = {
 					_key: string;
 				}>;
 				style?: "normal" | "h2";
-				listItem?: never;
+				listItem?: "bullet" | "number";
 				markDefs?: Array<
 					{
 						_key: string;

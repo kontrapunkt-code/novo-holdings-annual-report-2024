@@ -1,6 +1,6 @@
 ---
 description: Motion
-globs: apps/web/**/*.{ts,tsx}
+globs: apps/web/**/*.tsx
 alwaysApply: false
 ---
 

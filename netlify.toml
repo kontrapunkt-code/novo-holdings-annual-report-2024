@@ -1,11 +1,12 @@
 [build]
-	base = "/"
-	publish = "apps/web/dist"
-	command = "bun run build --filter=@novo-holdings-annual-report-2024/web"
+base = "/"
+package = "apps/web"
+publish = "apps/web/dist"
+command = "bun run build --filter=@novo-holdings-annual-report-2024/web"
 
 [build.environment]
-	NODE_VERSION = "22"
-	TURBO_TELEMETRY_DISABLED = "1"
+NODE_VERSION = "22"
+TURBO_TELEMETRY_DISABLED = "1"
 
 [build.processing.html]
-	pretty_urls = true
+pretty_urls = true

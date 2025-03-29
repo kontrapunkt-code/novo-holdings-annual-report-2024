@@ -280,7 +280,16 @@
                       "type": "objectAttribute",
                       "value": {
                         "type": "union",
-                        "of": []
+                        "of": [
+                          {
+                            "type": "string",
+                            "value": "bullet"
+                          },
+                          {
+                            "type": "string",
+                            "value": "number"
+                          }
+                        ]
                       },
                       "optional": true
                     },
@@ -567,7 +576,16 @@
                       "type": "objectAttribute",
                       "value": {
                         "type": "union",
-                        "of": []
+                        "of": [
+                          {
+                            "type": "string",
+                            "value": "bullet"
+                          },
+                          {
+                            "type": "string",
+                            "value": "number"
+                          }
+                        ]
                       },
                       "optional": true
                     },
