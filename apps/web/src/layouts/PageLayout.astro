@@ -62,7 +62,7 @@ const pageTitle = title ? `${globalTitle} · ${title}` : globalTitle;
 		<title>{pageTitle}</title>
 	</head>
 	<body
-		class="selection:bg-novo-blue min-h-screen bg-white selection:text-white"
+		class="selection:bg-novo-blue min-h-screen bg-white antialiased selection:text-white"
 	>
 		{import.meta.env.PROD && <Fragment set:html={gtmBody} />}
 		<Header {...globalSettings} />
