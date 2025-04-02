@@ -46,7 +46,6 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 						entry.target,
 						{
 							opacity: [0, 1],
-							y: ["2rem", "0rem"],
 							filter: ["blur(0.25rem)", "blur(0rem)"],
 						},
 						{
