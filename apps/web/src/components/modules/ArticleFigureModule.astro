@@ -10,13 +10,23 @@ if (!image) return null;
 ---
 
 <CaseLayout fullWidth={!!fullWidth}>
-	<div class="overflow-hidden">
-		<SanityImage
-			{...image}
-			alt=""
-			width={fullWidth ? 1504 : 1200}
-			class="h-full w-full rounded-lg object-cover"
-			sizes="(min-width: 700px) 1504px, 100vw"
-		/>
-	</div>
+	<figure class="mb-[2rem] overflow-hidden md:mb-[3rem]">
+		{
+			image && (
+				<SanityImage
+					{...image}
+					alt={image.alt ?? image.caption ?? ""}
+					dpr={1}
+					width={1504}
+				/>
+			)
+		}
+		{
+			image?.caption && (
+				<figcaption class="paragraph-secondary text-novo-blue mt-4">
+					{image.caption}
+				</figcaption>
+			)
+		}
+	</figure>
 </CaseLayout>
