@@ -1,16 +1,16 @@
 {
 	"dependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@types/bun": "^1.2.8",
+		"@types/bun": "^1.2.16",
 		"astro-seo": "^0.8.4",
-		"npm-check-updates": "^17.1.16",
+		"npm-check-updates": "^18.0.1",
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "^0.14.1",
-		"prettier-plugin-tailwindcss": "^0.6.11",
-		"turbo": "^2.5.0"
+		"prettier-plugin-tailwindcss": "^0.6.12",
+		"turbo": "^2.5.4"
 	},
 	"name": "novo-holdings-annual-report-2024",
-	"packageManager": "bun@1.2.8",
+	"packageManager": "bun@1.2.16",
 	"prettier": {
 		"experimentalOperatorPosition": "start",
 		"experimentalTernaries": true,
@@ -34,9 +34,9 @@
 		"check": "turbo run check",
 		"deploy": "turbo run deploy --filter=@novo-holdings-annual-report-2024/studio",
 		"dev": "turbo run dev",
-		"reinstall": "rm -rf node_modules && rm -rf apps/web/node_modules && rm -rf apps/studio/node_modules && rm -rf apps/lib/node_modules && rm bun.lock && bun i",
+		"reinstall": "trash node_modules && bun install",
 		"typegen": "turbo run typegen",
-		"update:deps": "ncu -u --format group -i && turbo run update:deps"
+		"update:deps": "bunx npm-check-updates --upgrade --deep --format group,repo,time --interactive --install always"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",

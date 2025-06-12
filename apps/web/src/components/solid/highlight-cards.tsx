@@ -173,16 +173,17 @@ export const HighlightCards: VoidComponent<Props> = (props) => {
 			},
 		);
 
-		animate(
-			".hightlight-button:not([data-active='true'])",
-			{
-				zIndex: 0,
-			},
-			{
-				duration: 0,
-				delay: 0.3,
-			},
-		);
+		setTimeout(() => {
+			animate(
+				".hightlight-button",
+				{
+					zIndex: 0,
+				},
+				{
+					duration: 0,
+				},
+			);
+		}, 300);
 	};
 
 	return (

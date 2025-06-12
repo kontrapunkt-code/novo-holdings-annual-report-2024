@@ -294,16 +294,17 @@ export const LottieGrid: VoidComponent<Props> = (props) => {
 			},
 		);
 
-		animate(
-			".lottie-button:not([data-active='true'])",
-			{
-				zIndex: 0,
-			},
-			{
-				duration: 0,
-				delay: 0.3,
-			},
-		);
+		setTimeout(() => {
+			animate(
+				".lottie-button",
+				{
+					zIndex: 0,
+				},
+				{
+					duration: 0,
+				},
+			);
+		}, 300);
 	};
 
 	return (
